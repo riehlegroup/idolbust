@@ -7,7 +7,7 @@ export interface Props {
   image?: string;
 }
 
-const { title, description, image = '/og-image.png' } = Astro.props;
+const { title, description, image = '/favicon.svg' } = Astro.props;
 const siteTitle = 'Idol or Bust!';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 ---
