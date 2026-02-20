@@ -25,7 +25,7 @@ const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={withBase(image)} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
 
