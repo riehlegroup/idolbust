@@ -1,22 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Card } from '@/components';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import { withBase } from '@/utils/with-base';
+import { formatDate, getBlogSlug, getPublishedPosts, type BlogEntry } from '@/utils/blog';
 
-type BlogEntry = CollectionEntry<'blog'>;
-
-const posts = (await getCollection('blog'))
-  .filter((post: BlogEntry) => !post.data.draft)
-  .sort((a: BlogEntry, b: BlogEntry) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
+const posts = getPublishedPosts(await getCollection('blog'));
 ---
 
 <BaseLayout title="Blog" description="Latest updates and insights from the Idol or Bust research project.">
@@ -31,7 +20,7 @@ function formatDate(date: Date): string {
           <Card
             title={post.data.title}
             description={post.data.description}
-            href={withBase(`/blog/${post.id.replace(/\.(md|mdx)$/, '')}/`)}
+            href={withBase(`/blog/${getBlogSlug(post)}/`)}
             image={post.data.image?.url}
             imageAlt={post.data.image?.alt}
           >
