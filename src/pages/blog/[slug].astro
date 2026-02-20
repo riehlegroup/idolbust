@@ -1,0 +1,47 @@
+---
+import BlogLayout from '@/layouts/BlogLayout.astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post: CollectionEntry<'blog'>) => ({
+    params: { slug: post.id.replace(/\.(md|mdx)$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> };
+const { Content } = await render(post);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BlogLayout title={post.data.title} description={post.data.description}>
+  <header class="mb-8 not-prose">
+    <h1 class="text-4xl font-bold text-secondary-900">{post.data.title}</h1>
+    <div class="mt-4 flex items-center gap-2 text-secondary-600">
+      <time datetime={post.data.pubDate.toISOString()}>
+        {formatDate(post.data.pubDate)}
+      </time>
+      <span>·</span>
+      <span>{post.data.author}</span>
+    </div>
+    {post.data.tags.length > 0 && (
+      <div class="mt-4 flex flex-wrap gap-2">
+        {post.data.tags.map((tag: string) => (
+          <span class="rounded-full bg-secondary-100 px-3 py-1 text-sm text-secondary-600">
+            {tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </header>
+  
+  <Content />
+</BlogLayout>

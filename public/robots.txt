@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://riehlegroup.github.io/idolbust/sitemap-index.xml
