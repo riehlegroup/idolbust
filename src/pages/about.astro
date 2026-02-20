@@ -1,28 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Team, SocialLinks } from '@/components';
-
-const teamMembers = [
-  {
-    name: 'Jane Doe',
-    role: 'Principal Investigator',
-    bio: 'Leading research in user-centered design methodologies.',
-  },
-  {
-    name: 'John Smith',
-    role: 'Research Lead',
-    bio: 'Specializing in qualitative user research and data analysis.',
-  },
-  {
-    name: 'Alex Chen',
-    role: 'Developer',
-    bio: 'Building tools that help researchers understand their users.',
-  },
-];
-
-const socialLinks = [
-  { platform: 'github', url: 'https://github.com/riehlegroup/idolbust' },
-];
+import { SOCIAL_LINKS, TEAM_MEMBERS } from '@/data/about';
 ---
 
 <BaseLayout title="About" description="Learn about the Idol or Bust research project and our mission.">
@@ -50,11 +29,11 @@ const socialLinks = [
       </p>
     </div>
 
-    <Team members={teamMembers} title="Research Team" />
+    <Team members={TEAM_MEMBERS} title="Research Team" />
 
     <div class="mt-12 flex items-center justify-center gap-4">
       <span class="text-secondary-600">Follow us:</span>
-      <SocialLinks links={socialLinks} />
+      <SocialLinks links={SOCIAL_LINKS} />
     </div>
   </div>
 </BaseLayout>
