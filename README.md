@@ -34,13 +34,13 @@ src/
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `bun dev` | Start development server |
-| `bun build` | Build for production |
-| `bun preview` | Preview production build |
-| `bun run lint` | Run ESLint |
-| `bun run typecheck` | Run TypeScript check |
+| Command             | Description              |
+| ------------------- | ------------------------ |
+| `bun dev`           | Start development server |
+| `bun build`         | Build for production     |
+| `bun preview`       | Preview production build |
+| `bun run lint`      | Run ESLint               |
+| `bun run typecheck` | Run TypeScript check     |
 
 ## Deployment
 
@@ -50,6 +50,8 @@ Configured for GitHub Pages. Update `astro.config.mjs` with your username:
 site: 'https://yourusername.github.io',
 base: '/idolbust',
 ```
+
+Pushes to `main` automatically build and deploy via the `Deploy` GitHub Actions workflow.
 
 ## License
 
