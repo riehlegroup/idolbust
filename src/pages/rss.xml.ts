@@ -1,6 +1,7 @@
 import rss from "@astrojs/rss";
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { APIContext } from "astro";
+import { withBase } from "@/utils/with-base";
 
 type BlogEntry = CollectionEntry<"blog">;
 
@@ -22,7 +23,7 @@ export async function GET(context: APIContext) {
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `/idolbust/blog/${post.id.replace(/\.(md|mdx)$/, "")}/`,
+      link: withBase(`/blog/${post.id.replace(/\.(md|mdx)$/, "")}/`),
     })),
     customData: `<language>en-us</language>`,
   });

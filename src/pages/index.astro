@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Button, Card } from '@/components';
+import { withBase } from '@/utils/with-base';
 
 const features = [
   {
@@ -29,8 +30,8 @@ const features = [
         Simple website software for research projects that want to understand their user needs through modern methodologies and tools.
       </p>
       <div class="mt-8 flex justify-center gap-4">
-        <Button href="/about" variant="primary" size="lg">Learn More</Button>
-        <Button href="/blog" variant="outline" size="lg">Read Blog</Button>
+        <Button href={withBase('/about')} variant="primary" size="lg">Learn More</Button>
+        <Button href={withBase('/blog')} variant="outline" size="lg">Read Blog</Button>
       </div>
     </div>
   </section>
@@ -50,7 +51,7 @@ const features = [
       <p class="mx-auto mt-4 max-w-2xl text-primary-100">
         Join us in building better research tools for understanding user needs.
       </p>
-      <Button href="/about" variant="secondary" size="lg" class="mt-6">About Us</Button>
+      <Button href={withBase('/about')} variant="secondary" size="lg" class="mt-6">About Us</Button>
     </div>
   </section>
 </BaseLayout>
