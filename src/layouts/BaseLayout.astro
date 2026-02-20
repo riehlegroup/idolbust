@@ -11,7 +11,7 @@ export interface Props {
 const { title, description, image = '/og-image.png', twitterSite } = Astro.props;
 const siteTitle = 'Idol or Bust!';
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
-const canonicalUrl = Astro.url.href;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.url.origin).href;
 const siteUrl = new URL(withBase('/'), Astro.url.origin).href;
 const ogImageUrl = new URL(withBase(image), Astro.url.origin).href;
 const logoUrl = new URL(withBase('/apple-touch-icon.png'), Astro.url.origin).href;
@@ -47,6 +47,7 @@ const jsonLd = [
     },
   },
 ];
+const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script');
 ---
 
 <!doctype html>
@@ -77,9 +78,7 @@ const jsonLd = [
     <meta name="twitter:image" content={ogImageUrl} />
     {twitterSite && <meta name="twitter:site" content={twitterSite} />}
 
-    <script type="application/ld+json">
-      {JSON.stringify(jsonLd)}
-    </script>
+    <script type="application/ld+json" is:inline set:html={jsonLdString}></script>
 
     <title>{fullTitle}</title>
   </head>
