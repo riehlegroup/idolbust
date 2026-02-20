@@ -18,7 +18,7 @@ export async function GET(context: APIContext) {
     title: "Idol or Bust Blog",
     description:
       "Latest updates and insights from the Idol or Bust research project.",
-    site: context.site ?? "https://yourusername.github.io",
+    site: context.site ?? "https://riehlegroup.github.io",
     items: sortedPosts.map((post: BlogEntry) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,

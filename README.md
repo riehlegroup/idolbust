@@ -47,7 +47,7 @@ src/
 Configured for GitHub Pages. Update `astro.config.mjs` with your username:
 
 ```js
-site: 'https://yourusername.github.io',
+site: 'https://riehlegroup.github.io',
 base: '/idolbust',
 ```
 
