@@ -1,5 +1,9 @@
 # Idol or Bust!
 
+[![CI](https://github.com/riehlegroup/idolbust/actions/workflows/ci.yml/badge.svg)](https://github.com/riehlegroup/idolbust/actions/workflows/ci.yml)
+[![Preview](https://img.shields.io/badge/preview-GitHub%20Pages-1d4ed8)](https://riehlegroup.github.io/idolbust/)
+[![License](https://img.shields.io/github/license/riehlegroup/idolbust)](LICENSE.txt)
+
 Simple website software for research projects that want to understand their user needs.
 
 ## Quick Start
