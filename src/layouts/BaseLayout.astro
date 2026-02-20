@@ -1,5 +1,6 @@
 ---
 import { withBase } from '@/utils/with-base';
+import { SITE_TITLE } from '@/data/site';
 
 export interface Props {
   title: string;
@@ -8,7 +9,7 @@ export interface Props {
 }
 
 const { title, description, image = '/favicon.svg' } = Astro.props;
-const siteTitle = 'Idol or Bust!';
+const siteTitle = SITE_TITLE;
 const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
 ---
 
