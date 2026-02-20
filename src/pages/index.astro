@@ -2,24 +2,11 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Button, Card } from '@/components';
 import { withBase } from '@/utils/with-base';
-
-const features = [
-  {
-    title: 'User Research',
-    description: 'Understand your users through surveys, interviews, and behavioral analysis.',
-  },
-  {
-    title: 'Rapid Prototyping',
-    description: 'Quickly validate ideas with iterative prototyping and user testing.',
-  },
-  {
-    title: 'Data-Driven Insights',
-    description: 'Make informed decisions backed by quantitative and qualitative data.',
-  },
-];
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/data/site';
+import { HOME_FEATURES } from '@/data/home';
 ---
 
-<BaseLayout title="Idol or Bust!" description="Simple website software for research projects that want to understand their user needs">
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="text-center">
       <h1 class="text-4xl font-bold tracking-tight text-secondary-900 sm:text-5xl md:text-6xl">
@@ -27,7 +14,7 @@ const features = [
         <span class="text-primary-600">User Needs</span>
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg text-secondary-600">
-        Simple website software for research projects that want to understand their user needs through modern methodologies and tools.
+        {SITE_DESCRIPTION} through modern methodologies and tools.
       </p>
       <div class="mt-8 flex justify-center gap-4">
         <Button href={withBase('/about')} variant="primary" size="lg">Learn More</Button>
@@ -39,7 +26,7 @@ const features = [
   <section class="mx-auto max-w-7xl bg-secondary-50 px-4 py-16 sm:px-6 lg:px-8">
     <h2 class="mb-12 text-center text-3xl font-bold text-secondary-900">What We Offer</h2>
     <div class="grid gap-8 md:grid-cols-3">
-      {features.map((feature) => (
+      {HOME_FEATURES.map((feature) => (
         <Card title={feature.title} description={feature.description} />
       ))}
     </div>
