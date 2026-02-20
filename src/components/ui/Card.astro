@@ -1,0 +1,32 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  href?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const { title, description, href, image, imageAlt = '' } = Astro.props;
+---
+
+<article class="overflow-hidden rounded-lg border border-secondary-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+  {image && (
+    <div class="aspect-video w-full overflow-hidden">
+      <img src={image} alt={imageAlt} class="h-full w-full object-cover" loading="lazy" />
+    </div>
+  )}
+  <div class="p-6">
+    <h3 class="mb-2 text-lg font-semibold text-secondary-900">
+      {href ? (
+        <a href={href} class="hover:text-primary-600">
+          {title}
+        </a>
+      ) : (
+        title
+      )}
+    </h3>
+    {description && <p class="text-secondary-600">{description}</p>}
+    <slot />
+  </div>
+</article>
