@@ -22,8 +22,8 @@ Open [localhost:4321](http://localhost:4321) in your browser.
 - **TypeScript** - Strict mode for full type safety
 - **Content Collections** - Type-safe blog posts with Zod validation
 - **MDX Support** - Enhanced markdown with components
-- **RSS Feed** - Automatic feed generation
-- **Sitemap** - SEO-friendly sitemap generation
+- **RSS Feed** - Automatic feed generation (`/rss.xml`)
+- **Sitemap** - SEO-friendly sitemap generation (`/sitemap-index.xml`)
 
 ## Project Structure
 
