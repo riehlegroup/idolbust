@@ -3,7 +3,7 @@ export interface Feature {
   description: string;
 }
 
-export const HOME_FEATURES: Feature[] = [
+export const HOME_FEATURES = [
   {
     title: "User Research",
     description:
@@ -19,4 +19,4 @@ export const HOME_FEATURES: Feature[] = [
     description:
       "Make informed decisions backed by quantitative and qualitative data.",
   },
-];
+] satisfies readonly Feature[];

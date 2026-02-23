@@ -11,7 +11,7 @@ export interface SocialLink {
   url: string;
 }
 
-export const TEAM_MEMBERS: TeamMember[] = [
+export const TEAM_MEMBERS = [
   {
     name: "Jane Doe",
     role: "Principal Investigator",
@@ -27,8 +27,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     role: "Developer",
     bio: "Building tools that help researchers understand their users.",
   },
-];
+] satisfies readonly TeamMember[];
 
-export const SOCIAL_LINKS: SocialLink[] = [
+export const SOCIAL_LINKS = [
   { platform: "github", url: "https://github.com/riehlegroup/idolbust" },
-];
+] satisfies readonly SocialLink[];
