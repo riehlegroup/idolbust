@@ -11,6 +11,20 @@ export interface Props {
 
 const { title, description, image, twitterSite } = Astro.props;
 const { identity, organization, seo, theme } = BRAND_CONFIG;
+const quoteFontFamily = (fontFamily: string): string => {
+  if (/['"]/.test(fontFamily) || !/\s/.test(fontFamily)) {
+    return fontFamily;
+  }
+
+  return `"${fontFamily}"`;
+};
+
+const formatFontStack = (fonts: readonly string[] | undefined, fallback: readonly string[]): string => {
+  return (fonts ?? fallback).map(quoteFontFamily).join(', ');
+};
+
+const sansFontStack = formatFontStack(theme.fonts?.sans, ['Inter', 'system-ui', 'sans-serif']);
+const monoFontStack = formatFontStack(theme.fonts?.mono, ['JetBrains Mono', 'monospace']);
 const fullTitle = formatPageTitle(title);
 const pageDescription = description ?? seo.defaultDescription;
 const canonicalBase = Astro.site?.href ?? identity.siteUrl;
@@ -21,8 +35,8 @@ const logoUrl = new URL(withBase(identity.logoPath), canonicalBase).href;
 const brandVars = [
   ...Object.entries(theme.primary).map(([shade, value]) => `--color-primary-${shade}: ${value};`),
   ...Object.entries(theme.secondary).map(([shade, value]) => `--color-secondary-${shade}: ${value};`),
-  `--font-sans: ${theme.fonts?.sans.join(', ') ?? 'Inter, system-ui, sans-serif'};`,
-  `--font-mono: ${theme.fonts?.mono.join(', ') ?? 'JetBrains Mono, monospace'};`,
+  `--font-sans: ${sansFontStack};`,
+  `--font-mono: ${monoFontStack};`,
   `--color-theme: ${theme.themeColor};`,
 ].join(' ');
 const organizationJsonLd: Record<string, unknown> = {

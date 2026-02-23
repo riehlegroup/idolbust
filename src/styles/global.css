@@ -29,7 +29,7 @@
     --color-secondary-950: 2 6 23;
 
     --font-sans: Inter, system-ui, sans-serif;
-    --font-mono: JetBrains Mono, monospace;
+    --font-mono: "JetBrains Mono", monospace;
     --color-theme: #2563eb;
   }
 
