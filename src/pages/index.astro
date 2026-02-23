@@ -2,11 +2,15 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Button, Card } from '@/components';
 import { withBase } from '@/utils/with-base';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@/data/site';
+import { BRAND_CONFIG } from '@/config/brand';
 import { HOME_FEATURES } from '@/data/home';
+
+const { identity, links, seo } = BRAND_CONFIG;
+const primaryCta = links.primaryCtas[0];
+const secondaryCta = links.primaryCtas[1];
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={identity.siteName} description={seo.defaultDescription}>
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="text-center">
       <h1 class="text-4xl font-bold tracking-tight text-secondary-900 sm:text-5xl md:text-6xl">
@@ -14,11 +18,15 @@ import { HOME_FEATURES } from '@/data/home';
         <span class="text-primary-600">User Needs</span>
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg text-secondary-600">
-        {SITE_DESCRIPTION} through modern methodologies and tools.
+        {seo.defaultDescription} through modern methodologies and tools.
       </p>
       <div class="mt-8 flex justify-center gap-4">
-        <Button href={withBase('/about')} variant="primary" size="lg">Learn More</Button>
-        <Button href={withBase('/blog')} variant="outline" size="lg">Read Blog</Button>
+        {primaryCta && (
+          <Button href={withBase(primaryCta.href)} variant="primary" size="lg">{primaryCta.label}</Button>
+        )}
+        {secondaryCta && (
+          <Button href={withBase(secondaryCta.href)} variant="outline" size="lg">{secondaryCta.label}</Button>
+        )}
       </div>
     </div>
   </section>

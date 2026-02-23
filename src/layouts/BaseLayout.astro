@@ -1,47 +1,70 @@
 ---
+import { BRAND_CONFIG, formatPageTitle } from '@/config/brand';
 import { withBase } from '@/utils/with-base';
-import { SITE_TITLE } from '@/data/site';
 
 export interface Props {
   title: string;
-  description: string;
+  description?: string;
   image?: string;
   twitterSite?: string;
 }
 
-const { title, description, image = '/og-image.png', twitterSite } = Astro.props;
-const siteTitle = SITE_TITLE;
-const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.url.origin).href;
-const siteUrl = new URL(withBase('/'), Astro.url.origin).href;
-const ogImageUrl = new URL(withBase(image), Astro.url.origin).href;
-const logoUrl = new URL(withBase('/apple-touch-icon.png'), Astro.url.origin).href;
-const jsonLd = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteTitle,
-    url: siteUrl,
-    logo: {
-      '@type': 'ImageObject',
-      url: logoUrl,
-    },
+const { title, description, image, twitterSite } = Astro.props;
+const { identity, organization, seo, theme } = BRAND_CONFIG;
+const fullTitle = formatPageTitle(title);
+const pageDescription = description ?? seo.defaultDescription;
+const canonicalBase = Astro.site?.href ?? identity.siteUrl;
+const canonicalUrl = new URL(Astro.url.pathname, canonicalBase).href;
+const siteUrl = new URL(withBase('/'), canonicalBase).href;
+const ogImageUrl = new URL(withBase(image ?? identity.defaultOgImagePath), canonicalBase).href;
+const logoUrl = new URL(withBase(identity.logoPath), canonicalBase).href;
+const brandVars = [
+  ...Object.entries(theme.primary).map(([shade, value]) => `--color-primary-${shade}: ${value};`),
+  ...Object.entries(theme.secondary).map(([shade, value]) => `--color-secondary-${shade}: ${value};`),
+  `--font-sans: ${theme.fonts?.sans.join(', ') ?? 'Inter, system-ui, sans-serif'};`,
+  `--font-mono: ${theme.fonts?.mono.join(', ') ?? 'JetBrains Mono, monospace'};`,
+  `--color-theme: ${theme.themeColor};`,
+].join(' ');
+const organizationJsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: organization.name,
+  url: siteUrl,
+  logo: {
+    '@type': 'ImageObject',
+    url: logoUrl,
   },
+  sameAs: organization.socialProfiles,
+};
+
+if (organization.legalName) {
+  organizationJsonLd['legalName'] = organization.legalName;
+}
+
+if (organization.address) {
+  organizationJsonLd['address'] = {
+    '@type': 'PostalAddress',
+    ...organization.address,
+  };
+}
+
+const jsonLd = [
+  organizationJsonLd,
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: siteTitle,
+    name: identity.siteName,
     url: siteUrl,
-    description,
-    inLanguage: 'en',
+    description: pageDescription,
+    inLanguage: identity.language,
   },
   {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: fullTitle,
     url: canonicalUrl,
-    description,
-    inLanguage: 'en',
+    description: pageDescription,
+    inLanguage: identity.language,
     primaryImageOfPage: {
       '@type': 'ImageObject',
       url: ogImageUrl,
@@ -52,32 +75,33 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
 ---
 
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang={identity.language} class="h-full" style={brandVars}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content={seo.robots} />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
-    <link rel="apple-touch-icon" sizes="180x180" href={withBase('/apple-touch-icon.png')} />
-    <link rel="manifest" href={withBase('/site.webmanifest')} />
-    <meta name="theme-color" content="#2563eb" />
+    <link rel="icon" type="image/svg+xml" href={withBase(identity.faviconPath)} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase(identity.appleTouchIconPath)} />
+    <link rel="manifest" href={withBase(identity.manifestPath)} />
+    <meta name="theme-color" content={theme.themeColor} />
     <link rel="canonical" href={canonicalUrl} />
 
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={siteTitle} />
-    <meta property="og:locale" content="en_US" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:site_name" content={identity.siteName} />
+    <meta property="og:locale" content={identity.locale} />
+    <meta name="twitter:card" content={seo.twitterCard} />
     <meta name="twitter:title" content={fullTitle} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
-    {twitterSite && <meta name="twitter:site" content={twitterSite} />}
+    <meta name="twitter:url" content={canonicalUrl} />
+    {(twitterSite ?? seo.twitterSite) && <meta name="twitter:site" content={twitterSite ?? seo.twitterSite} />}
 
     <script type="application/ld+json" is:inline set:html={jsonLdString}></script>
 
@@ -87,7 +111,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
     <header class="sticky top-0 z-50 border-b border-secondary-200 bg-white/80 backdrop-blur-sm">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a href={withBase('/')} class="text-xl font-bold text-primary-600 hover:text-primary-700">
-          {siteTitle}
+          {identity.siteName}
         </a>
         <ul class="flex items-center gap-6 text-sm font-medium">
           <li><a href={withBase('/about')} class="hover:text-primary-600">About</a></li>
@@ -102,7 +126,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
 
     <footer class="border-t border-secondary-200 bg-secondary-50 py-8">
       <div class="mx-auto max-w-7xl px-4 text-center text-sm text-secondary-600 sm:px-6 lg:px-8">
-        <p>&copy; {new Date().getFullYear()} {siteTitle} Licensed under AGPL-3.0.</p>
+        <p>&copy; {new Date().getFullYear()} {identity.siteName} Licensed under AGPL-3.0.</p>
       </div>
     </footer>
   </body>
