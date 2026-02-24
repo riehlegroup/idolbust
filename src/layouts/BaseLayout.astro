@@ -42,6 +42,7 @@ const brandVars = [
   `--font-mono: ${monoFontStack};`,
   `--color-theme: ${theme.themeColor};`,
 ].join(' ');
+const rootStyles = `${brandVars} overflow-y: auto; scrollbar-gutter: stable;`;
 const organizationJsonLd: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -92,7 +93,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
 ---
 
 <!doctype html>
-<html lang={identity.language} class="h-full" style={brandVars}>
+<html lang={identity.language} class="h-full" style={rootStyles}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
