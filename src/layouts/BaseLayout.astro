@@ -12,11 +12,14 @@ export interface Props {
 const { title, description, image, twitterSite } = Astro.props;
 const { identity, organization, seo, theme } = BRAND_CONFIG;
 const quoteFontFamily = (fontFamily: string): string => {
-  if (/['"]/.test(fontFamily) || !/\s/.test(fontFamily)) {
-    return fontFamily;
+  const trimmedFontFamily = fontFamily.trim();
+  const unquotedFontFamily = trimmedFontFamily.replace(/^['"]+|['"]+$/g, '');
+
+  if (!/\s/.test(unquotedFontFamily)) {
+    return unquotedFontFamily;
   }
 
-  return `"${fontFamily}"`;
+  return `"${unquotedFontFamily}"`;
 };
 
 const formatFontStack = (fonts: readonly string[] | undefined, fallback: readonly string[]): string => {

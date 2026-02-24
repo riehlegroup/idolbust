@@ -166,5 +166,5 @@ export function formatPageTitle(pageTitle: string): string {
     return `${pageTitle} | ${siteName}`;
   }
 
-  return template.replace("%s", pageTitle).replace("{siteName}", siteName);
+  return template.replace(/%s/g, pageTitle).replace(/\{siteName\}/g, siteName);
 }

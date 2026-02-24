@@ -6,8 +6,8 @@ import { BRAND_CONFIG } from '@/config/brand';
 import { HOME_FEATURES } from '@/data/home';
 
 const { identity, links, seo } = BRAND_CONFIG;
-const primaryCta = links.primaryCtas[0];
-const secondaryCta = links.primaryCtas[1];
+const primaryCta = links.primaryCtas.at(0);
+const secondaryCta = links.primaryCtas.at(1);
 ---
 
 <BaseLayout title={identity.siteName} description={seo.defaultDescription}>

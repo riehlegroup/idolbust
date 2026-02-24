@@ -8,7 +8,7 @@ export interface SocialLink {
 }
 
 export interface Props {
-  links: SocialLink[];
+  links: readonly SocialLink[];
 }
 
 const { links } = Astro.props;

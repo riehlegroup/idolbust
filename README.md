@@ -48,88 +48,13 @@ src/
 
 ## Customize Branding
 
-The site branding now comes from a single file: `src/config/brand.ts`.
+The site branding now comes from one source of truth: `src/config/brand.ts`.
 
-- Display identity (site name, logo, favicon, default OG image)
-- Organization metadata (name, legal name, optional address, social profiles)
-- Theme tokens (primary/secondary color scales and optional fonts)
-- Global links (primary CTAs, social links, app links)
-- SEO defaults (title template, default description, robots, Twitter defaults)
+1. Open `src/config/brand.ts`.
+2. Update identity, organization, theme, links, SEO, and blog values.
+3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
 
-Minimal example:
-
-```ts
-import type { BrandConfig } from "@/config/brand";
-
-export const BRAND_CONFIG: BrandConfig = {
-  identity: {
-    siteName: "My Research Lab",
-    tagline: "Evidence-driven product research",
-    siteUrl: "https://example.github.io",
-    language: "en",
-    locale: "en_US",
-    logoPath: "/apple-touch-icon.png",
-    faviconPath: "/favicon.svg",
-    appleTouchIconPath: "/apple-touch-icon.png",
-    manifestPath: "/site.webmanifest",
-    defaultOgImagePath: "/og-image.png",
-  },
-  organization: {
-    name: "My Research Lab",
-    socialProfiles: ["https://github.com/my-org/my-project"],
-  },
-  theme: {
-    primary: {
-      "50": "240 249 255",
-      "100": "224 242 254",
-      "200": "186 230 253",
-      "300": "125 211 252",
-      "400": "56 189 248",
-      "500": "14 165 233",
-      "600": "2 132 199",
-      "700": "3 105 161",
-      "800": "7 89 133",
-      "900": "12 74 110",
-      "950": "8 47 73",
-    },
-    secondary: {
-      "50": "250 250 250",
-      "100": "245 245 245",
-      "200": "229 229 229",
-      "300": "212 212 212",
-      "400": "163 163 163",
-      "500": "115 115 115",
-      "600": "82 82 82",
-      "700": "64 64 64",
-      "800": "38 38 38",
-      "900": "23 23 23",
-      "950": "10 10 10",
-    },
-    themeColor: "#0284c7",
-  },
-  links: {
-    primaryCtas: [
-      { label: "About", href: "/about" },
-      { label: "Blog", href: "/blog" },
-    ],
-    appLinks: [],
-    social: [
-      { platform: "github", url: "https://github.com/my-org/my-project" },
-    ],
-  },
-  seo: {
-    titleTemplate: "%s | {siteName}",
-    defaultDescription:
-      "A reusable Astro template for research project websites.",
-    robots: "index,follow",
-    twitterCard: "summary_large_image",
-  },
-  blog: {
-    title: "My Research Lab Blog",
-    description: "Updates from our research and product work.",
-  },
-};
-```
+For the complete typed example and current defaults, use `src/config/brand.ts` directly.
 
 ### Theming Notes
 
