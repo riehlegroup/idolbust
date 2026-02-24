@@ -4,12 +4,12 @@ import { Card } from '@/components';
 import { getCollection } from 'astro:content';
 import { withBase } from '@/utils/with-base';
 import { formatDate, getBlogSlug, getPublishedPosts, type BlogEntry } from '@/utils/blog';
-import { BLOG_DESCRIPTION } from '@/data/site';
+import { BRAND_CONFIG } from '@/config/brand';
 
 const posts = getPublishedPosts(await getCollection('blog'));
 ---
 
-<BaseLayout title="Blog" description={BLOG_DESCRIPTION}>
+<BaseLayout title="Blog" description={BRAND_CONFIG.blog.description}>
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <h1 class="mb-8 text-4xl font-bold text-secondary-900">Blog</h1>
     

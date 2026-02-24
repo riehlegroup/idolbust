@@ -46,6 +46,22 @@ src/
 | `bun run lint`      | Run ESLint               |
 | `bun run typecheck` | Run TypeScript check     |
 
+## Customize Branding
+
+The site branding now comes from one source of truth: `src/config/brand.ts`.
+
+1. Open `src/config/brand.ts`.
+2. Update identity, organization, theme, links, SEO, and blog values.
+3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
+
+For the complete typed example and current defaults, use `src/config/brand.ts` directly.
+
+### Theming Notes
+
+- Color tokens are exposed as CSS variables in `src/styles/global.css`.
+- Tailwind color utilities (`primary-*`, `secondary-*`) map to those variables in `tailwind.config.mjs`.
+- The active brand values are injected globally by `src/layouts/BaseLayout.astro`.
+
 ## Deployment
 
 Configured for GitHub Pages. Update `astro.config.mjs` with your username:

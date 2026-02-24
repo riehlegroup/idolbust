@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Team, SocialLinks } from '@/components';
-import { SOCIAL_LINKS, TEAM_MEMBERS } from '@/data/about';
+import { TEAM_MEMBERS } from '@/data/about';
+import { BRAND_CONFIG } from '@/config/brand';
+
+const socialLinks = BRAND_CONFIG.links.social;
 ---
 
 <BaseLayout title="About" description="Learn about the Idol or Bust research project and our mission.">
@@ -33,7 +36,7 @@ import { SOCIAL_LINKS, TEAM_MEMBERS } from '@/data/about';
 
     <div class="mt-12 flex items-center justify-center gap-4">
       <span class="text-secondary-600">Follow us:</span>
-      <SocialLinks links={SOCIAL_LINKS} />
+      <SocialLinks links={socialLinks} />
     </div>
   </div>
 </BaseLayout>

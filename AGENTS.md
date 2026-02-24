@@ -56,6 +56,13 @@ public/                  # Static assets served directly
 - **No backward compatibility constraints** - This is a new project, make good decisions
 - **Documentation** - Keep this file and README.md updated with architectural decisions
 
+### Documentation
+
+- Keep documentation concise and maintainable
+- Prefer linking to the source-of-truth file over duplicating large config examples
+- When documenting configuration, show a short quick-start and point to the canonical file (for branding: `src/config/brand.ts`)
+- Update docs in the same PR when behavior, APIs, or customization paths change
+
 ### TypeScript
 
 - Strict mode is enabled - no implicit any, strict null checks
@@ -84,11 +91,11 @@ const data: any = fetchData();
 
 ```typescript
 // Good
-import { Button, Card } from '@/components';
-import type { CollectionEntry } from 'astro:content';
+import { Button, Card } from "@/components";
+import type { CollectionEntry } from "astro:content";
 
 // Avoid
-import Button from '@/components/ui/Button.astro';
+import Button from "@/components/ui/Button.astro";
 ```
 
 ### Components
@@ -119,22 +126,24 @@ const { title, variant = 'primary' } = Astro.props;
 
 ```html
 <!-- Good -->
-<button class="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700">
-
-<!-- Avoid -->
-<button class="rounded-lg bg-blue-500 px-4 py-2">
+<button
+  class="rounded-lg bg-primary-600 px-4 py-2 text-white hover:bg-primary-700"
+>
+  <!-- Avoid -->
+  <button class="rounded-lg bg-blue-500 px-4 py-2"></button>
+</button>
 ```
 
 ### Naming Conventions
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Files | kebab-case | `blog-post.astro` |
-| Components | PascalCase | `BlogPost` |
-| Functions | camelCase | `formatDate()` |
-| Variables | camelCase | `pageTitle` |
-| Constants | SCREAMING_SNAKE_CASE | `MAX_ITEMS` |
-| CSS classes | kebab-case | `.container-prose` |
+| Type        | Convention           | Example            |
+| ----------- | -------------------- | ------------------ |
+| Files       | kebab-case           | `blog-post.astro`  |
+| Components  | PascalCase           | `BlogPost`         |
+| Functions   | camelCase            | `formatDate()`     |
+| Variables   | camelCase            | `pageTitle`        |
+| Constants   | SCREAMING_SNAKE_CASE | `MAX_ITEMS`        |
+| CSS classes | kebab-case           | `.container-prose` |
 
 ### Error Handling
 
@@ -151,7 +160,11 @@ if (!result.success) {
 }
 
 // Avoid
-try { something() } catch (e) { /* ignore */ }
+try {
+  something();
+} catch (e) {
+  /* ignore */
+}
 ```
 
 ### Comments

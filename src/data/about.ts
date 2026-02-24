@@ -1,4 +1,5 @@
 import type { SocialPlatform } from "@/data/social";
+import { BRAND_CONFIG } from "@/config/brand";
 
 export interface TeamMember {
   name: string;
@@ -30,5 +31,5 @@ export const TEAM_MEMBERS = [
 ] satisfies readonly TeamMember[];
 
 export const SOCIAL_LINKS = [
-  { platform: "github", url: "https://github.com/riehlegroup/idolbust" },
+  ...BRAND_CONFIG.links.social,
 ] satisfies readonly SocialLink[];
