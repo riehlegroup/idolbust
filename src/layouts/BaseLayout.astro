@@ -42,7 +42,7 @@ const brandVars = [
   `--font-mono: ${monoFontStack};`,
   `--color-theme: ${theme.themeColor};`,
 ].join(' ');
-const rootStyles = `${brandVars} overflow-y: auto; scrollbar-gutter: stable;`;
+const rootStyles = brandVars;
 const organizationJsonLd: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -125,7 +125,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
 
     <title>{fullTitle}</title>
   </head>
-  <body class="flex h-full flex-col bg-white text-secondary-900 antialiased">
+  <body class="flex h-full flex-col overflow-hidden bg-white text-secondary-900 antialiased">
     <header class="sticky top-0 z-50 border-b border-secondary-200 bg-white/80 backdrop-blur-sm">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a href={withBase('/')} class="text-xl font-bold text-primary-600 hover:text-primary-700">
@@ -139,7 +139,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
       </nav>
     </header>
 
-    <main class="flex-1">
+    <main class="scroll-area flex-1 overflow-y-auto">
       <slot />
     </main>
 
