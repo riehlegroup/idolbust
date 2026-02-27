@@ -12,15 +12,19 @@ interface ResourcePageProps {
 }
 
 export async function getStaticPaths() {
-  const publishedResources = getPublishedEntries(await getCollection("resources"));
+  const publishedResources: ResourceEntry[] = getPublishedEntries(
+    await getCollection("resources")
+  );
   const resourcesBySlug = new Map<string, ResourceEntry>(
     publishedResources.map((resource) => [getResourceSlug(resource), resource])
   );
 
   return publishedResources.map((resource) => {
     const relatedResources = resource.data.related
-      .map((relatedSlug) => resourcesBySlug.get(relatedSlug))
-      .filter((related): related is ResourceEntry => Boolean(related));
+      .map((relatedSlug: string) => resourcesBySlug.get(relatedSlug))
+      .filter((related: ResourceEntry | undefined): related is ResourceEntry =>
+        Boolean(related)
+      );
 
     return {
       params: { slug: getResourceSlug(resource) },

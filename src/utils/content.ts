@@ -1,17 +1,17 @@
-export interface PublishableEntry {
-  id: string;
-  data: {
-    draft?: boolean;
-    order?: number;
-    pubDate: Date;
-    updatedDate?: Date;
-  };
+interface DraftableData {
+  draft?: boolean;
+}
+
+interface SortableData {
+  order?: number;
+  pubDate: Date;
+  updatedDate?: Date;
 }
 
 /**
  * Returns entries that are not marked as draft.
  */
-export function getPublishedEntries<T extends PublishableEntry>(
+export function getPublishedEntries<T extends { data: DraftableData }>(
   entries: readonly T[],
 ): T[] {
   return entries.filter((entry) => !entry.data.draft);
@@ -20,7 +20,7 @@ export function getPublishedEntries<T extends PublishableEntry>(
 /**
  * Sorts entries by order ascending, then updatedDate/pubDate descending.
  */
-export function sortEntries<T extends PublishableEntry>(
+export function sortEntries<T extends { id: string; data: SortableData }>(
   entries: readonly T[],
 ): T[] {
   return [...entries].sort((a, b) => {
@@ -45,8 +45,8 @@ export function sortEntries<T extends PublishableEntry>(
 /**
  * Filters drafts and returns sorted published entries.
  */
-export function getPublishedSortedEntries<T extends PublishableEntry>(
-  entries: readonly T[],
-): T[] {
+export function getPublishedSortedEntries<
+  T extends { id: string; data: DraftableData & SortableData },
+>(entries: readonly T[]): T[] {
   return sortEntries(getPublishedEntries(entries));
 }
