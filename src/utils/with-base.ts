@@ -14,3 +14,7 @@ export function withBase(path: string): string {
 
   return `${normalizedBase}${normalizedPath}`;
 }
+
+export function withBaseIfRelative(path: string): string {
+  return path.startsWith("/") ? withBase(path) : path;
+}

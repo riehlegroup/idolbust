@@ -1,4 +1,6 @@
 ---
+import { withBaseIfRelative } from "@/utils/with-base";
+
 export interface Props {
   title: string;
   description?: string;
@@ -12,6 +14,7 @@ export interface Props {
 const { title, description, href, image, imageAlt, imageWidth, imageHeight } = Astro.props;
 const fallbackWidth = 1200;
 const fallbackHeight = 675;
+const imageSrc = image ? withBaseIfRelative(image) : undefined;
 ---
 
 <article
@@ -21,10 +24,10 @@ const fallbackHeight = 675;
   ]}
 >
   {href && <a href={href} class="absolute inset-0 z-30" aria-label={title}></a>}
-  {image && (
+  {imageSrc && (
     <div class="aspect-video w-full overflow-hidden">
       <img
-        src={image}
+        src={imageSrc}
         alt={imageAlt ?? title}
         width={imageWidth ?? fallbackWidth}
         height={imageHeight ?? fallbackHeight}

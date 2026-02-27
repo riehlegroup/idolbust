@@ -1,6 +1,5 @@
 ---
 import { Card } from "@/components";
-import { BRAND_CONFIG } from "@/config/brand";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils/blog";
 import { getPublishedSortedEntries } from "@/utils/content";
@@ -8,15 +7,15 @@ import { getResourceSlug, type ResourceEntry } from "@/utils/resources";
 import { withBase } from "@/utils/with-base";
 import { getCollection } from "astro:content";
 
+const RESOURCES_DESCRIPTION =
+  "Evergreen guides, templates, and references to support your research workflow.";
 const resources = getPublishedSortedEntries(await getCollection("resources"));
 ---
 
-<BaseLayout title="Resources" description={BRAND_CONFIG.blog.description}>
+<BaseLayout title="Resources" description={RESOURCES_DESCRIPTION}>
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <h1 class="mb-3 text-4xl font-bold text-secondary-900">Resources</h1>
-    <p class="mb-8 max-w-2xl text-secondary-600">
-      Evergreen guides, templates, and references to support your research workflow.
-    </p>
+    <p class="mb-8 max-w-2xl text-secondary-600">{RESOURCES_DESCRIPTION}</p>
 
     {resources.length === 0 ? (
       <p class="text-secondary-600">No resources published yet. Check back soon.</p>

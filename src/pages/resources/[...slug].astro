@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils/blog";
 import { getPublishedEntries } from "@/utils/content";
 import { getResourceSlug, type ResourceEntry } from "@/utils/resources";
-import { withBase } from "@/utils/with-base";
+import { withBase, withBaseIfRelative } from "@/utils/with-base";
 import { getCollection, render } from "astro:content";
 
 interface ResourcePageProps {
@@ -39,6 +39,9 @@ const effectiveDate = resource.data.updatedDate ?? resource.data.pubDate;
 const pageTitle = resource.data.seoTitle ?? resource.data.title;
 const pageDescription = resource.data.seoDescription ?? resource.data.description;
 const pageImage = resource.data.ogImage ?? resource.data.heroImage;
+const heroImageSrc = resource.data.heroImage
+  ? withBaseIfRelative(resource.data.heroImage)
+  : undefined;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription} image={pageImage}>
@@ -59,9 +62,9 @@ const pageImage = resource.data.ogImage ?? resource.data.heroImage;
           ))}
         </div>
       )}
-      {resource.data.heroImage && (
+      {heroImageSrc && (
         <img
-          src={resource.data.heroImage}
+          src={heroImageSrc}
           alt={resource.data.title}
           class="mt-6 aspect-video w-full rounded-lg object-cover"
           width="1200"
