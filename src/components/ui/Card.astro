@@ -14,28 +14,28 @@ const fallbackWidth = 1200;
 const fallbackHeight = 675;
 ---
 
-<article class="overflow-hidden rounded-lg border border-secondary-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+<article
+  class:list={[
+    "group relative overflow-hidden rounded-lg border border-secondary-200 bg-white shadow-sm transition-shadow hover:shadow-md",
+    href && "focus-within:ring-2 focus-within:ring-primary-600 focus-within:ring-offset-2",
+  ]}
+>
+  {href && <a href={href} class="absolute inset-0 z-30" aria-label={title}></a>}
   {image && (
     <div class="aspect-video w-full overflow-hidden">
-        <img
-          src={image}
-          alt={imageAlt ?? title}
-          width={imageWidth ?? fallbackWidth}
-          height={imageHeight ?? fallbackHeight}
-          class="h-full w-full object-cover"
-          loading="lazy"
-        />
+      <img
+        src={image}
+        alt={imageAlt ?? title}
+        width={imageWidth ?? fallbackWidth}
+        height={imageHeight ?? fallbackHeight}
+        class="h-full w-full object-cover"
+        loading="lazy"
+      />
     </div>
   )}
-  <div class="p-6">
+  <div class="relative z-20 p-6">
     <h3 class="mb-2 text-lg font-semibold text-secondary-900 transition-colors group-hover:text-primary-600">
-      {href ? (
-        <a href={href} class="hover:text-primary-600">
-          {title}
-        </a>
-      ) : (
-        title
-      )}
+      {title}
     </h3>
     {description && <p class="text-secondary-600">{description}</p>}
     <slot />
