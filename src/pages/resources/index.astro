@@ -1,0 +1,55 @@
+---
+import { Card } from "@/components";
+import { BRAND_CONFIG } from "@/config/brand";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { formatDate } from "@/utils/blog";
+import { getPublishedSortedEntries } from "@/utils/content";
+import { getResourceSlug, type ResourceEntry } from "@/utils/resources";
+import { withBase } from "@/utils/with-base";
+import { getCollection } from "astro:content";
+
+const resources = getPublishedSortedEntries(await getCollection("resources"));
+---
+
+<BaseLayout title="Resources" description={BRAND_CONFIG.blog.description}>
+  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <h1 class="mb-3 text-4xl font-bold text-secondary-900">Resources</h1>
+    <p class="mb-8 max-w-2xl text-secondary-600">
+      Evergreen guides, templates, and references to support your research workflow.
+    </p>
+
+    {resources.length === 0 ? (
+      <p class="text-secondary-600">No resources published yet. Check back soon.</p>
+    ) : (
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {resources.map((resource: ResourceEntry) => (
+          <Card
+            title={resource.data.title}
+            description={resource.data.description}
+            href={withBase(`/resources/${getResourceSlug(resource)}/`)}
+            image={resource.data.heroImage}
+            imageAlt={resource.data.title}
+          >
+            <div class="mt-4 flex flex-wrap items-center gap-2 text-sm text-secondary-500">
+              <span class="rounded-full bg-secondary-100 px-2 py-1 text-xs font-medium text-secondary-600">
+                {resource.data.category}
+              </span>
+              <span>·</span>
+              <time datetime={(resource.data.updatedDate ?? resource.data.pubDate).toISOString()}>
+                {formatDate(resource.data.updatedDate ?? resource.data.pubDate)}
+              </time>
+            </div>
+
+            {resource.data.tags.length > 0 && (
+              <div class="mt-3 flex flex-wrap gap-2">
+                {resource.data.tags.map((tag: string) => (
+                  <span class="rounded-full bg-primary-50 px-2 py-1 text-xs text-primary-700">#{tag}</span>
+                ))}
+              </div>
+            )}
+          </Card>
+        ))}
+      </div>
+    )}
+  </div>
+</BaseLayout>
