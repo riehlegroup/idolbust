@@ -21,6 +21,7 @@ Open [localhost:4321](http://localhost:4321) in your browser.
 - **Tailwind CSS** - Utility-first styling with custom theme
 - **TypeScript** - Strict mode for full type safety
 - **Content Collections** - Type-safe blog posts with Zod validation
+- **Resources Library** - Optional evergreen resources collection with categories and manual ordering
 - **MDX Support** - Enhanced markdown with components
 - **RSS Feed** - Automatic feed generation (`/rss.xml`)
 - **Sitemap** - SEO-friendly sitemap generation (`/sitemap-index.xml`)
@@ -30,7 +31,7 @@ Open [localhost:4321](http://localhost:4321) in your browser.
 ```
 src/
 ├── components/      # Reusable UI components
-├── content/         # Blog posts (MDX)
+├── content/         # Blog posts and resources (MDX)
 ├── layouts/         # Page layouts
 ├── pages/           # Routes (file-based)
 └── styles/          # Global styles
@@ -61,6 +62,22 @@ For the complete typed example and current defaults, use `src/config/brand.ts` d
 - Color tokens are exposed as CSS variables in `src/styles/global.css`.
 - Tailwind color utilities (`primary-*`, `secondary-*`) map to those variables in `tailwind.config.mjs`.
 - The active brand values are injected globally by `src/layouts/BaseLayout.astro`.
+
+## Resources Collection
+
+The template includes a `resources` collection at `src/content/resources/`.
+
+- Use nested paths if helpful (for example `guides/interview-script-template.mdx`).
+- Draft entries (`draft: true`) are excluded from both resources listing and detail routes.
+- Resources are sorted by `order` (ascending), then by `updatedDate`/`pubDate` (descending).
+
+Supported frontmatter fields:
+
+- `title`, `description`, `category`, `pubDate`
+- `updatedDate`, `tags`, `draft`, `order`
+- `heroImage`, `canonical`, `seoTitle`, `seoDescription`, `ogImage`, `related`
+
+Schema source of truth: `src/content.config.ts`.
 
 ## Deployment
 

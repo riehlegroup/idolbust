@@ -1,6 +1,7 @@
 ---
 import { BRAND_CONFIG, formatPageTitle } from '@/config/brand';
-import { withBase } from '@/utils/with-base';
+import '@/styles/global.css';
+import { withBase, withBaseIfRelative } from '@/utils/with-base';
 
 export interface Props {
   title: string;
@@ -33,7 +34,8 @@ const pageDescription = description ?? seo.defaultDescription;
 const canonicalBase = Astro.site?.href ?? identity.siteUrl;
 const canonicalUrl = new URL(Astro.url.pathname, canonicalBase).href;
 const siteUrl = new URL(withBase('/'), canonicalBase).href;
-const ogImageUrl = new URL(withBase(image ?? identity.defaultOgImagePath), canonicalBase).href;
+const ogImagePath = withBaseIfRelative(image ?? identity.defaultOgImagePath);
+const ogImageUrl = new URL(ogImagePath, canonicalBase).href;
 const logoUrl = new URL(withBase(identity.logoPath), canonicalBase).href;
 const brandVars = [
   ...Object.entries(theme.primary).map(([shade, value]) => `--color-primary-${shade}: ${value};`),
@@ -42,7 +44,7 @@ const brandVars = [
   `--font-mono: ${monoFontStack};`,
   `--color-theme: ${theme.themeColor};`,
 ].join(' ');
-const rootStyles = `${brandVars} overflow-y: auto; scrollbar-gutter: stable;`;
+const rootStyles = brandVars;
 const organizationJsonLd: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -125,7 +127,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
 
     <title>{fullTitle}</title>
   </head>
-  <body class="flex h-full flex-col bg-white text-secondary-900 antialiased">
+  <body class="flex h-full flex-col overflow-hidden bg-white text-secondary-900 antialiased">
     <header class="sticky top-0 z-50 border-b border-secondary-200 bg-white/80 backdrop-blur-sm">
       <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <a href={withBase('/')} class="text-xl font-bold text-primary-600 hover:text-primary-700">
@@ -134,18 +136,21 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
         <ul class="flex items-center gap-6 text-sm font-medium">
           <li><a href={withBase('/about')} class="hover:text-primary-600">About</a></li>
           <li><a href={withBase('/blog')} class="hover:text-primary-600">Blog</a></li>
+          <li><a href={withBase('/resources')} class="hover:text-primary-600">Resources</a></li>
         </ul>
       </nav>
     </header>
 
-    <main class="flex-1">
-      <slot />
-    </main>
+    <div class="scroll-area flex flex-1 flex-col overflow-y-auto">
+      <main class="flex-1">
+        <slot />
+      </main>
 
-    <footer class="border-t border-secondary-200 bg-secondary-50 py-8">
-      <div class="mx-auto max-w-7xl px-4 text-center text-sm text-secondary-600 sm:px-6 lg:px-8">
-        <p>&copy; {new Date().getFullYear()} {identity.siteName} Licensed under AGPL-3.0.</p>
-      </div>
-    </footer>
+      <footer class="border-t border-secondary-200 bg-secondary-50 py-8">
+        <div class="mx-auto max-w-7xl px-4 text-center text-sm text-secondary-600 sm:px-6 lg:px-8">
+          <p>&copy; {new Date().getFullYear()} {identity.siteName} Licensed under AGPL-3.0.</p>
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
