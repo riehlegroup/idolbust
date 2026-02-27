@@ -25,7 +25,7 @@ const resources = getPublishedSortedEntries(await getCollection("resources"));
         {resources.map((resource: ResourceEntry) => (
           <a
             href={withBase(`/resources/${getResourceSlug(resource)}/`)}
-            class="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
+            class="group block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-600 focus-visible:ring-offset-2"
           >
             <Card
               title={resource.data.title}
