@@ -1,7 +1,7 @@
 ---
 import { BRAND_CONFIG, formatPageTitle } from '@/config/brand';
 import '@/styles/global.css';
-import { withBase } from '@/utils/with-base';
+import { withBase, withBaseIfRelative } from '@/utils/with-base';
 
 export interface Props {
   title: string;
@@ -34,7 +34,8 @@ const pageDescription = description ?? seo.defaultDescription;
 const canonicalBase = Astro.site?.href ?? identity.siteUrl;
 const canonicalUrl = new URL(Astro.url.pathname, canonicalBase).href;
 const siteUrl = new URL(withBase('/'), canonicalBase).href;
-const ogImageUrl = new URL(withBase(image ?? identity.defaultOgImagePath), canonicalBase).href;
+const ogImagePath = withBaseIfRelative(image ?? identity.defaultOgImagePath);
+const ogImageUrl = new URL(ogImagePath, canonicalBase).href;
 const logoUrl = new URL(withBase(identity.logoPath), canonicalBase).href;
 const brandVars = [
   ...Object.entries(theme.primary).map(([shade, value]) => `--color-primary-${shade}: ${value};`),
