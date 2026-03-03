@@ -1,5 +1,5 @@
 ---
-import { BRAND_CONFIG, formatPageTitle } from '@/data/brand';
+import { BRAND_CONFIG } from '@/data/brand';
 import '@/styles/global.css';
 import { withBase, withBaseIfRelative } from '@/utils/with-base';
 
@@ -29,6 +29,22 @@ const formatFontStack = (fonts: readonly string[] | undefined, fallback: readonl
 
 const sansFontStack = formatFontStack(theme.fonts?.sans, ['Inter', 'system-ui', 'sans-serif']);
 const monoFontStack = formatFontStack(theme.fonts?.mono, ['JetBrains Mono', 'monospace']);
+const formatPageTitle = (pageTitle: string): string => {
+  const siteName = identity.siteName;
+
+  if (pageTitle === siteName) {
+    return pageTitle;
+  }
+
+  const template = seo.titleTemplate;
+
+  if (!template.includes('%s') && !template.includes('{siteName}')) {
+    return `${pageTitle} | ${siteName}`;
+  }
+
+  return template.replace(/%s/g, pageTitle).replace(/\{siteName\}/g, siteName);
+};
+
 const fullTitle = formatPageTitle(title);
 const pageDescription = description ?? seo.defaultDescription;
 const canonicalBase = Astro.site?.href ?? identity.siteUrl;

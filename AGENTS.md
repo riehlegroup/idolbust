@@ -40,6 +40,7 @@ src/
 │   ├── ui/              # Generic components (Button, Card)
 │   └── features/        # Feature-specific components (Team, SocialLinks)
 ├── content/             # Content collections (blog posts)
+├── data-models/         # Shared TypeScript models for data modules
 ├── layouts/             # Page layouts (BaseLayout, BlogLayout)
 ├── pages/               # File-based routing
 ├── styles/              # Global styles and Tailwind config
@@ -211,6 +212,7 @@ Place site-specific page copy and labels in `src/data/`, and import them into `.
 
 - Keep `.astro` pages focused on layout, rendering, and wiring content collections.
 - Use data modules (`src/data/home.ts`, `src/data/about.ts`, `src/data/blog.ts`, `src/data/resources.ts`) for UI copy.
+- Keep shared data interfaces in `src/data-models/` (including `src/data-models/brand.ts`).
 - Reuse `src/data/brand.ts` for global identity, SEO defaults, and link metadata.
 
 ## Git Commits

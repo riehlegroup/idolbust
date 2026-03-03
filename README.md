@@ -33,6 +33,7 @@ src/
 ├── components/      # Reusable UI components
 ├── content/         # Blog posts and resources (MDX)
 ├── data/            # Site-specific page copy and UI content
+├── data-models/     # Shared TypeScript models for data modules
 ├── layouts/         # Page layouts
 ├── pages/           # Routes (file-based)
 └── styles/          # Global styles
@@ -63,6 +64,7 @@ For the complete typed example and current defaults, use `src/data/brand.ts` dir
 Keep site-specific copy and content in `src/data/`, then import it into `.astro` pages.
 
 - Use `src/data/home.ts`, `src/data/about.ts`, `src/data/blog.ts`, and `src/data/resources.ts` for page-level strings and labels.
+- Keep shared data interfaces in `src/data-models/` (including `src/data-models/brand.ts`).
 - Keep `.astro` pages focused on layout and rendering logic; avoid hard-coded copy in templates.
 - Reuse `src/data/brand.ts` for global identity, SEO defaults, and links.
 
