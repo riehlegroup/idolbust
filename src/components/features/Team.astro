@@ -1,10 +1,5 @@
 ---
-export interface TeamMember {
-  name: string;
-  role: string;
-  image?: string;
-  bio?: string;
-}
+import type { TeamMember } from "@/data-models/about";
 
 export interface Props {
   members: TeamMember[];

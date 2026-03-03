@@ -60,8 +60,9 @@ public/                  # Static assets served directly
 
 - Keep documentation concise and maintainable
 - Prefer linking to the source-of-truth file over duplicating large config examples
-- When documenting configuration, show a short quick-start and point to the canonical file (for branding: `src/config/brand.ts`)
+- When documenting configuration, show a short quick-start and point to the canonical file (for branding: `src/data/brand.ts`)
 - Update docs in the same PR when behavior, APIs, or customization paths change
+- Document content architecture decisions (for example, keeping site copy in `src/data/`)
 
 ### TypeScript
 
@@ -203,6 +204,14 @@ tags: [research, updates]
 draft: false
 ---
 ```
+
+## Site Content Pattern
+
+Place site-specific page copy and labels in `src/data/`, and import them into `.astro` pages.
+
+- Keep `.astro` pages focused on layout, rendering, and wiring content collections.
+- Use data modules (`src/data/home.ts`, `src/data/about.ts`, `src/data/blog.ts`, `src/data/resources.ts`) for UI copy.
+- Reuse `src/data/brand.ts` for global identity, SEO defaults, and link metadata.
 
 ## Git Commits
 

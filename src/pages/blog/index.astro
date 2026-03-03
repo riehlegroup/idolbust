@@ -4,17 +4,18 @@ import { Card } from '@/components';
 import { getCollection } from 'astro:content';
 import { withBase } from '@/utils/with-base';
 import { formatDate, getBlogSlug, getPublishedPosts, type BlogEntry } from '@/utils/blog';
-import { BRAND_CONFIG } from '@/config/brand';
+import { BLOG_PAGE_CONTENT } from '@/data/blog';
+import { BRAND_CONFIG } from '@/data/brand';
 
 const posts = getPublishedPosts(await getCollection('blog'));
 ---
 
-<BaseLayout title="Blog" description={BRAND_CONFIG.blog.description}>
+<BaseLayout title={BLOG_PAGE_CONTENT.title} description={BRAND_CONFIG.blog.description}>
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <h1 class="mb-8 text-4xl font-bold text-secondary-900">Blog</h1>
+    <h1 class="mb-8 text-4xl font-bold text-secondary-900">{BLOG_PAGE_CONTENT.title}</h1>
     
     {posts.length === 0 ? (
-      <p class="text-secondary-600">No posts yet. Check back soon!</p>
+      <p class="text-secondary-600">{BLOG_PAGE_CONTENT.emptyState}</p>
     ) : (
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {posts.map((post: BlogEntry) => (

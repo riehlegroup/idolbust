@@ -1,41 +1,37 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Team, SocialLinks } from '@/components';
-import { TEAM_MEMBERS } from '@/data/about';
-import { BRAND_CONFIG } from '@/config/brand';
+import { ABOUT_PAGE_CONTENT, TEAM_MEMBERS } from '@/data/about';
+import type { AboutSection } from '@/data-models/about';
+import { BRAND_CONFIG } from '@/data/brand';
 
 const socialLinks = BRAND_CONFIG.links.social;
 ---
 
-<BaseLayout title="About" description="Learn about the Idol or Bust research project and our mission.">
+<BaseLayout
+  title={ABOUT_PAGE_CONTENT.title}
+  description={ABOUT_PAGE_CONTENT.description}
+>
   <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <h1 class="mb-8 text-4xl font-bold text-secondary-900">About the Project</h1>
+    <h1 class="mb-8 text-4xl font-bold text-secondary-900">
+      {ABOUT_PAGE_CONTENT.hero.title}
+    </h1>
     
     <div class="prose prose-secondary max-w-3xl">
-      <p class="lead text-xl text-secondary-600">
-        Idol or Bust is a research project focused on developing simple website software 
-        that helps other research projects understand their user needs.
-      </p>
+      <p class="lead text-xl text-secondary-600">{ABOUT_PAGE_CONTENT.hero.body}</p>
       
-      <h2>Our Mission</h2>
-      <p>
-        We believe that understanding users is the foundation of successful research projects. 
-        Our goal is to provide lightweight, maintainable tools that help researchers gather 
-        insights and make data-driven decisions.
-      </p>
-      
-      <h2>Our Approach</h2>
-      <p>
-        We follow a user-centered design process, constantly iterating based on feedback 
-        from the research community. Our tools are built with maintainability in mind, 
-        ensuring they can evolve with changing needs.
-      </p>
+      {ABOUT_PAGE_CONTENT.sections.map((section: AboutSection) => (
+        <>
+          <h2>{section.title}</h2>
+          <p>{section.body}</p>
+        </>
+      ))}
     </div>
 
-    <Team members={TEAM_MEMBERS} title="Research Team" />
+    <Team members={TEAM_MEMBERS} title={ABOUT_PAGE_CONTENT.teamTitle} />
 
     <div class="mt-12 flex items-center justify-center gap-4">
-      <span class="text-secondary-600">Follow us:</span>
+      <span class="text-secondary-600">{ABOUT_PAGE_CONTENT.socialLabel}</span>
       <SocialLinks links={socialLinks} />
     </div>
   </div>

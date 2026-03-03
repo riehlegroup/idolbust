@@ -2,8 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Button, Card } from '@/components';
 import { withBase } from '@/utils/with-base';
-import { BRAND_CONFIG } from '@/config/brand';
-import { HOME_FEATURES } from '@/data/home';
+import { BRAND_CONFIG } from '@/data/brand';
+import { HOME_FEATURES, HOME_PAGE_CONTENT } from '@/data/home';
 
 const { identity, links, seo } = BRAND_CONFIG;
 const primaryCta = links.primaryCtas.at(0);
@@ -14,11 +14,11 @@ const secondaryCta = links.primaryCtas.at(1);
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
     <div class="text-center">
       <h1 class="text-4xl font-bold tracking-tight text-secondary-900 sm:text-5xl md:text-6xl">
-        Understanding Your
-        <span class="text-primary-600">User Needs</span>
+        {HOME_PAGE_CONTENT.hero.title}
+        <span class="text-primary-600">{HOME_PAGE_CONTENT.hero.highlight}</span>
       </h1>
       <p class="mx-auto mt-6 max-w-2xl text-lg text-secondary-600">
-        {seo.defaultDescription} through modern methodologies and tools.
+        {seo.defaultDescription} {HOME_PAGE_CONTENT.hero.descriptionSuffix}
       </p>
       <div class="mt-8 flex justify-center gap-4">
         {primaryCta && (
@@ -32,7 +32,9 @@ const secondaryCta = links.primaryCtas.at(1);
   </section>
 
   <section class="mx-auto max-w-7xl bg-secondary-50 px-4 py-16 sm:px-6 lg:px-8">
-    <h2 class="mb-12 text-center text-3xl font-bold text-secondary-900">What We Offer</h2>
+    <h2 class="mb-12 text-center text-3xl font-bold text-secondary-900">
+      {HOME_PAGE_CONTENT.sections.featuresTitle}
+    </h2>
     <div class="grid gap-8 md:grid-cols-3">
       {HOME_FEATURES.map((feature) => (
         <Card title={feature.title} description={feature.description} />
@@ -42,11 +44,20 @@ const secondaryCta = links.primaryCtas.at(1);
 
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="rounded-lg bg-primary-600 p-8 text-center text-white md:p-12">
-      <h2 class="text-2xl font-bold md:text-3xl">Ready to get started?</h2>
+      <h2 class="text-2xl font-bold md:text-3xl">
+        {HOME_PAGE_CONTENT.sections.callToAction.title}
+      </h2>
       <p class="mx-auto mt-4 max-w-2xl text-primary-100">
-        Join us in building better research tools for understanding user needs.
+        {HOME_PAGE_CONTENT.sections.callToAction.description}
       </p>
-      <Button href={withBase('/about')} variant="secondary" size="lg" class="mt-6">About Us</Button>
+      <Button
+        href={withBase(HOME_PAGE_CONTENT.sections.callToAction.buttonHref)}
+        variant="secondary"
+        size="lg"
+        class="mt-6"
+      >
+        {HOME_PAGE_CONTENT.sections.callToAction.buttonLabel}
+      </Button>
     </div>
   </section>
 </BaseLayout>

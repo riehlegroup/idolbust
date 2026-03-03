@@ -32,6 +32,7 @@ Open [localhost:4321](http://localhost:4321) in your browser.
 src/
 ├── components/      # Reusable UI components
 ├── content/         # Blog posts and resources (MDX)
+├── data/            # Site-specific page copy and UI content
 ├── layouts/         # Page layouts
 ├── pages/           # Routes (file-based)
 └── styles/          # Global styles
@@ -49,13 +50,21 @@ src/
 
 ## Customize Branding
 
-The site branding now comes from one source of truth: `src/config/brand.ts`.
+The site branding now comes from one source of truth: `src/data/brand.ts`.
 
-1. Open `src/config/brand.ts`.
+1. Open `src/data/brand.ts`.
 2. Update identity, organization, theme, links, SEO, and blog values.
 3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
 
-For the complete typed example and current defaults, use `src/config/brand.ts` directly.
+For the complete typed example and current defaults, use `src/data/brand.ts` directly.
+
+## Site Content Pattern
+
+Keep site-specific copy and content in `src/data/`, then import it into `.astro` pages.
+
+- Use `src/data/home.ts`, `src/data/about.ts`, `src/data/blog.ts`, and `src/data/resources.ts` for page-level strings and labels.
+- Keep `.astro` pages focused on layout and rendering logic; avoid hard-coded copy in templates.
+- Reuse `src/data/brand.ts` for global identity, SEO defaults, and links.
 
 ### Theming Notes
 
