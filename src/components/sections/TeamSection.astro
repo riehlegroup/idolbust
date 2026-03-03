@@ -1,0 +1,13 @@
+---
+import type { TeamSectionModel } from "@/core/models/section";
+import { Team } from "@/components";
+
+export type Props = TeamSectionModel;
+
+const { title, members } = Astro.props;
+const resolvedMembers = [...members];
+---
+
+<section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <Team members={resolvedMembers} title={title} />
+</section>

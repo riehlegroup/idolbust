@@ -1,49 +1,25 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import { Card } from '@/components';
 import { getCollection } from 'astro:content';
-import { withBase } from '@/utils/with-base';
-import { formatDate, getBlogSlug, getPublishedPosts, type BlogEntry } from '@/utils/blog';
-import { BRAND_CONFIG } from '@/config/brand';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RenderPage from '@/adapters/renderer/RenderPage.astro';
+import { withBase } from '@/adapters/utils/with-base';
+import { getBlogSlug, getPublishedPosts } from '@/core/utils/blog';
+import { blogPage } from '@/wiring/blog';
 
 const posts = getPublishedPosts(await getCollection('blog'));
+const blogListItems = posts.map((post) => ({
+  title: post.data.title,
+  description: post.data.description,
+  href: withBase(`/blog/${getBlogSlug(post)}/`),
+  pubDate: post.data.pubDate,
+  author: post.data.author,
+  tags: post.data.tags,
+  imageUrl: post.data.image?.url,
+  imageAlt: post.data.image?.alt,
+}));
+const blogPageModel = blogPage.toPageModel(blogListItems);
 ---
 
-<BaseLayout title="Blog" description={BRAND_CONFIG.blog.description}>
-  <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <h1 class="mb-8 text-4xl font-bold text-secondary-900">Blog</h1>
-    
-    {posts.length === 0 ? (
-      <p class="text-secondary-600">No posts yet. Check back soon!</p>
-    ) : (
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post: BlogEntry) => (
-          <Card
-            title={post.data.title}
-            description={post.data.description}
-            href={withBase(`/blog/${getBlogSlug(post)}/`)}
-            image={post.data.image?.url}
-            imageAlt={post.data.image?.alt}
-          >
-            <div class="mt-4 flex items-center gap-2 text-sm text-secondary-500">
-              <time datetime={post.data.pubDate.toISOString()}>
-                {formatDate(post.data.pubDate)}
-              </time>
-              <span>·</span>
-              <span>{post.data.author}</span>
-            </div>
-            {post.data.tags.length > 0 && (
-              <div class="mt-3 flex flex-wrap gap-2">
-                {post.data.tags.map((tag: string) => (
-                  <span class="rounded-full bg-secondary-100 px-2 py-1 text-xs text-secondary-600">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-          </Card>
-        ))}
-      </div>
-    )}
-  </div>
+<BaseLayout title={blogPageModel.title} description={blogPageModel.description}>
+  <RenderPage page={blogPageModel} />
 </BaseLayout>

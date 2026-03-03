@@ -1,7 +1,9 @@
 ---
-import BlogLayout from '@/layouts/BlogLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import RenderPage from '@/adapters/renderer/RenderPage.astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
-import { formatDate, getBlogSlug, getPublishedPosts } from '@/utils/blog';
+import { getBlogSlug, getPublishedPosts } from '@/core/utils/blog';
+import { blogPostPage } from '@/wiring/blog-post';
 
 export async function getStaticPaths() {
   const posts = getPublishedPosts(await getCollection('blog'));
@@ -13,28 +15,16 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props as { post: CollectionEntry<'blog'> };
 const { Content } = await render(post);
+const blogPostModel = blogPostPage.toPageModel({
+  title: post.data.title,
+  description: post.data.description,
+  pubDate: post.data.pubDate,
+  author: post.data.author,
+  tags: post.data.tags,
+  content: Content,
+});
 ---
 
-<BlogLayout title={post.data.title} description={post.data.description}>
-  <header class="mb-8 not-prose">
-    <h1 class="text-4xl font-bold text-secondary-900">{post.data.title}</h1>
-    <div class="mt-4 flex items-center gap-2 text-secondary-600">
-      <time datetime={post.data.pubDate.toISOString()}>
-        {formatDate(post.data.pubDate)}
-      </time>
-      <span>·</span>
-      <span>{post.data.author}</span>
-    </div>
-    {post.data.tags.length > 0 && (
-      <div class="mt-4 flex flex-wrap gap-2">
-        {post.data.tags.map((tag: string) => (
-          <span class="rounded-full bg-secondary-100 px-3 py-1 text-sm text-secondary-600">
-            {tag}
-          </span>
-        ))}
-      </div>
-    )}
-  </header>
-  
-  <Content />
-</BlogLayout>
+<BaseLayout title={blogPostModel.title} description={blogPostModel.description}>
+  <RenderPage page={blogPostModel} />
+</BaseLayout>

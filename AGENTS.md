@@ -36,14 +36,17 @@ bun remove <package>        # Remove a dependency
 
 ```
 src/
-├── components/           # Reusable UI components
+├── adapters/            # Renderer/content/infra adapters
+├── components/          # Reusable UI components
 │   ├── ui/              # Generic components (Button, Card)
-│   └── features/        # Feature-specific components (Team, SocialLinks)
-├── content/             # Content collections (blog posts)
+│   ├── features/        # Feature-specific components (Team, SocialLinks)
+│   └── sections/        # Page section components
+├── content/             # Customization data + MDX content
+├── core/                # Domain models, ports, services, schemas
 ├── layouts/             # Page layouts (BaseLayout, BlogLayout)
 ├── pages/               # File-based routing
 ├── styles/              # Global styles and Tailwind config
-└── utils/               # Helper functions and utilities
+└── wiring/              # Page composition and assembly
 public/                  # Static assets served directly
 ```
 
@@ -60,7 +63,7 @@ public/                  # Static assets served directly
 
 - Keep documentation concise and maintainable
 - Prefer linking to the source-of-truth file over duplicating large config examples
-- When documenting configuration, show a short quick-start and point to the canonical file (for branding: `src/config/brand.ts`)
+- When documenting configuration, show a short quick-start and point to the canonical file (for branding: `src/content/site/brand.ts`)
 - Update docs in the same PR when behavior, APIs, or customization paths change
 
 ### TypeScript

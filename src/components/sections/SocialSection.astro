@@ -1,0 +1,15 @@
+---
+import type { SocialSectionModel } from "@/core/models/section";
+import { SocialLinks } from "@/components";
+
+export type Props = SocialSectionModel;
+
+const { label, links } = Astro.props;
+---
+
+<section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+  <div class="mt-12 flex items-center justify-center gap-4">
+    {label && <span class="text-secondary-600">{label}</span>}
+    <SocialLinks links={links} />
+  </div>
+</section>

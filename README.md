@@ -26,15 +26,27 @@ Open [localhost:4321](http://localhost:4321) in your browser.
 - **RSS Feed** - Automatic feed generation (`/rss.xml`)
 - **Sitemap** - SEO-friendly sitemap generation (`/sitemap-index.xml`)
 
-## Project Structure
+## Architecture
+
+This template follows a hexagonal layout: core domain + ports, adapters, and wiring.
+
+- Core domain lives under `src/core/` (models, services, ports, content schemas).
+- Adapters live under `src/adapters/` (renderer, content, infra utilities).
+- Wiring modules in `src/wiring/` compose adapters + core services into page models.
+- Pages render the page model via a renderer adapter.
+
+### Project Structure
 
 ```
 src/
-├── components/      # Reusable UI components
-├── content/         # Blog posts and resources (MDX)
-├── layouts/         # Page layouts
-├── pages/           # Routes (file-based)
-└── styles/          # Global styles
+├── adapters/          # Renderer/content/infra adapters
+├── components/        # UI building blocks (sections, ui, features)
+├── content/           # Customization data + MDX content
+├── core/              # Domain models, ports, services, schemas
+├── layouts/           # Layout shells
+├── pages/             # Routes (file-based)
+├── styles/            # Global styles
+└── wiring/            # Composition root per page
 ```
 
 ## Commands
@@ -47,15 +59,15 @@ src/
 | `bun run lint`      | Run ESLint               |
 | `bun run typecheck` | Run TypeScript check     |
 
-## Customize Branding
+## Customize Content
 
-The site branding now comes from one source of truth: `src/config/brand.ts`.
+All site customization lives in `src/content/**`.
 
-1. Open `src/config/brand.ts`.
-2. Update identity, organization, theme, links, SEO, and blog values.
-3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
+1. Update identity, organization, theme, links, SEO, and blog values in `src/content/site/brand.ts`.
+2. Update page copy in `src/content/pages/home.ts` and `src/content/pages/about.ts`.
+3. Add blog/resources content under `src/content/blog/` and `src/content/resources/`.
 
-For the complete typed example and current defaults, use `src/config/brand.ts` directly.
+Pages and visuals are wired separately, so new sites can be created by editing content only.
 
 ### Theming Notes
 

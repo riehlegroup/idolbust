@@ -1,0 +1,51 @@
+---
+import type { PageModel } from "@/core/models/page";
+import type { SectionModel } from "@/core/models/section";
+import HeroSection from "@/components/sections/HeroSection.astro";
+import FeaturesSection from "@/components/sections/FeaturesSection.astro";
+import CalloutSection from "@/components/sections/CalloutSection.astro";
+import BlogListSection from "@/components/sections/BlogListSection.astro";
+import BlogPostSection from "@/components/sections/BlogPostSection.astro";
+import RichTextSection from "@/components/sections/RichTextSection.astro";
+import PageHeaderSection from "@/components/sections/PageHeaderSection.astro";
+import ResourceDetailSection from "@/components/sections/ResourceDetailSection.astro";
+import ResourceListSection from "@/components/sections/ResourceListSection.astro";
+import TeamSection from "@/components/sections/TeamSection.astro";
+import SocialSection from "@/components/sections/SocialSection.astro";
+
+export interface Props {
+  page: PageModel;
+}
+
+const { page } = Astro.props;
+const sections: readonly SectionModel[] = page.sections;
+---
+
+{sections.map((section) => {
+  switch (section.type) {
+    case "hero":
+      return <HeroSection {...section} />;
+    case "features":
+      return <FeaturesSection {...section} />;
+    case "callout":
+      return <CalloutSection {...section} />;
+    case "blogList":
+      return <BlogListSection {...section} />;
+    case "blogPost":
+      return <BlogPostSection {...section} />;
+    case "richText":
+      return <RichTextSection {...section} />;
+    case "pageHeader":
+      return <PageHeaderSection {...section} />;
+    case "resourceList":
+      return <ResourceListSection {...section} />;
+    case "resourceDetail":
+      return <ResourceDetailSection {...section} />;
+    case "team":
+      return <TeamSection {...section} />;
+    case "social":
+      return <SocialSection {...section} />;
+    default:
+      return null;
+  }
+})}

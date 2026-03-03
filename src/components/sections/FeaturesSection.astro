@@ -1,0 +1,17 @@
+---
+import type { FeaturesSectionModel } from "@/core/models/section";
+import { Card } from "@/components";
+
+export type Props = FeaturesSectionModel;
+
+const { title, items } = Astro.props;
+---
+
+<section class="mx-auto max-w-7xl bg-secondary-50 px-4 py-16 sm:px-6 lg:px-8">
+  <h2 class="mb-12 text-center text-3xl font-bold text-secondary-900">{title}</h2>
+  <div class="grid gap-8 md:grid-cols-3">
+    {items.map((feature) => (
+      <Card title={feature.title} description={feature.description} />
+    ))}
+  </div>
+</section>

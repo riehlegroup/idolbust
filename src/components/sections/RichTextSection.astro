@@ -1,0 +1,23 @@
+---
+import type { RichTextSectionModel } from "@/core/models/section";
+
+export type Props = RichTextSectionModel;
+
+const { title, lead, blocks } = Astro.props;
+---
+
+<section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+  <h1 class="mb-8 text-4xl font-bold text-secondary-900">{title}</h1>
+
+  <div class="prose prose-secondary max-w-3xl">
+    {lead && <p class="lead text-xl text-secondary-600">{lead}</p>}
+    {blocks.map((block) => (
+      <>
+        <h2>{block.title}</h2>
+        {block.body.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </>
+    ))}
+  </div>
+</section>

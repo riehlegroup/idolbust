@@ -1,0 +1,42 @@
+---
+import type { BlogListSectionModel } from "@/core/models/section";
+import { Card } from "@/components";
+import { formatDate } from "@/core/utils/blog";
+
+export type Props = BlogListSectionModel;
+
+const { items, emptyState } = Astro.props;
+---
+
+<section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+  {items.length === 0 ? (
+    <p class="text-secondary-600">{emptyState}</p>
+  ) : (
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {items.map((post) => (
+        <Card
+          title={post.title}
+          description={post.description}
+          href={post.href}
+          image={post.imageUrl}
+          imageAlt={post.imageAlt}
+        >
+          <div class="mt-4 flex items-center gap-2 text-sm text-secondary-500">
+            <time datetime={post.pubDate.toISOString()}>{formatDate(post.pubDate)}</time>
+            <span>·</span>
+            <span>{post.author}</span>
+          </div>
+          {post.tags.length > 0 && (
+            <div class="mt-3 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <span class="rounded-full bg-secondary-100 px-2 py-1 text-xs text-secondary-600">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </Card>
+      ))}
+    </div>
+  )}
+</section>

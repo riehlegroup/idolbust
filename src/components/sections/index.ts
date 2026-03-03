@@ -1,0 +1,11 @@
+export { default as HeroSection } from "@/components/sections/HeroSection.astro";
+export { default as FeaturesSection } from "@/components/sections/FeaturesSection.astro";
+export { default as CalloutSection } from "@/components/sections/CalloutSection.astro";
+export { default as RichTextSection } from "@/components/sections/RichTextSection.astro";
+export { default as TeamSection } from "@/components/sections/TeamSection.astro";
+export { default as SocialSection } from "@/components/sections/SocialSection.astro";
+export { default as PageHeaderSection } from "@/components/sections/PageHeaderSection.astro";
+export { default as BlogListSection } from "@/components/sections/BlogListSection.astro";
+export { default as ResourceListSection } from "@/components/sections/ResourceListSection.astro";
+export { default as BlogPostSection } from "@/components/sections/BlogPostSection.astro";
+export { default as ResourceDetailSection } from "@/components/sections/ResourceDetailSection.astro";
