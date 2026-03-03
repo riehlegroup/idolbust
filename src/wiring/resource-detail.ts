@@ -1,6 +1,6 @@
 import { contentRepository } from "@/adapters/content/content-repo";
-import { buildResourceDetailPage } from "@/core/services/build-resource-detail-page";
 import type { ResourceDetailSectionModel } from "@/core/models/section";
+import type { PageModel } from "@/core/models/page";
 
 const content = contentRepository.getResourceDetailPageContent();
 
@@ -10,5 +10,17 @@ export const resourceDetailPage = {
       ResourceDetailSectionModel,
       "type" | "updatedLabel" | "relatedTitle" | "canonicalLabel"
     >,
-  ) => buildResourceDetailPage(content, data),
+  ): PageModel => ({
+    title: data.title,
+    description: data.description,
+    sections: [
+      {
+        type: "resourceDetail",
+        updatedLabel: content.updatedLabel,
+        relatedTitle: content.relatedTitle,
+        canonicalLabel: content.canonicalLabel,
+        ...data,
+      },
+    ],
+  }),
 };
