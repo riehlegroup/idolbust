@@ -1,7 +1,3 @@
-import React from "react";
-
-import type { BrandConfig } from "@/data-models/brand";
-import type { Feature, HomePageContent } from "@/data-models/home";
 import { Button } from "@/components/atoms/Button";
 import {
   CallToActionSection,
@@ -9,12 +5,7 @@ import {
   HomeHero,
 } from "@/components/organisms";
 import { withBase } from "@/utils/with-base";
-
-export interface HomeTemplateProps {
-  brand: BrandConfig;
-  content: HomePageContent;
-  features: readonly Feature[];
-}
+import type { HomeTemplateProps } from "./HomeTemplate.types";
 
 export const HomeTemplate = ({
   brand,

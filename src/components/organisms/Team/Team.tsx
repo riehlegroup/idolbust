@@ -1,11 +1,4 @@
-import React from "react";
-
-import type { TeamMember } from "@/data-models/about";
-
-export interface TeamProps {
-  members: TeamMember[];
-  title?: string;
-}
+import type { TeamProps, TeamMemberItem } from "./Team.types";
 
 export const Team = ({ members, title = "Our Team" }: TeamProps) => (
   <section className="py-12">
@@ -13,7 +6,7 @@ export const Team = ({ members, title = "Our Team" }: TeamProps) => (
       {title}
     </h2>
     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {members.map((member) => (
+      {members.map((member: TeamMemberItem) => (
         <div
           key={member.name}
           className="flex flex-col items-center rounded-lg bg-secondary-50 p-6 text-center"

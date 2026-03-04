@@ -1,25 +1,6 @@
-import React, {
-  type ComponentPropsWithoutRef,
-  type ReactElement,
-  type ReactNode,
-} from "react";
+import type { ReactElement } from "react";
 
-interface BaseProps {
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg";
-  className?: string;
-  class?: string;
-  children?: ReactNode;
-}
-
-type AnchorProps = BaseProps &
-  Omit<ComponentPropsWithoutRef<"a">, "className" | "children"> & {
-    href: string;
-  };
-type ButtonProps = BaseProps &
-  Omit<ComponentPropsWithoutRef<"button">, "className" | "children"> & {
-    href?: string;
-  };
+import type { AnchorProps, BaseProps, ButtonProps } from "./Button.types";
 
 export function Button(props: AnchorProps): ReactElement;
 export function Button(props: ButtonProps): ReactElement;

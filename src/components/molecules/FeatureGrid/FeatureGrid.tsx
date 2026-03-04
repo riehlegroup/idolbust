@@ -1,12 +1,5 @@
-import React from "react";
-
-import type { Feature } from "@/data-models/home";
 import { Card } from "@/components/molecules/Card";
-
-export interface FeatureGridProps {
-  features: readonly Feature[];
-  className?: string;
-}
+import type { FeatureGridProps, FeatureItem } from "./FeatureGrid.types";
 
 export const FeatureGrid = ({ features, className }: FeatureGridProps) => (
   <div
@@ -14,7 +7,7 @@ export const FeatureGrid = ({ features, className }: FeatureGridProps) => (
       .filter(Boolean)
       .join(" ")}
   >
-    {features.map((feature) => (
+    {features.map((feature: FeatureItem) => (
       <Card
         key={feature.title}
         title={feature.title}

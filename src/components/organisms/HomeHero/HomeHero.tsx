@@ -1,16 +1,7 @@
-import React, { type ReactNode } from "react";
-
 import { HighlightedTitle } from "@/components/atoms/HighlightedTitle";
 import { SectionDescription } from "@/components/atoms/SectionDescription";
 import { HeroActions } from "@/components/molecules/HeroActions";
-
-export interface HomeHeroProps {
-  title: string;
-  highlight: string;
-  description: string;
-  primaryAction?: ReactNode;
-  secondaryAction?: ReactNode;
-}
+import type { HomeHeroProps } from "./HomeHero.types";
 
 export const HomeHero = ({
   title,

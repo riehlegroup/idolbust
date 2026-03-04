@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Team } from "@/components/organisms/Team";
-import type { TeamMember } from "@/data-models/about";
+import type { TeamMemberItem } from "./Team.types";
 
-const members: TeamMember[] = [
+const members: TeamMemberItem[] = [
   {
     name: "Alex Rivera",
     role: "Research Lead",

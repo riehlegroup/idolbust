@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { FeaturesSection } from "@/components/organisms/FeaturesSection";
-import type { Feature } from "@/data-models/home";
+import { FeatureGrid } from "@/components/molecules/FeatureGrid";
+import type { FeatureItem } from "./FeatureGrid.types";
 
-const features: Feature[] = [
+const features: FeatureItem[] = [
   {
     title: "User Research",
     description:
@@ -21,17 +21,16 @@ const features: Feature[] = [
   },
 ];
 
-const meta: Meta<typeof FeaturesSection> = {
-  title: "Organisms/FeaturesSection",
-  component: FeaturesSection,
+const meta: Meta<typeof FeatureGrid> = {
+  title: "Molecules/FeatureGrid",
+  component: FeatureGrid,
   args: {
-    title: "What We Offer",
     features,
   },
 };
 
 export default meta;
 
-type Story = StoryObj<typeof FeaturesSection>;
+type Story = StoryObj<typeof FeatureGrid>;
 
 export const Default: Story = {};

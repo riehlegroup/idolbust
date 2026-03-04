@@ -1,10 +1,4 @@
-import React, { type ReactNode } from "react";
-
-export interface HeroActionsProps {
-  primary?: ReactNode;
-  secondary?: ReactNode;
-  className?: string;
-}
+import type { HeroActionsProps } from "@/components/molecules/HeroActions/HeroActions.types";
 
 export const HeroActions = ({
   primary,
