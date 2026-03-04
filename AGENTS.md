@@ -14,6 +14,7 @@ Idol or Bust is simple website software for research projects that want to under
 bun dev              # Start dev server at localhost:4321
 bun build            # Build for production to ./dist
 bun preview          # Preview production build locally
+bun storybook         # Start Storybook
 ```
 
 ### Code Quality
@@ -37,8 +38,10 @@ bun remove <package>        # Remove a dependency
 ```
 src/
 ├── components/           # Reusable UI components
-│   ├── ui/              # Generic components (Button, Card)
-│   └── features/        # Feature-specific components (Team, SocialLinks)
+│   ├── atoms/           # Atomic components (Button)
+│   ├── molecules/       # Compound components (Card)
+│   ├── organisms/       # Sections (Team, SocialLinks)
+│   └── templates/       # Page-level composition (optional)
 ├── content/             # Content collections (blog posts)
 ├── data-models/         # Shared TypeScript models for data modules
 ├── layouts/             # Page layouts (BaseLayout, BlogLayout)
@@ -97,7 +100,7 @@ import { Button, Card } from "@/components";
 import type { CollectionEntry } from "astro:content";
 
 // Avoid
-import Button from "@/components/ui/Button.astro";
+import { Button } from "@/components/atoms/Button";
 ```
 
 ### Components

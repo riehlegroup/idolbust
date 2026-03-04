@@ -31,6 +31,10 @@ Open [localhost:4321](http://localhost:4321) in your browser.
 ```
 src/
 ├── components/      # Reusable UI components
+│   ├── atoms/        # Atomic components
+│   ├── molecules/    # Compound components
+│   ├── organisms/    # Section components
+│   └── templates/    # Page-level composition (optional)
 ├── content/         # Blog posts and resources (MDX)
 ├── data/            # Site-specific page copy and UI content
 ├── data-models/     # Shared TypeScript models for data modules
@@ -41,13 +45,23 @@ src/
 
 ## Commands
 
-| Command             | Description              |
-| ------------------- | ------------------------ |
-| `bun dev`           | Start development server |
-| `bun build`         | Build for production     |
-| `bun preview`       | Preview production build |
-| `bun run lint`      | Run ESLint               |
-| `bun run typecheck` | Run TypeScript check     |
+| Command               | Description                 |
+| --------------------- | --------------------------- |
+| `bun dev`             | Start development server    |
+| `bun build`           | Build for production        |
+| `bun preview`         | Preview production build    |
+| `bun run lint`        | Run ESLint                  |
+| `bun run typecheck`   | Run TypeScript check        |
+| `bun storybook`       | Start Storybook             |
+| `bun storybook:build` | Build Storybook static site |
+
+## Storybook
+
+Storybook is configured for TSX components under `src/components/`.
+
+```bash
+bun storybook
+```
 
 ## Customize Branding
 
