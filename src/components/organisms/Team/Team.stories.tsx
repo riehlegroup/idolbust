@@ -22,17 +22,18 @@ const members: TeamMemberItem[] = [
   },
 ];
 
-const meta: Meta<typeof Team> = {
+const meta = {
   title: "Organisms/Team",
   component: Team,
+  tags: ["autodocs"],
   args: {
     title: "Research Team",
     members,
   },
-};
+} satisfies Meta<typeof Team>;
 
 export default meta;
 
-type Story = StoryObj<typeof Team>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};

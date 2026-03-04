@@ -21,16 +21,17 @@ const features: FeatureItem[] = [
   },
 ];
 
-const meta: Meta<typeof FeatureGrid> = {
+const meta = {
   title: "Molecules/FeatureGrid",
   component: FeatureGrid,
+  tags: ["autodocs"],
   args: {
     features,
   },
-};
+} satisfies Meta<typeof FeatureGrid>;
 
 export default meta;
 
-type Story = StoryObj<typeof FeatureGrid>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};

@@ -2,18 +2,19 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { Card } from "@/components/molecules/Card";
 
-const meta: Meta<typeof Card> = {
+const meta = {
   title: "Molecules/Card",
   component: Card,
+  tags: ["autodocs"],
   args: {
     title: "Insight sprint",
     description: "Align on user research goals with a simple playbook.",
   },
-};
+} satisfies Meta<typeof Card>;
 
 export default meta;
 
-type Story = StoryObj<typeof Card>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 

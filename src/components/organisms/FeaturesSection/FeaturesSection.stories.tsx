@@ -21,17 +21,18 @@ const features: FeatureItem[] = [
   },
 ];
 
-const meta: Meta<typeof FeaturesSection> = {
+const meta = {
   title: "Organisms/FeaturesSection",
   component: FeaturesSection,
+  tags: ["autodocs"],
   args: {
     title: "What We Offer",
     features,
   },
-};
+} satisfies Meta<typeof FeaturesSection>;
 
 export default meta;
 
-type Story = StoryObj<typeof FeaturesSection>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
