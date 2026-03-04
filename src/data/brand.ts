@@ -51,6 +51,29 @@ export const BRAND_CONFIG: BrandConfig = {
       mono: ["JetBrains Mono", "monospace"],
     },
   },
+  designTokens: {
+    colors: {
+      story:
+        "Use primary for calls to action and links, secondary for typography and surface contrast. Keep primary usage focused to preserve emphasis.",
+      roles: [
+        { name: "primary", description: "CTAs, links, active states." },
+        {
+          name: "secondary",
+          description: "Text, borders, neutral backgrounds.",
+        },
+      ],
+    },
+    typeScale: {
+      story:
+        "Rely on Tailwind's default type scale for now; adjust later if brand voice changes.",
+      source: "tailwind-default",
+    },
+    spacing: {
+      story:
+        "Use Tailwind's default spacing scale to keep layout consistent and predictable.",
+      source: "tailwind-default",
+    },
+  },
   links: {
     primaryCtas: [
       { label: "Learn More", href: "/about" },

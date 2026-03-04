@@ -32,6 +32,32 @@ export interface BrandLink {
   href: string;
 }
 
+export interface BrandTokenItem {
+  name: string;
+  value: string;
+  description?: string;
+}
+
+export interface BrandTokenScale {
+  story: string;
+  source: "tailwind-default" | "custom";
+  tokens?: readonly BrandTokenItem[];
+}
+
+export interface BrandColorStory {
+  story: string;
+  roles: readonly {
+    name: string;
+    description: string;
+  }[];
+}
+
+export interface BrandDesignTokens {
+  colors: BrandColorStory;
+  typeScale: BrandTokenScale;
+  spacing: BrandTokenScale;
+}
+
 export interface BrandConfig {
   identity: {
     siteName: string;
@@ -60,6 +86,7 @@ export interface BrandConfig {
       mono: readonly string[];
     };
   };
+  designTokens: BrandDesignTokens;
   links: {
     primaryCtas: readonly BrandLink[];
     appLinks: readonly BrandLink[];
