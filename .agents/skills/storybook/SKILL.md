@@ -41,6 +41,7 @@ If the user asks to “review the component library in terms of Storybook best p
 - Prefer minimal decorators; if needed, document why they exist.
 - Interaction tests should include at least one assertion so failures are meaningful; use them for behaviors, not purely visual states.
 - Add play functions when user interactions change the UI, trigger callbacks, or guard accessibility flows; skip for static-only components.
+- For links in play functions, prevent default navigation before clicking to avoid browser disconnects during Vitest runs.
 
 ## Repo-specific conventions
 

@@ -35,6 +35,7 @@ export const NavigatesToLink: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getByRole("link", { name: "About" });
+    link.addEventListener("click", (event) => event.preventDefault());
     await userEvent.click(link);
     await expect(link).toHaveAttribute("href", "/about");
   },
