@@ -1,4 +1,4 @@
-import { withBaseIfRelative } from "@/utils/with-base";
+import { withBaseIfRelative } from "@/components/utils/with-base";
 import type { CardProps } from "@/components/molecules/Card/Card.types";
 
 export const Card = ({

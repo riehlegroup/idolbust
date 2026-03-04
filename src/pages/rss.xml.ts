@@ -1,7 +1,7 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import type { APIContext } from "astro";
-import { withBase } from "@/utils/with-base";
+import { withBase } from "@/components/utils/with-base";
 import { getBlogSlug, getPublishedPosts } from "@/utils/blog";
 import { BRAND_CONFIG } from "@/data/brand";
 

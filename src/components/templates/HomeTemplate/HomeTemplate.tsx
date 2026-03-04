@@ -1,10 +1,8 @@
 import { Button } from "@/components/atoms/Button";
-import {
-  CallToActionSection,
-  FeaturesSection,
-  HomeHero,
-} from "@/components/organisms";
-import { withBase } from "@/utils/with-base";
+import { CallToActionSection } from "@/components/organisms/CallToActionSection";
+import { FeaturesSection } from "@/components/organisms/FeaturesSection";
+import { HomeHero } from "@/components/organisms/HomeHero";
+import { withBase } from "@/components/utils/with-base";
 import type { HomeTemplateProps } from "./HomeTemplate.types";
 
 export const HomeTemplate = ({
