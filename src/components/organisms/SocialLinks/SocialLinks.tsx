@@ -1,16 +1,8 @@
-import React from "react";
-
-import type { SocialPlatform } from "@/data-models/social";
-
-export interface SocialLink {
-  platform: SocialPlatform;
-  url: string;
-  icon?: string;
-}
-
-export interface SocialLinksProps {
-  links: readonly SocialLink[];
-}
+import type {
+  SocialLink,
+  SocialLinksProps,
+  SocialPlatform,
+} from "./SocialLinks.types";
 
 const iconMap: Record<SocialPlatform, string> = {
   github:
@@ -23,7 +15,7 @@ const iconMap: Record<SocialPlatform, string> = {
 
 export const SocialLinks = ({ links }: SocialLinksProps) => (
   <div className="flex items-center gap-4">
-    {links.map((link) => (
+    {links.map((link: SocialLink) => (
       <a
         key={link.url}
         href={link.url}

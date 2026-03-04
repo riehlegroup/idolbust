@@ -1,10 +1,4 @@
-import React, { type ReactNode } from "react";
-
-export interface CallToActionSectionProps {
-  title: string;
-  description: string;
-  action?: ReactNode;
-}
+import type { CallToActionSectionProps } from "./CallToActionSection.types";
 
 export const CallToActionSection = ({
   title,

@@ -1,9 +1,4 @@
-import React from "react";
-
-export interface SectionDescriptionProps {
-  description: string;
-  className?: string;
-}
+import type { SectionDescriptionProps } from "./SectionDescription.types";
 
 export const SectionDescription = ({
   description,

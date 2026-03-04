@@ -1,17 +1,5 @@
-import React, { type ReactNode } from "react";
-
 import { withBaseIfRelative } from "@/utils/with-base";
-
-export interface CardProps {
-  title: string;
-  description?: string;
-  href?: string;
-  image?: string;
-  imageAlt?: string;
-  imageWidth?: number;
-  imageHeight?: number;
-  children?: ReactNode;
-}
+import type { CardProps } from "@/components/molecules/Card/Card.types";
 
 export const Card = ({
   title,

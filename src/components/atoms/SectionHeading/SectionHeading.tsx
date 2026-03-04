@@ -1,9 +1,4 @@
-import React from "react";
-
-export interface SectionHeadingProps {
-  title: string;
-  className?: string;
-}
+import type { SectionHeadingProps } from "./SectionHeading.types";
 
 export const SectionHeading = ({ title, className }: SectionHeadingProps) => (
   <h2

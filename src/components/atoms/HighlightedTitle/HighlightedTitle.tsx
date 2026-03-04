@@ -1,11 +1,4 @@
-import React from "react";
-
-export interface HighlightedTitleProps {
-  title: string;
-  highlight: string;
-  className?: string;
-  highlightClassName?: string;
-}
+import type { HighlightedTitleProps } from "./HighlightedTitle.types";
 
 export const HighlightedTitle = ({
   title,
