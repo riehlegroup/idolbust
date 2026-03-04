@@ -44,6 +44,7 @@ export const PrimaryActionLink: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const link = canvas.getByRole("link", { name: "Learn More" });
+    link.addEventListener("click", (event) => event.preventDefault());
     await userEvent.click(link);
     await expect(link).toHaveAttribute("href", "/about");
   },

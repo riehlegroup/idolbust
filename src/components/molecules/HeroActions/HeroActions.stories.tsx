@@ -42,7 +42,9 @@ export const Default: Story = {};
 export const PrimaryActionClick: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    await userEvent.click(canvas.getByRole("link", { name: "Learn More" }));
+    const link = canvas.getByRole("link", { name: "Learn More" });
+    link.addEventListener("click", (event) => event.preventDefault());
+    await userEvent.click(link);
     await expect(primaryClick).toHaveBeenCalled();
   },
 };
