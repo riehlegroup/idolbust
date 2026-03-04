@@ -33,6 +33,7 @@ jobs:
         run: bun run typecheck
 
       - name: Storybook tests
+        # Using npx instead of bun x because we had problems with Playwright and bun x.
         run: npx vitest --project=storybook --run
 
       - name: Build
