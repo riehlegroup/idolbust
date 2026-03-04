@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, userEvent, within } from "storybook/test";
 
 import { HomeHero } from "@/components/organisms/HomeHero";
 import { Button } from "@/components/atoms/Button";
@@ -23,6 +24,14 @@ const meta = {
       </Button>
     ),
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Hero section with headline, highlighted text, and primary/secondary calls to action.",
+      },
+    },
+  },
 } satisfies Meta<typeof HomeHero>;
 
 export default meta;
@@ -30,3 +39,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const PrimaryActionLink: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const link = canvas.getByRole("link", { name: "Learn More" });
+    await userEvent.click(link);
+    await expect(link).toHaveAttribute("href", "/about");
+  },
+};

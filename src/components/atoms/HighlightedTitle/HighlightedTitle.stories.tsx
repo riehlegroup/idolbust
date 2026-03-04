@@ -10,6 +10,14 @@ const meta = {
     title: "Understanding Your",
     highlight: "User Needs",
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Headline component that emphasizes a highlighted phrase for visual focus.",
+      },
+    },
+  },
 } satisfies Meta<typeof HighlightedTitle>;
 
 export default meta;

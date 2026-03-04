@@ -3,7 +3,11 @@ import type { StorybookConfig } from "@storybook/react-vite";
 const config: StorybookConfig = {
   framework: "@storybook/react-vite",
   stories: ["../src/components/**/*.stories.@(ts|tsx|mdx)"],
-  addons: ["@storybook/addon-a11y"],
+  addons: [
+    "@storybook/addon-a11y",
+    "@storybook/addon-docs",
+    "@storybook/addon-vitest",
+  ],
   viteFinal: async (config) => {
     config.resolve = config.resolve ?? {};
     config.resolve.alias = {

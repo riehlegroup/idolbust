@@ -111,6 +111,14 @@ const meta = {
       },
     ],
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Full home page template wiring brand, content, and feature data into the layout.",
+      },
+    },
+  },
 } satisfies Meta<typeof HomeTemplate>;
 
 export default meta;

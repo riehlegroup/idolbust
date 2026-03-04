@@ -39,6 +39,8 @@ If the user asks to “review the component library in terms of Storybook best p
 - Use `argTypes` for clear control labels and documentation.
 - Avoid coupling stories to app-specific context unless the component requires it.
 - Prefer minimal decorators; if needed, document why they exist.
+- Interaction tests should include at least one assertion so failures are meaningful; use them for behaviors, not purely visual states.
+- Add play functions when user interactions change the UI, trigger callbacks, or guard accessibility flows; skip for static-only components.
 
 ## Repo-specific conventions
 
@@ -51,6 +53,7 @@ If the user asks to “review the component library in terms of Storybook best p
   rather than deep relative paths.
 - Use the `@/` alias for any imports within `src/`.
 - Do not import from `src/pages` or `src/layouts` in stories.
+- Always set `parameters.docs.description.component` with a concise usage note for every component story.
 
 ## Standard workflow
 

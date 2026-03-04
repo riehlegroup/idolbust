@@ -10,6 +10,14 @@ const meta = {
     description:
       "Simple website software for research projects that want to understand their user needs.",
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Supporting text block for section intros and short explanatory copy.",
+      },
+    },
+  },
 } satisfies Meta<typeof SectionDescription>;
 
 export default meta;

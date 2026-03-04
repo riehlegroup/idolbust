@@ -28,6 +28,14 @@ const meta = {
   args: {
     features,
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Responsive grid for displaying a set of feature titles and descriptions.",
+      },
+    },
+  },
 } satisfies Meta<typeof FeatureGrid>;
 
 export default meta;

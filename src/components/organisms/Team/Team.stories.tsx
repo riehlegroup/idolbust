@@ -30,6 +30,14 @@ const meta = {
     title: "Research Team",
     members,
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Team roster with member names, roles, bios, and optional imagery.",
+      },
+    },
+  },
 } satisfies Meta<typeof Team>;
 
 export default meta;
