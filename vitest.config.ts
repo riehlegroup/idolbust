@@ -22,6 +22,7 @@ export default defineConfig({
         plugins: [
           storybookTest({
             configDir: path.join(dirname, ".storybook"),
+            // Using npx instead of bun x because we had problems with Playwright and bun x.
             storybookScript: "npx storybook dev -p 6006 --no-open",
           }),
         ],
