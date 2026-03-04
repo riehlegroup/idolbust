@@ -1,4 +1,5 @@
 import type { FeatureItem } from "@/components/molecules/FeatureGrid/FeatureGrid.types";
+import type { BrandColorScale } from "@/data-models/brand";
 
 export interface HomeTemplateBrand {
   identity: {
@@ -19,8 +20,8 @@ export interface HomeTemplateBrand {
     socialProfiles: readonly string[];
   };
   theme: {
-    primary: Record<string, string>;
-    secondary: Record<string, string>;
+    primary: BrandColorScale;
+    secondary: BrandColorScale;
     themeColor: string;
     fonts?: {
       sans: readonly string[];
