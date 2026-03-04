@@ -13,6 +13,7 @@
     "typecheck": "astro check",
     "format": "prettier --write \"src/**/*.{ts,tsx,astro,css,md,mdx}\"",
     "storybook": "storybook dev -p 6006",
+    "storybook:test": "bun x @storybook/cli@10.2.15 test",
     "storybook:build": "storybook build"
   },
   "dependencies": {
@@ -29,6 +30,8 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@storybook/addon-a11y": "^10.2.15",
+    "@storybook/addon-docs": "^10.2.15",
+    "@storybook/addon-vitest": "^10.2.15",
     "@storybook/react-vite": "10.2.15",
     "@tailwindcss/typography": "^0.5.15",
     "@types/node": "^22.10.5",
@@ -43,6 +46,7 @@
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "storybook": "10.2.15",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^4.0.18"
   }
 }

@@ -9,6 +9,13 @@ const meta = {
   args: {
     title: "What We Offer",
   },
+  parameters: {
+    docs: {
+      description: {
+        component: "Section title with consistent spacing for page headings.",
+      },
+    },
+  },
 } satisfies Meta<typeof SectionHeading>;
 
 export default meta;

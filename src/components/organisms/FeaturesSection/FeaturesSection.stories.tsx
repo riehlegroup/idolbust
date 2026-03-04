@@ -29,6 +29,14 @@ const meta = {
     title: "What We Offer",
     features,
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Section layout that pairs a heading with a grid of feature summaries.",
+      },
+    },
+  },
 } satisfies Meta<typeof FeaturesSection>;
 
 export default meta;

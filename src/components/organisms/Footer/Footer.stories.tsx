@@ -10,6 +10,14 @@ const meta = {
     siteName: "Idol or Bust",
     licenseText: "Licensed under AGPL-3.0.",
   },
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "Site footer with branding and licensing text for consistent page endings.",
+      },
+    },
+  },
 } satisfies Meta<typeof Footer>;
 
 export default meta;
