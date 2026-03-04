@@ -1,0 +1,38 @@
+import type { Meta, StoryObj } from "@storybook/react";
+
+import { Team } from "@/components/organisms/Team";
+import type { TeamMember } from "@/data-models/about";
+
+const members: TeamMember[] = [
+  {
+    name: "Alex Rivera",
+    role: "Research Lead",
+    bio: "Focuses on qualitative interviews and synthesis.",
+    image: "/apple-touch-icon.png",
+  },
+  {
+    name: "Morgan Lee",
+    role: "Product Strategist",
+    bio: "Translates user needs into product roadmaps.",
+  },
+  {
+    name: "Jamie Patel",
+    role: "Data Analyst",
+    bio: "Turns telemetry into actionable insights.",
+  },
+];
+
+const meta: Meta<typeof Team> = {
+  title: "Organisms/Team",
+  component: Team,
+  args: {
+    title: "Research Team",
+    members,
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof Team>;
+
+export const Default: Story = {};
