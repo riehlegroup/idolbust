@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { SocialLinks } from "@/components/organisms/SocialLinks";
 
-const meta: Meta<typeof SocialLinks> = {
+const meta = {
   title: "Organisms/SocialLinks",
   component: SocialLinks,
+  tags: ["autodocs"],
   args: {
     links: [
       { platform: "github", url: "https://github.com" },
@@ -12,10 +13,10 @@ const meta: Meta<typeof SocialLinks> = {
       { platform: "linkedin", url: "https://linkedin.com" },
     ],
   },
-};
+} satisfies Meta<typeof SocialLinks>;
 
 export default meta;
 
-type Story = StoryObj<typeof SocialLinks>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};

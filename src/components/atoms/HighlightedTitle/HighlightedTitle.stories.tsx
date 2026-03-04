@@ -2,17 +2,18 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { HighlightedTitle } from "@/components/atoms/HighlightedTitle";
 
-const meta: Meta<typeof HighlightedTitle> = {
+const meta = {
   title: "Atoms/HighlightedTitle",
   component: HighlightedTitle,
+  tags: ["autodocs"],
   args: {
     title: "Understanding Your",
     highlight: "User Needs",
   },
-};
+} satisfies Meta<typeof HighlightedTitle>;
 
 export default meta;
 
-type Story = StoryObj<typeof HighlightedTitle>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};

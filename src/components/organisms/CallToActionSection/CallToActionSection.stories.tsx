@@ -3,9 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { CallToActionSection } from "@/components/organisms/CallToActionSection";
 import { Button } from "@/components/atoms/Button";
 
-const meta: Meta<typeof CallToActionSection> = {
+const meta = {
   title: "Organisms/CallToActionSection",
   component: CallToActionSection,
+  tags: ["autodocs"],
   args: {
     title: "Ready to get started?",
     description:
@@ -16,10 +17,10 @@ const meta: Meta<typeof CallToActionSection> = {
       </Button>
     ),
   },
-};
+} satisfies Meta<typeof CallToActionSection>;
 
 export default meta;
 
-type Story = StoryObj<typeof CallToActionSection>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};

@@ -3,9 +3,10 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { HomeHero } from "@/components/organisms/HomeHero";
 import { Button } from "@/components/atoms/Button";
 
-const meta: Meta<typeof HomeHero> = {
+const meta = {
   title: "Organisms/HomeHero",
   component: HomeHero,
+  tags: ["autodocs"],
   args: {
     title: "Understanding Your",
     highlight: "User Needs",
@@ -22,10 +23,10 @@ const meta: Meta<typeof HomeHero> = {
       </Button>
     ),
   },
-};
+} satisfies Meta<typeof HomeHero>;
 
 export default meta;
 
-type Story = StoryObj<typeof HomeHero>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
