@@ -47,11 +47,11 @@ If the user asks to “review the component library in terms of Storybook best p
 
 - Components live in `src/components` following atoms/molecules/organisms/templates.
 - Use kebab-case filenames and PascalCase component names.
-- Keep stories alongside components as `*.stories.ts` or `*.stories.astro`.
+- Keep stories alongside components as `*.stories.tsx` or `*.stories.astro`.
 - If a component has a separate types file, place it in the same folder and export
   types via the local barrel `index.ts`.
-- Always import components from the component library barrel (e.g. `@/components`)
-  rather than deep relative paths.
+- Always import components from the component's local barrel (e.g.
+  `@/components/organisms/Navbar`) rather than deep relative paths.
 - Use the `@/` alias for any imports within `src/`.
 - Do not import from `src/pages` or `src/layouts` in stories.
 - Always set `parameters.docs.description.component` with a concise usage note for every component story.
