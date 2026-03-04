@@ -42,6 +42,7 @@ export function Button(props: AnchorProps | ButtonProps) {
       variant: _variant,
       size: _size,
       className: _className,
+      class: _classProp,
       ...anchorProps
     } = props as AnchorProps;
     return (
@@ -55,6 +56,7 @@ export function Button(props: AnchorProps | ButtonProps) {
     variant: _variant,
     size: _size,
     className: _className,
+    class: _classProp,
     type,
     ...buttonProps
   } = props as ButtonProps;
