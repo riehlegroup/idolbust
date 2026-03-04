@@ -1,6 +1,32 @@
 import type { FeatureItem } from "@/components/molecules/FeatureGrid/FeatureGrid.types";
 
 export interface HomeTemplateBrand {
+  identity: {
+    siteName: string;
+    tagline: string;
+    siteUrl: string;
+    language: string;
+    locale: string;
+    logoPath: string;
+    faviconPath: string;
+    appleTouchIconPath: string;
+    manifestPath: string;
+    defaultOgImagePath: string;
+  };
+  organization: {
+    name: string;
+    legalName?: string;
+    socialProfiles: readonly string[];
+  };
+  theme: {
+    primary: Record<string, string>;
+    secondary: Record<string, string>;
+    themeColor: string;
+    fonts?: {
+      sans: readonly string[];
+      mono: readonly string[];
+    };
+  };
   links: {
     primaryCtas: readonly {
       label: string;
@@ -21,6 +47,10 @@ export interface HomeTemplateBrand {
     robots: string;
     twitterCard: "summary" | "summary_large_image";
     twitterSite?: string;
+  };
+  blog: {
+    title: string;
+    description: string;
   };
 }
 
