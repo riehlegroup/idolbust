@@ -21,3 +21,6 @@ pnpm-debug.log*
 .idea/
 .vscode/
 *.swp
+
+# planning notes (do not commit)
+PLAN.md

@@ -5,11 +5,32 @@ import "../src/styles/global.css";
 
 const preview: Preview = {
   parameters: {
+    layout: "padded",
+    backgrounds: {
+      default: "Light",
+      values: [
+        { name: "Light", value: "#f8fafc" },
+        { name: "Dark", value: "#0f172a" },
+        { name: "Brand", value: "#e0e7ff" },
+      ],
+    },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    options: {
+      storySort: {
+        order: [
+          "Foundations",
+          "Atoms",
+          "Molecules",
+          "Organisms",
+          "Templates",
+          "Pages",
+        ],
       },
     },
   },

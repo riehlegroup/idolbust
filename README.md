@@ -63,6 +63,11 @@ Storybook is configured for TSX components under `src/components/`.
 bun storybook
 ```
 
+Story conventions (early stage):
+
+- Use a single default export title that matches the component group (Atoms, Molecules, Organisms).
+- Keep story names short and descriptive (Primary, WithIcon, Dense).
+
 ## Customize Branding
 
 The site branding now comes from one source of truth: `src/data/brand.ts`.
