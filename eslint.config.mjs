@@ -33,6 +33,12 @@ export default [
           capture: ["elementName"],
         },
         {
+          type: "foundations",
+          pattern: "components/foundations/*",
+          mode: "folder",
+          capture: ["elementName"],
+        },
+        {
           type: "atoms",
           pattern: "components/atoms/*",
           mode: "folder",
@@ -68,15 +74,21 @@ export default [
           rules: [
             {
               from: ["atoms"],
-              allow: ["atoms", "component-utils"],
+              allow: ["atoms", "foundations", "component-utils"],
             },
             {
               from: ["molecules"],
-              allow: ["atoms", "molecules", "component-utils"],
+              allow: ["atoms", "molecules", "foundations", "component-utils"],
             },
             {
               from: ["organisms"],
-              allow: ["atoms", "molecules", "organisms", "component-utils"],
+              allow: [
+                "atoms",
+                "molecules",
+                "organisms",
+                "foundations",
+                "component-utils",
+              ],
             },
             {
               from: ["templates"],
@@ -85,8 +97,13 @@ export default [
                 "molecules",
                 "organisms",
                 "templates",
+                "foundations",
                 "component-utils",
               ],
+            },
+            {
+              from: ["foundations"],
+              allow: ["foundations", "component-utils"],
             },
             {
               from: ["component-utils"],
