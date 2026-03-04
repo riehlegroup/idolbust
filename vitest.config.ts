@@ -8,13 +8,21 @@ import { defineConfig } from "vitest/config";
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  define: {
+    // Force standalone mode so a11y violations fail in CI.
+    "import.meta.env.VITEST_STORYBOOK": '"false"',
+  },
+  optimizeDeps: {
+    include: ["@storybook/addon-a11y/preview"],
+  },
   test: {
     projects: [
       {
+        extends: true,
         plugins: [
           storybookTest({
             configDir: path.join(dirname, ".storybook"),
-            storybookScript: "bun run storybook -- --no-open",
+            storybookScript: "npx storybook dev -p 6006 --no-open",
           }),
         ],
         test: {
