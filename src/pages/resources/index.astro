@@ -4,7 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { formatDate } from "@/utils/blog";
 import { getPublishedSortedEntries } from "@/utils/content";
 import { getResourceSlug, type ResourceEntry } from "@/utils/resources";
-import { withBase } from "@/utils/with-base";
+import { withBase } from "@/components/utils/with-base";
 import { getCollection } from "astro:content";
 import { RESOURCES_PAGE_CONTENT } from "@/data/resources";
 const resources = getPublishedSortedEntries(await getCollection("resources"));
