@@ -160,7 +160,7 @@ export function BrandTokens({ brand }: BrandTokensProps): ReactElement {
                 key={sample.label}
                 className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-6"
               >
-                <span className="w-24 text-xs font-semibold uppercase tracking-[0.2em] text-secondary-400">
+                <span className="w-24 text-xs font-semibold uppercase tracking-[0.2em] text-secondary-600">
                   {sample.label}
                 </span>
                 <p className={`${sample.className} text-secondary-900`}>

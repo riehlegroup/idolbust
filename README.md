@@ -45,15 +45,16 @@ src/
 
 ## Commands
 
-| Command               | Description                 |
-| --------------------- | --------------------------- |
-| `bun dev`             | Start development server    |
-| `bun build`           | Build for production        |
-| `bun preview`         | Preview production build    |
-| `bun run lint`        | Run ESLint                  |
-| `bun run typecheck`   | Run TypeScript check        |
-| `bun storybook`       | Start Storybook             |
-| `bun storybook:build` | Build Storybook static site |
+| Command                                | Description                   |
+| -------------------------------------- | ----------------------------- |
+| `bun dev`                              | Start development server      |
+| `bun build`                            | Build for production          |
+| `bun preview`                          | Preview production build      |
+| `bun run lint`                         | Run ESLint                    |
+| `bun run typecheck`                    | Run TypeScript check          |
+| `bun storybook`                        | Start Storybook               |
+| `bun storybook:build`                  | Build Storybook static site   |
+| `npx vitest --project=storybook --run` | Run Storybook tests (CI/a11y) |
 
 ## Storybook
 
@@ -61,6 +62,12 @@ Storybook is configured for TSX components under `src/components/`.
 
 ```bash
 bun storybook
+```
+
+Run Storybook tests (including a11y checks) from CI or locally with:
+
+```bash
+npx vitest --project=storybook --run
 ```
 
 Story conventions (early stage):

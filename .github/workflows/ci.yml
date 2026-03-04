@@ -33,7 +33,7 @@ jobs:
         run: bun run typecheck
 
       - name: Storybook tests
-        run: npx vitest --project=storybook
+        run: npx vitest --project=storybook --run
 
       - name: Build
         run: bun run build

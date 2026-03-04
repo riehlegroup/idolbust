@@ -4,6 +4,9 @@ import "@/styles/global.css";
 
 const preview: Preview = {
   parameters: {
+    a11y: {
+      test: "error",
+    },
     layout: "padded",
     backgrounds: {
       default: "Light",
