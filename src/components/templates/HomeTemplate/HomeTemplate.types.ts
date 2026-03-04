@@ -18,6 +18,9 @@ export interface HomeTemplateBrand {
   seo: {
     titleTemplate: string;
     defaultDescription: string;
+    robots: string;
+    twitterCard: "summary" | "summary_large_image";
+    twitterSite?: string;
   };
 }
 
