@@ -6,8 +6,17 @@ export interface HomeTemplateBrand {
       label: string;
       href: string;
     }[];
+    appLinks: readonly {
+      label: string;
+      href: string;
+    }[];
+    social: readonly {
+      platform: string;
+      url: string;
+    }[];
   };
   seo: {
+    titleTemplate: string;
     defaultDescription: string;
   };
 }
