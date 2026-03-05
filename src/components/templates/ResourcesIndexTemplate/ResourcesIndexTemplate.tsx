@@ -2,7 +2,10 @@ import type {
   ResourcesIndexItem,
   ResourcesIndexTemplateProps,
 } from "./ResourcesIndexTemplate.types";
+import { PageIntro } from "@/components/organisms/PageIntro";
 import { Card } from "@/components/molecules/Card";
+import { MetaGroup } from "@/components/molecules/MetaGroup";
+import { TagList } from "@/components/molecules/TagList";
 
 export const ResourcesIndexTemplate = ({
   title,
@@ -11,8 +14,7 @@ export const ResourcesIndexTemplate = ({
   resources,
 }: ResourcesIndexTemplateProps) => (
   <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <h1 className="mb-3 text-4xl font-bold text-secondary-900">{title}</h1>
-    <p className="mb-8 max-w-2xl text-secondary-600">{description}</p>
+    <PageIntro title={title} description={description} className="mb-8" />
 
     {resources.length === 0 ? (
       <p className="text-secondary-600">{emptyState}</p>
@@ -29,25 +31,20 @@ export const ResourcesIndexTemplate = ({
               image={resource.image}
               imageAlt={resource.imageAlt}
             >
-              <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-secondary-500">
-                <span className="rounded-full bg-secondary-100 px-2 py-1 text-xs font-medium text-secondary-600">
-                  {resource.category}
-                </span>
-                <span>·</span>
-                <time dateTime={resource.dateIso}>{resource.dateLabel}</time>
-              </div>
+              <MetaGroup
+                category={resource.category}
+                dateIso={resource.dateIso}
+                dateLabel={resource.dateLabel}
+                className="mt-4 text-sm text-secondary-500"
+              />
 
               {resource.tags.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {resource.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-primary-50 px-2 py-1 text-xs text-primary-700"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
+                <TagList
+                  tags={resource.tags}
+                  tone="primary"
+                  prefix="#"
+                  className="mt-3"
+                />
               )}
             </Card>
           ))}

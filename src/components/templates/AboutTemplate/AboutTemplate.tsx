@@ -1,4 +1,5 @@
 import type { AboutTemplateProps } from "./AboutTemplate.types";
+import { PageHeading } from "@/components/atoms/PageHeading";
 import { SocialLinks } from "@/components/organisms/SocialLinks";
 import { Team } from "@/components/organisms/Team";
 
@@ -11,7 +12,7 @@ export const AboutTemplate = ({
   socialLinks,
 }: AboutTemplateProps) => (
   <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <h1 className="mb-8 text-4xl font-bold text-secondary-900">{hero.title}</h1>
+    <PageHeading title={hero.title} className="mb-8" />
 
     <div className="prose prose-secondary max-w-3xl">
       <p className="lead text-xl text-secondary-600">{hero.body}</p>

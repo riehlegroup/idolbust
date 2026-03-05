@@ -1,4 +1,5 @@
 import type { BlogPostTemplateProps } from "./BlogPostTemplate.types";
+import { ArticleHeader } from "@/components/organisms/ArticleHeader";
 
 export const BlogPostTemplate = ({
   title,
@@ -6,25 +7,14 @@ export const BlogPostTemplate = ({
   dateLabel,
   author,
   tags,
+  description,
 }: BlogPostTemplateProps) => (
-  <header className="mb-8 not-prose">
-    <h1 className="text-4xl font-bold text-secondary-900">{title}</h1>
-    <div className="mt-4 flex items-center gap-2 text-secondary-600">
-      <time dateTime={dateIso}>{dateLabel}</time>
-      <span>·</span>
-      <span>{author}</span>
-    </div>
-    {tags.length > 0 && (
-      <div className="mt-4 flex flex-wrap gap-2">
-        {tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full bg-secondary-100 px-3 py-1 text-sm text-secondary-600"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    )}
-  </header>
+  <ArticleHeader
+    title={title}
+    description={description}
+    dateIso={dateIso}
+    dateLabel={dateLabel}
+    author={author}
+    tags={tags}
+  />
 );

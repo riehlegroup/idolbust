@@ -2,6 +2,7 @@ import type {
   RelatedResourceLink,
   ResourcesDetailTemplateProps,
 } from "./ResourcesDetailTemplate.types";
+import { ArticleHeader } from "@/components/organisms/ArticleHeader";
 
 export const ResourcesDetailTemplate = ({
   title,
@@ -20,38 +21,16 @@ export const ResourcesDetailTemplate = ({
   children,
 }: ResourcesDetailTemplateProps) => (
   <article className="prose prose-secondary mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-    <header className="mb-8 not-prose">
-      <p className="mb-3 inline-flex rounded-full bg-secondary-100 px-3 py-1 text-sm font-medium text-secondary-700">
-        {category}
-      </p>
-      <h1 className="text-4xl font-bold text-secondary-900">{title}</h1>
-      <div className="mt-4 flex flex-wrap items-center gap-2 text-secondary-600">
-        <time dateTime={dateIso}>{dateLabel}</time>
-        {showUpdatedLabel && <span>{updatedLabel}</span>}
-      </div>
-      {tags.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-primary-50 px-3 py-1 text-sm text-primary-700"
-            >
-              #{tag}
-            </span>
-          ))}
-        </div>
-      )}
-      {heroImageSrc && (
-        <img
-          src={heroImageSrc}
-          alt={heroImageAlt ?? title}
-          className="mt-6 aspect-video w-full rounded-lg object-cover"
-          width={1200}
-          height={675}
-          loading="lazy"
-        />
-      )}
-    </header>
+    <ArticleHeader
+      title={title}
+      dateIso={dateIso}
+      dateLabel={dateLabel}
+      updatedLabel={showUpdatedLabel ? updatedLabel : undefined}
+      tags={tags}
+      category={category}
+      heroImageSrc={heroImageSrc}
+      heroImageAlt={heroImageAlt}
+    />
 
     {children}
 
