@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ResourcesDetailTemplate } from "@/components/templates/ResourcesDetailTemplate";
+import { ResourcesDetailTemplate } from "./ResourcesDetailTemplate";
 
 const meta = {
   title: "Templates/ResourcesDetailTemplate",
@@ -42,6 +42,7 @@ const meta = {
     ),
   },
   parameters: {
+    layout: "fullscreen",
     docs: {
       description: {
         component:

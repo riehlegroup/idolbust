@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Pill } from "@/components/atoms/Pill";
+import { Pill } from "./Pill";
 
 const meta = {
   title: "Atoms/Pill",
@@ -36,5 +36,11 @@ export const Small: Story = {
   args: {
     size: "sm",
     children: "Updated",
+  },
+};
+
+export const NeutralSmall: Story = {
+  args: {
+    size: "sm",
   },
 };

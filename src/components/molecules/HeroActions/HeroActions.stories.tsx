@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, within } from "storybook/test";
 
-import { HeroActions } from "@/components/molecules/HeroActions";
 import { Button } from "@/components/atoms/Button";
+import { HeroActions } from "./HeroActions";
 
 const primaryClick = fn();
 const secondaryClick = fn();

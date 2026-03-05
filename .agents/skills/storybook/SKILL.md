@@ -50,9 +50,9 @@ If the user asks to “review the component library in terms of Storybook best p
 - Keep stories alongside components as `*.stories.tsx` or `*.stories.astro`.
 - If a component has a separate types file, place it in the same folder and export
   types via the local barrel `index.ts`.
-- Always import components from the component's local barrel (e.g.
-  `@/components/organisms/Navbar`) rather than deep relative paths.
-- Use the `@/` alias for any imports within `src/`.
+- For story files, imports that target the same component folder must be relative
+  (e.g. `./Navbar`, `./Navbar.types`).
+- Use the `@/` alias for imports outside the current component folder.
 - Do not import from `src/pages` or `src/layouts` in stories.
 - Always set `parameters.docs.description.component` with a concise usage note for every component story.
 
@@ -69,7 +69,7 @@ If the user asks to “review the component library in terms of Storybook best p
 
 ```ts
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "@/components";
+import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
   title: "Atoms/Button",
@@ -90,7 +90,7 @@ export const Default: Story = {};
 
 ```ts
 import type { Meta, StoryObj } from "@storybook/astro";
-import { Hero } from "@/components";
+import { Hero } from "./Hero";
 
 const meta: Meta<typeof Hero> = {
   title: "Organisms/Hero",

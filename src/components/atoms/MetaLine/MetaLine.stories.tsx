@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { MetaLine } from "@/components/atoms/MetaLine";
+import { MetaLine } from "./MetaLine";
 
 const meta = {
   title: "Atoms/MetaLine",

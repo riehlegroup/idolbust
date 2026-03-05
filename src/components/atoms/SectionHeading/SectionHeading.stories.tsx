@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { SectionHeading } from "@/components/atoms/SectionHeading";
+import { SectionHeading } from "./SectionHeading";
 
 const meta = {
   title: "Atoms/SectionHeading",
@@ -23,3 +23,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const LeftAligned: Story = {
+  args: {
+    title: "Research methods",
+    className: "text-left",
+  },
+};

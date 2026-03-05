@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { AboutTemplate } from "@/components/templates/AboutTemplate";
+import { AboutTemplate } from "./AboutTemplate";
 
 const meta = {
   title: "Templates/AboutTemplate",
@@ -48,6 +48,7 @@ const meta = {
     ],
   },
   parameters: {
+    layout: "fullscreen",
     docs: {
       description: {
         component:

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { PageHeading } from "@/components/atoms/PageHeading";
+import { PageHeading } from "./PageHeading";
 
 const meta = {
   title: "Atoms/PageHeading",
@@ -23,3 +23,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const LongTitle: Story = {
+  args: {
+    title: "Research updates and field notes from the latest study",
+  },
+};

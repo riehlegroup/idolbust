@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { HighlightedTitle } from "@/components/atoms/HighlightedTitle";
+import { HighlightedTitle } from "./HighlightedTitle";
 
 const meta = {
   title: "Atoms/HighlightedTitle",
@@ -25,3 +25,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const HighlightFirst: Story = {
+  args: {
+    title: "Research",
+    highlight: "clarity",
+    highlightClassName: "text-secondary-900",
+  },
+};

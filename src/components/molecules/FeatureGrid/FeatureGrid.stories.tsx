@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { FeatureGrid } from "@/components/molecules/FeatureGrid";
+import { FeatureGrid } from "./FeatureGrid";
 import type { FeatureItem } from "./FeatureGrid.types";
 
 const features: FeatureItem[] = [

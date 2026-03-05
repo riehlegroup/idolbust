@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { HomeTemplate } from "@/components/templates/HomeTemplate";
+import { HomeTemplate } from "./HomeTemplate";
 
 const meta = {
   title: "Templates/HomeTemplate",
@@ -112,6 +112,7 @@ const meta = {
     ],
   },
   parameters: {
+    layout: "fullscreen",
     docs: {
       description: {
         component:

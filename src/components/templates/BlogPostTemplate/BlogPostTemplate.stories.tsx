@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BlogPostTemplate } from "@/components/templates/BlogPostTemplate";
+import { BlogPostTemplate } from "./BlogPostTemplate";
 
 const meta = {
   title: "Templates/BlogPostTemplate",
@@ -15,6 +15,7 @@ const meta = {
     tags: ["process", "research"],
   },
   parameters: {
+    layout: "fullscreen",
     docs: {
       description: {
         component:

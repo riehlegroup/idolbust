@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "storybook/test";
 
-import { Navbar } from "@/components/organisms/Navbar";
+import { Navbar } from "./Navbar";
 
 const meta = {
   title: "Organisms/Navbar",
