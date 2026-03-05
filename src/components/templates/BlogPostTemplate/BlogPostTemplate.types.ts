@@ -5,4 +5,5 @@ export interface BlogPostTemplateProps {
   dateLabel: string;
   author: string;
   tags: readonly string[];
+  children?: React.ReactNode;
 }

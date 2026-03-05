@@ -7,3 +7,4 @@ export { HomeHero } from "./HomeHero";
 export { Navbar } from "./Navbar";
 export { Footer } from "./Footer";
 export { PageIntro } from "./PageIntro";
+export { ResourcesRelatedList } from "./ResourcesRelatedList";

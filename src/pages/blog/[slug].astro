@@ -24,7 +24,7 @@ const { Content } = await render(post);
     dateLabel={formatDate(post.data.pubDate)}
     author={post.data.author}
     tags={post.data.tags}
-  />
-
-  <Content />
+  >
+    <Content />
+  </BlogPostTemplate>
 </BlogLayout>

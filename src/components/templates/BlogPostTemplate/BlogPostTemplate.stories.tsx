@@ -13,13 +13,26 @@ const meta = {
     dateLabel: "January 18, 2026",
     author: "Alex Chen",
     tags: ["process", "research"],
+    children: (
+      <div>
+        <p>
+          We asked 12 teams how they translate insights into decisions and
+          compiled a checklist of what actually moves work forward.
+        </p>
+        <h2>Where we started</h2>
+        <p>
+          The most effective teams create a shared narrative before they look at
+          roadmaps or ticket backlogs.
+        </p>
+      </div>
+    ),
   },
   parameters: {
     layout: "fullscreen",
     docs: {
       description: {
         component:
-          "Blog post header template with title, byline, and tag list.",
+          "Blog post header template that wraps content below the metadata.",
       },
     },
   },
