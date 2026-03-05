@@ -12,7 +12,7 @@ const meta = {
     dateIso: "2026-02-12T00:00:00.000Z",
     dateLabel: "February 12, 2026",
     showUpdatedLabel: true,
-    updatedLabel: "Updated",
+    updatedLabel: "Updated February 18, 2026",
     tags: ["qualitative", "planning"],
     heroImageSrc: "/images/resource-placeholder.png",
     heroImageAlt: "Interview notes",

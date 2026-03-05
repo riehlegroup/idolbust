@@ -2,7 +2,10 @@ import type {
   BlogIndexPost,
   BlogIndexTemplateProps,
 } from "./BlogIndexTemplate.types";
+import { PageIntro } from "@/components/organisms/PageIntro";
 import { Card } from "@/components/molecules/Card";
+import { MetaLine } from "@/components/atoms/MetaLine";
+import { TagList } from "@/components/molecules/TagList";
 
 export const BlogIndexTemplate = ({
   title,
@@ -10,7 +13,7 @@ export const BlogIndexTemplate = ({
   posts,
 }: BlogIndexTemplateProps) => (
   <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <h1 className="mb-8 text-4xl font-bold text-secondary-900">{title}</h1>
+    <PageIntro title={title} />
 
     {posts.length === 0 ? (
       <p className="text-secondary-600">{emptyState}</p>
@@ -27,22 +30,14 @@ export const BlogIndexTemplate = ({
               image={post.image}
               imageAlt={post.imageAlt}
             >
-              <div className="mt-4 flex items-center gap-2 text-sm text-secondary-500">
-                <time dateTime={post.dateIso}>{post.dateLabel}</time>
-                <span>·</span>
-                <span>{post.author}</span>
-              </div>
+              <MetaLine
+                dateIso={post.dateIso}
+                dateLabel={post.dateLabel}
+                author={post.author}
+                className="mt-4 text-sm text-secondary-500"
+              />
               {post.tags.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-secondary-100 px-2 py-1 text-xs text-secondary-600"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+                <TagList tags={post.tags} className="mt-3" />
               )}
             </Card>
           ))}
