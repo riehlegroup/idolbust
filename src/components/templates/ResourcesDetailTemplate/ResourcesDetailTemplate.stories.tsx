@@ -27,7 +27,7 @@ const meta = {
       },
     ],
     children: (
-      <div>
+      <div className="prose">
         <p>
           Use this guide to plan and run user interviews. It includes prompts,
           consent language, and note-taking tips.

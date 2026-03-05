@@ -8,13 +8,17 @@ export const BlogPostTemplate = ({
   author,
   tags,
   description,
+  children,
 }: BlogPostTemplateProps) => (
-  <ArticleHeader
-    title={title}
-    description={description}
-    dateIso={dateIso}
-    dateLabel={dateLabel}
-    author={author}
-    tags={tags}
-  />
+  <>
+    <ArticleHeader
+      title={title}
+      description={description}
+      dateIso={dateIso}
+      dateLabel={dateLabel}
+      author={author}
+      tags={tags}
+    />
+    {children}
+  </>
 );

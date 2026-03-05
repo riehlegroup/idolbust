@@ -1,8 +1,7 @@
-import type {
-  RelatedResourceLink,
-  ResourcesDetailTemplateProps,
-} from "./ResourcesDetailTemplate.types";
+import type { ResourcesDetailTemplateProps } from "./ResourcesDetailTemplate.types";
+import { ResourceCanonicalLink } from "@/components/molecules/ResourceCanonicalLink";
 import { ArticleHeader } from "@/components/organisms/ArticleHeader";
+import { ResourcesRelatedList } from "@/components/organisms/ResourcesRelatedList";
 
 export const ResourcesDetailTemplate = ({
   title,
@@ -37,33 +36,19 @@ export const ResourcesDetailTemplate = ({
     {(canonicalUrl || relatedResources.length > 0) && (
       <section className="mt-12 border-t border-secondary-200 pt-8 not-prose">
         {canonicalUrl && (
-          <p className="text-sm text-secondary-600">
-            {canonicalLabel}{" "}
-            <a
-              className="text-primary-700 hover:text-primary-800"
-              href={canonicalUrl}
-              rel="noopener noreferrer"
-            >
-              {canonicalUrl}
-            </a>
-          </p>
+          <ResourceCanonicalLink
+            canonicalUrl={canonicalUrl}
+            canonicalLabel={canonicalLabel}
+          />
         )}
 
         {relatedResources.length > 0 && (
-          <>
-            <h2 className="mt-6 text-xl font-semibold text-secondary-900">
-              {relatedResourcesTitle}
-            </h2>
-            <ul className="mt-3 space-y-2 text-secondary-700">
-              {relatedResources.map((related: RelatedResourceLink) => (
-                <li key={related.href}>
-                  <a className="hover:text-primary-700" href={related.href}>
-                    {related.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </>
+          <div className="mt-6">
+            <ResourcesRelatedList
+              title={relatedResourcesTitle}
+              resources={relatedResources}
+            />
+          </div>
         )}
       </section>
     )}
