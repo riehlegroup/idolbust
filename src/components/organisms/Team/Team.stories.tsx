@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Team } from "@/components/organisms/Team";
+import { Team } from "./Team";
 import type { TeamMemberItem } from "./Team.types";
 
 const members: TeamMemberItem[] = [

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { MetaGroup } from "@/components/molecules/MetaGroup";
+import { MetaGroup } from "./MetaGroup";
 
 const meta = {
   title: "Molecules/MetaGroup",

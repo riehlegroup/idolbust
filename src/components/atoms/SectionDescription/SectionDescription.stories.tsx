@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { SectionDescription } from "@/components/atoms/SectionDescription";
+import { SectionDescription } from "./SectionDescription";
 
 const meta = {
   title: "Atoms/SectionDescription",
@@ -25,3 +25,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
+
+export const LongCopy: Story = {
+  args: {
+    description:
+      "Share the latest user insights with stakeholders and provide a clear view of what's changing, why it matters, and how it shapes upcoming decisions across the project team.",
+  },
+};

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BlogIndexTemplate } from "@/components/templates/BlogIndexTemplate";
+import { BlogIndexTemplate } from "./BlogIndexTemplate";
 
 const meta = {
   title: "Templates/BlogIndexTemplate",
@@ -35,6 +35,7 @@ const meta = {
     ],
   },
   parameters: {
+    layout: "fullscreen",
     docs: {
       description: {
         component:

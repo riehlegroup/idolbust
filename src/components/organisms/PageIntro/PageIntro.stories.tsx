@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { PageIntro } from "@/components/organisms/PageIntro";
+import { PageIntro } from "./PageIntro";
 
 const meta = {
   title: "Organisms/PageIntro",

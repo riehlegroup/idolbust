@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "storybook/test";
 
-import { HomeHero } from "@/components/organisms/HomeHero";
 import { Button } from "@/components/atoms/Button";
+import { HomeHero } from "./HomeHero";
 
 const meta = {
   title: "Organisms/HomeHero",
