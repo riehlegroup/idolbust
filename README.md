@@ -94,6 +94,18 @@ Keep site-specific copy and content in `src/data/`, then import it into `.astro`
 - Keep `.astro` pages focused on layout and rendering logic; avoid hard-coded copy in templates.
 - Reuse `src/data/brand.ts` for global identity, SEO defaults, and links.
 
+## Redirects After Renaming Pages
+
+Keep renamed routes in `astro.config.mjs`:
+
+```js
+redirects: {
+  "/about/": "/project/",
+},
+```
+
+Remove the old page file, because file-based routes take precedence over configured redirects.
+
 ### Theming Notes
 
 - Color tokens are exposed as CSS variables in `src/styles/global.css`.
