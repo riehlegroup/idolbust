@@ -1,23 +1,62 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { AboutTemplate } from '@/components/templates';
-import { ABOUT_PAGE_CONTENT, TEAM_MEMBERS } from '@/data/about';
-import { BRAND_CONFIG } from '@/data/brand';
+import { BRAND_CONFIG } from '@/pages/_brandConfig';
 
 const socialLinks = BRAND_CONFIG.links.social;
+
+const pageTitle = "About";
+const pageDescription = "Learn about the Idol or Bust research project and our mission.";
+const heroSection = {
+  title: "About the Project",
+  body: "Idol or Bust is a research project focused on developing simple website software that helps other research projects understand their user needs.",
+};
+const textSections = [
+    {
+      title: "Our Mission",
+      body: "We believe that understanding users is the foundation of successful research projects. Our goal is to provide lightweight, maintainable tools that help researchers gather insights and make data-driven decisions.",
+    },
+    {
+      title: "Our Approach",
+      body: "We follow a user-centered design process, constantly iterating based on feedback from the research community. Our tools are built with maintainability in mind, ensuring they can evolve with changing needs.",
+    },
+];
+const teamTitle = "Research Team";
+const socialLabel = "Follow us:";
+
+
+export const teamMembers = [
+  {
+    name: "Jane Doe",
+    role: "Principal Investigator",
+    bio: "Leading research in user-centered design methodologies.",
+  },
+  {
+    name: "John Smith",
+    role: "Research Lead",
+    bio: "Specializing in qualitative user research and data analysis.",
+  },
+  {
+    name: "Alex Chen",
+    role: "Developer",
+    bio: "Building tools that help researchers understand their users.",
+  },
+];
+
+
 ---
 
 <BaseLayout
-  title={ABOUT_PAGE_CONTENT.title}
-  description={ABOUT_PAGE_CONTENT.description}
+  title={pageTitle}
+  description={pageDescription}
 >
   <AboutTemplate
-    title={ABOUT_PAGE_CONTENT.title}
-    hero={ABOUT_PAGE_CONTENT.hero}
-    sections={ABOUT_PAGE_CONTENT.sections}
-    teamTitle={ABOUT_PAGE_CONTENT.teamTitle}
-    teamMembers={TEAM_MEMBERS}
-    socialLabel={ABOUT_PAGE_CONTENT.socialLabel}
+    title={pageTitle}
+    hero={heroSection}
+    sections={textSections}
+    teamTitle={teamTitle}
+    teamMembers={teamMembers}
+    socialLabel={socialLabel}
     socialLinks={socialLinks}
   />
 </BaseLayout>

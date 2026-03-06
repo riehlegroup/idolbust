@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactElement } from "react";
 
-import type { BrandColorScale, BrandConfig } from "@/data-models/brand";
+import type { BrandColorScale, BrandConfig } from "./BrandToken.types";
 
 export interface BrandTokensProps {
   brand: BrandConfig;

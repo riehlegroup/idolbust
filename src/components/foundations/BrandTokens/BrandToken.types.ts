@@ -1,4 +1,4 @@
-import type { SocialPlatform } from "@/data-models/social";
+export type SocialPlatform = "github" | "twitter" | "linkedin";
 
 export interface BrandColorScale {
   "50": string;
