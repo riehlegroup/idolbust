@@ -9,6 +9,10 @@ const repo = "idolbust";
 export default defineConfig({
   site: "https://riehlegroup.github.io",
   base: process.env.NODE_ENV === "production" ? `/${repo}/` : "/",
+  redirects: {
+    // Example when renaming a page: 
+    // project: "about",
+  },
   integrations: [tailwind(), mdx(), sitemap(), react()],
   markdown: {
     shikiConfig: {
