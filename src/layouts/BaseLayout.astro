@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import { BRAND_CONFIG } from '@/data/brand';
 import '@/styles/global.css';
 import { withBase, withBaseIfRelative } from "@/components/utils/with-base";
@@ -143,6 +144,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
 
     <script type="application/ld+json" is:inline set:html={jsonLdString}></script>
 
+    <ClientRouter />
     <title>{fullTitle}</title>
   </head>
   <body class="flex h-full flex-col overflow-hidden bg-white text-secondary-900 antialiased">
