@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export interface BlogPostTemplateProps {
   title: string;
   description: string;
@@ -5,5 +7,5 @@ export interface BlogPostTemplateProps {
   dateLabel: string;
   author: string;
   tags: readonly string[];
-  children?: React.ReactNode;
+  children?: ReactNode;
 }

@@ -14,7 +14,7 @@ export const ResourcesIndexTemplate = ({
   resources,
 }: ResourcesIndexTemplateProps) => (
   <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <PageIntro title={title} description={description} className="mb-8" />
+    <PageIntro title={title} description={description} />
 
     {resources.length === 0 ? (
       <p className="text-secondary-600">{emptyState}</p>

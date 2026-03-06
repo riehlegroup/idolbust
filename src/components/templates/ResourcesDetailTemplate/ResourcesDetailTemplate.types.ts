@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export interface RelatedResourceLink {
   title: string;
   href: string;
@@ -17,5 +19,5 @@ export interface ResourcesDetailTemplateProps {
   canonicalLabel: string;
   relatedResourcesTitle: string;
   relatedResources: readonly RelatedResourceLink[];
-  children?: React.ReactNode;
+  children?: ReactNode;
 }
