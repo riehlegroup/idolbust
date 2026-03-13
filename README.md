@@ -23,6 +23,7 @@ Open [localhost:4321](http://localhost:4321) in your browser.
 - **TypeScript** - Strict mode for full type safety
 - **Content Collections** - Type-safe blog posts with Zod validation
 - **MDX Support** - Enhanced markdown with components
+- **Interactive Inputs** - Subscription, polls, binary choice, and free-text blocks
 - **RSS Feed** - Automatic feed generation (`/rss.xml`)
 - **Sitemap** - SEO-friendly sitemap generation (`/sitemap-index.xml`)
 
@@ -76,7 +77,7 @@ Story conventions (early stage):
 
 The site branding now comes from one source of truth: `src/pages/_brandConfig.ts`.
 
-1. Open [src/pages/_brandConfig.ts](src/pages/_brandConfig.ts).
+1. Open [src/pages/\_brandConfig.ts](src/pages/_brandConfig.ts).
 2. Update identity, organization, theme, links, SEO, and blog values.
 3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
 
@@ -119,6 +120,29 @@ Supported frontmatter fields:
 - `heroImage`, `canonical`, `seoTitle`, `seoDescription`, `ogImage`, `related`
 
 Schema source of truth: `src/content.config.ts`.
+
+## Interactive Components
+
+Interactive components are available from `src/components/molecules` and can be imported from `@/components`:
+
+- `SubscriptionForm`
+- `Poll`
+- `TwoWaySelection`
+- `FreeTextQuestion`
+
+Each component accepts an async `onSubmit` prop in React contexts and falls back to console logging if no handler is provided.
+
+For MDX usage with Astro hydration:
+
+```mdx
+import { Poll } from "@/components";
+
+<Poll
+  client:load
+  question="How often do you run user interviews?"
+  options={["Weekly", "Monthly", "Only before major releases"]}
+/>
+```
 
 ## Blog Articles Collection
 
