@@ -42,10 +42,8 @@ src/
 │   ├── molecules/       # Compound components (Card)
 │   ├── organisms/       # Sections (Team, SocialLinks)
 │   └── templates/       # Page-level composition (optional)
-├── content/             # Content collections (blog posts)
-├── data-models/         # Shared TypeScript models for data modules
 ├── layouts/             # Page layouts (BaseLayout, BlogLayout)
-├── pages/               # File-based routing
+├── pages/               # File-based routing and colocated content (_articles)
 ├── styles/              # Global styles and Tailwind config
 └── utils/               # Helper functions and utilities
 public/                  # Static assets served directly
@@ -64,9 +62,9 @@ public/                  # Static assets served directly
 
 - Keep documentation concise and maintainable
 - Prefer linking to the source-of-truth file over duplicating large config examples
-- When documenting configuration, show a short quick-start and point to the canonical file (for branding: `src/data/brand.ts`)
+- When documenting configuration, show a short quick-start and point to the canonical file (for branding: `src/pages/_brandConfig.ts`)
 - Update docs in the same PR when behavior, APIs, or customization paths change
-- Document content architecture decisions (for example, keeping site copy in `src/data/`)
+- Document content architecture decisions (for example, colocating collection content under `src/pages/**/_articles`)
 
 ### TypeScript
 
@@ -193,7 +191,8 @@ const title = post.data.title;
 
 Blog posts are managed via Astro Content Collections:
 
-- Posts located in `src/content/blog/`
+- Posts located in `src/pages/blog/_articles/`
+- Resources located in `src/pages/resources/_articles/`
 - Schema defined in `src/content.config.ts`
 - Use `.mdx` for posts with components
 - Required frontmatter: title, description, pubDate
@@ -211,12 +210,10 @@ draft: false
 
 ## Site Content Pattern
 
-Place site-specific page copy and labels in `src/data/`, and import them into `.astro` pages.
+Define site-specific page copy directly in the frontmatter script blocks of `.astro` page files.
 
 - Keep `.astro` pages focused on layout, rendering, and wiring content collections.
-- Use data modules (`src/data/home.ts`, `src/data/about.ts`, `src/data/blog.ts`, `src/data/resources.ts`) for UI copy.
-- Keep shared data interfaces in `src/data-models/` (including `src/data-models/brand.ts`).
-- Reuse `src/data/brand.ts` for global identity, SEO defaults, and link metadata.
+- Keep reusable global identity, SEO defaults, and link metadata in `src/pages/_brandConfig.ts`.
 
 ## Git Commits
 
