@@ -1,4 +1,3 @@
-import type { AboutSection, TeamMember } from "@/data-models/about";
 import type { SocialLink } from "@/components/organisms/SocialLinks";
 
 export interface AboutTemplateProps {
@@ -12,4 +11,16 @@ export interface AboutTemplateProps {
   teamMembers: readonly TeamMember[];
   socialLabel: string;
   socialLinks: readonly SocialLink[];
+}
+
+export interface AboutSection {
+  title: string;
+  body: string;
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  image?: string;
+  bio?: string;
 }

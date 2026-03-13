@@ -1,16 +1,53 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { HomeTemplate } from '@/components/templates/HomeTemplate';
-import { BRAND_CONFIG } from '@/data/brand';
-import { HOME_FEATURES, HOME_PAGE_CONTENT } from '@/data/home';
+import { BRAND_CONFIG } from '@/pages/_brandConfig';
 
 const { identity, seo } = BRAND_CONFIG;
+
+const hero = {
+    title: "Understanding Your",
+    highlight: "User Needs",
+    descriptionSuffix: "through modern methodologies and tools.",
+  };
+const featuresTitle = "What We Offer";
+const features = [
+  {
+    title: "User Research",
+    description:
+      "Understand your users through surveys, interviews, and behavioral analysis.",
+  },
+  {
+    title: "Rapid Prototyping",
+    description:
+      "Quickly validate ideas with iterative prototyping and user testing.",
+  },
+  {
+    title: "Data-Driven Insights",
+    description:
+      "Make informed decisions backed by quantitative and qualitative data.",
+  },
+];
+const callToAction = {
+  title: "Ready to get started?",
+  description:
+    "Join us in building better research tools for understanding user needs.",
+  buttonLabel: "About Us",
+  buttonHref: "/about",
+};
+
 ---
 
 <BaseLayout title={identity.siteName} description={seo.defaultDescription}>
   <HomeTemplate
     brand={BRAND_CONFIG}
-    content={HOME_PAGE_CONTENT}
-    features={HOME_FEATURES}
+    content={{
+      hero,
+      sections: {
+        featuresTitle,
+        callToAction,
+      },
+    }}
+    features={features}
   />
 </BaseLayout>

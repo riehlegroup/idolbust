@@ -1,4 +1,4 @@
-import type { BrandConfig } from "@/data-models/brand";
+import type { BrandConfig } from "@/components/foundations/BrandTokens/BrandToken.types";
 
 export const BRAND_CONFIG: BrandConfig = {
   identity: {

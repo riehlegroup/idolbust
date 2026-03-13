@@ -6,7 +6,7 @@ import { getPublishedSortedEntries } from "@/utils/content";
 import { getResourceSlug, type ResourceEntry } from "@/utils/resources";
 import { withBase } from "@/components/utils/with-base";
 import { getCollection } from "astro:content";
-import { RESOURCES_PAGE_CONTENT } from "@/data/resources";
+
 const resources = getPublishedSortedEntries(await getCollection("resources")).map(
   (resource: ResourceEntry) => ({
     title: resource.data.title,
@@ -20,16 +20,21 @@ const resources = getPublishedSortedEntries(await getCollection("resources")).ma
     tags: resource.data.tags,
   })
 );
+
+const pageTitle = "Resources";
+const pageDescription = "Evergreen guides, templates, and references to support your research workflow.";
+const emptyStateText = "No resources published yet. Check back soon.";
+
 ---
 
 <BaseLayout
-  title={RESOURCES_PAGE_CONTENT.title}
-  description={RESOURCES_PAGE_CONTENT.description}
+  title={pageTitle}
+  description={pageDescription}
 >
   <ResourcesIndexTemplate
-    title={RESOURCES_PAGE_CONTENT.title}
-    description={RESOURCES_PAGE_CONTENT.description}
-    emptyState={RESOURCES_PAGE_CONTENT.emptyState}
+    title={pageTitle}
+    description={pageDescription}
+    emptyState={emptyStateText}
     resources={resources}
   />
 </BaseLayout>

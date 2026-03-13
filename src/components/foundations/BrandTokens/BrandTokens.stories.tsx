@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { BRAND_CONFIG } from "@/data/brand";
-import { BrandTokens } from "@/components";
+import { BRAND_CONFIG } from "@/pages/_brandConfig";
+import { BrandTokens } from "./BrandTokens";
 
 const meta = {
   title: "Foundations/Brand Tokens",
