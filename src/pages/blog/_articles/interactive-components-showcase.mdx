@@ -1,0 +1,55 @@
+---
+title: Interactive Components Showcase
+description: A hands-on walkthrough of subscription, poll, two-way selection, and free-text components directly inside a blog post.
+pubDate: 2026-03-13
+author: Research Team
+tags:
+  - components
+  - mdx
+  - interaction
+draft: false
+---
+
+import {
+  FreeTextQuestion,
+  Poll,
+  SubscriptionForm,
+  TwoWaySelection,
+} from "@/components";
+
+This post demonstrates all new interactive components in one place. Each block is hydrated with `client:load`.
+
+In Astro MDX, function props cannot cross the server/client boundary, so these examples use each component's default async logger behavior.
+
+## Subscription form
+
+<SubscriptionForm
+  client:load
+  title="Subscribe to research updates"
+  description="We send one short monthly summary."
+/>
+
+## Poll
+
+<Poll
+  client:load
+  question="Which user research activity do you run most often?"
+  options={["Interviews", "Surveys", "Usability tests"]}
+/>
+
+## Two-way selection
+
+<TwoWaySelection
+  client:load
+  question="Where should we focus next?"
+  leftOption={{ label: "Faster recruiting", value: "recruiting" }}
+  rightOption={{ label: "Better synthesis", value: "synthesis" }}
+/>
+
+## Free text
+
+<FreeTextQuestion
+  client:load
+  question="What is one improvement that would make your research process easier?"
+  minLength={10}
+/>
