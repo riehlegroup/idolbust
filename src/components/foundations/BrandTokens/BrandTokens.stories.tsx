@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-// eslint-disable-next-line boundaries/no-unknown
 import { BRAND_CONFIG } from "@/pages/_brandConfig";
 import { BrandTokens } from "./BrandTokens";
 
