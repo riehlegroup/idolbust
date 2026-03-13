@@ -1,5 +1,6 @@
 export { Card } from "./Card";
 export { FeatureGrid } from "./FeatureGrid";
+export { FreeTextQuestion } from "./FreeTextQuestion";
 export { HeroActions } from "./HeroActions";
 export { MetaGroup } from "./MetaGroup";
 export { Poll } from "./Poll";
