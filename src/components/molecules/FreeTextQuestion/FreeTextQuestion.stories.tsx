@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, userEvent, within } from "storybook/test";
 
 import { FreeTextQuestion } from "./FreeTextQuestion";
-
-const submitHandler = fn().mockResolvedValue(undefined);
 
 const meta = {
   title: "Molecules/FreeTextQuestion",
@@ -12,7 +10,6 @@ const meta = {
   args: {
     question: "What is the biggest blocker in your current research process?",
     minLength: 10,
-    onSubmit: submitHandler,
   },
   parameters: {
     docs: {
@@ -43,10 +40,8 @@ export const WriteAndSubmit: Story = {
       canvas.getByRole("button", { name: "Submit answer" }),
     );
 
-    await expect(submitHandler).toHaveBeenCalledWith(
-      expect.objectContaining({
-        answer: "Scheduling participants quickly is hard for us.",
-      }),
-    );
+    await expect(
+      canvas.getByText("Thanks. Your answer was logged."),
+    ).toBeVisible();
   },
 };

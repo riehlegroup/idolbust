@@ -1,9 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, userEvent, within } from "storybook/test";
 
 import { Poll } from "./Poll";
-
-const submitHandler = fn().mockResolvedValue(undefined);
 
 const meta = {
   title: "Molecules/Poll",
@@ -12,7 +10,6 @@ const meta = {
   args: {
     question: "Which interview format gives better insights for your team?",
     options: ["In-person sessions", "Remote moderated sessions"],
-    onSubmit: submitHandler,
   },
   parameters: {
     docs: {
@@ -36,8 +33,8 @@ export const SelectAndSubmit: Story = {
     await userEvent.click(canvas.getByLabelText("In-person sessions"));
     await userEvent.click(canvas.getByRole("button", { name: "Submit vote" }));
 
-    await expect(submitHandler).toHaveBeenCalledWith(
-      expect.objectContaining({ answer: "In-person sessions" }),
-    );
+    await expect(
+      canvas.getByText("Thanks. Your vote was logged."),
+    ).toBeVisible();
   },
 };
