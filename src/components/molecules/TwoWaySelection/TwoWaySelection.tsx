@@ -72,7 +72,7 @@ export const TwoWaySelection = ({
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <label
             className={[
-              "cursor-pointer rounded-lg border px-4 py-3 text-sm font-medium transition-colors",
+              "relative cursor-pointer rounded-lg border px-4 py-3 text-sm font-medium transition-colors",
               selectedSide === "left"
                 ? "border-primary-500 bg-primary-50 text-primary-800"
                 : "border-secondary-200 text-secondary-800 hover:border-primary-300",
@@ -82,7 +82,7 @@ export const TwoWaySelection = ({
               type="radio"
               name={fieldName}
               value="left"
-              className="sr-only"
+              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
               checked={selectedSide === "left"}
               onChange={() => setSelectedSide("left")}
             />
@@ -91,7 +91,7 @@ export const TwoWaySelection = ({
 
           <label
             className={[
-              "cursor-pointer rounded-lg border px-4 py-3 text-sm font-medium transition-colors",
+              "relative cursor-pointer rounded-lg border px-4 py-3 text-sm font-medium transition-colors",
               selectedSide === "right"
                 ? "border-primary-500 bg-primary-50 text-primary-800"
                 : "border-secondary-200 text-secondary-800 hover:border-primary-300",
@@ -101,7 +101,7 @@ export const TwoWaySelection = ({
               type="radio"
               name={fieldName}
               value="right"
-              className="sr-only"
+              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
               checked={selectedSide === "right"}
               onChange={() => setSelectedSide("right")}
             />
