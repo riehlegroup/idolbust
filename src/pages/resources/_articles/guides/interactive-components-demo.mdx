@@ -1,0 +1,51 @@
+---
+title: Interactive components demo
+description: Practical examples for using interactive components directly in MDX content.
+category: Methods
+pubDate: 2026-03-13
+tags:
+  - mdx
+  - components
+  - interaction
+draft: false
+order: 3
+---
+
+import {
+  FreeTextQuestion,
+  Poll,
+  SubscriptionForm,
+  TwoWaySelection,
+} from "@/components";
+
+This page demonstrates how interactive inputs can be embedded in resource content.
+For now, submissions are logged in the browser console.
+
+## Subscription form
+
+<SubscriptionForm client:load />
+
+## Poll
+
+<Poll
+  client:load
+  question="How often do you run user interviews?"
+  options={["Weekly", "Monthly", "Only before major releases"]}
+/>
+
+## Two-way selection
+
+<TwoWaySelection
+  client:load
+  question="What should we optimize first?"
+  leftOption={{ label: "Participant recruiting speed", value: "recruiting" }}
+  rightOption={{ label: "Interview data quality", value: "quality" }}
+/>
+
+## Free text question
+
+<FreeTextQuestion
+  client:load
+  question="What is one thing you would improve in your research workflow today?"
+  minLength={12}
+/>
