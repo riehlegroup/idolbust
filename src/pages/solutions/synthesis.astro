@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PageIntro } from '@/components/organisms';
+
+const pageTitle = "Synthesis";
+const pageDescription = "See how Idol or Bust turns research findings into decisions and roadmaps.";
+const outputs = [
+  "Insight summaries that connect evidence back to research goals.",
+  "Prioritized opportunity areas for product, service, or content improvements.",
+  "Clear recommendations that help teams act on findings quickly.",
+];
+---
+
+<BaseLayout title={`${pageTitle} Solutions`} description={pageDescription}>
+  <section class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+    <PageIntro
+      title={pageTitle}
+      description="Synthesis work helps teams interpret signals, align around the evidence, and move from findings to action."
+    />
+
+    <div class="rounded-2xl border border-secondary-200 bg-white p-8 shadow-sm">
+      <h2 class="text-2xl font-semibold text-secondary-900">Typical outputs</h2>
+      <ul class="mt-4 space-y-3 text-secondary-700">
+        {outputs.map((output) => <li>{output}</li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

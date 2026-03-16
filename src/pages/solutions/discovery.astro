@@ -1,0 +1,28 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { PageIntro } from '@/components/organisms';
+
+const pageTitle = "Discovery";
+const pageDescription = "See how Idol or Bust uncovers user needs and research opportunities.";
+const activities = [
+  "Stakeholder interviews to align on project goals and assumptions.",
+  "Participant recruitment plans tailored to the target audience.",
+  "Lightweight field research to capture unmet needs early.",
+];
+---
+
+<BaseLayout title={`${pageTitle} Solutions`} description={pageDescription}>
+  <section class="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+    <PageIntro
+      title={pageTitle}
+      description="Discovery engagements focus on learning what matters before teams commit to product or content decisions."
+    />
+
+    <div class="rounded-2xl border border-secondary-200 bg-secondary-50/70 p-8">
+      <h2 class="text-2xl font-semibold text-secondary-900">What this includes</h2>
+      <ul class="mt-4 space-y-3 text-secondary-700">
+        {activities.map((activity) => <li>{activity}</li>)}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
