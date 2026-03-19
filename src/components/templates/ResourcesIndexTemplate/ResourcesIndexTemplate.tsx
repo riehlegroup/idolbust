@@ -14,14 +14,18 @@ export const ResourcesIndexTemplate = ({
   resources,
 }: ResourcesIndexTemplateProps) => (
   <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-    <PageIntro title={title} description={description} />
+    <PageIntro
+      title={title}
+      description={description}
+      descriptionClassName="!mx-0"
+    />
 
     {resources.length === 0 ? (
       <p className="text-secondary-600">{emptyState}</p>
     ) : (
       <>
         <h2 className="sr-only">Latest resources</h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
           {resources.map((resource: ResourcesIndexItem) => (
             <Card
               key={resource.href}
