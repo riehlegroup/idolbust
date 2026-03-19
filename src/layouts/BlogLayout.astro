@@ -10,7 +10,9 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="prose prose-secondary mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-    <slot />
+  <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="prose prose-secondary max-w-3xl">
+      <slot />
+    </div>
   </article>
 </BaseLayout>

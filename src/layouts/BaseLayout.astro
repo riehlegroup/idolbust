@@ -153,6 +153,14 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
       links={[
         { label: 'About', href: '/about' },
         { label: 'Blog', href: '/blog' },
+        {
+          label: 'Solutions',
+          href: '/solutions',
+          items: [
+            { label: 'Discovery', href: '/solutions/discovery' },
+            { label: 'Synthesis', href: '/solutions/synthesis' },
+          ],
+        },
         { label: 'Resources', href: '/resources' },
       ]}
     />

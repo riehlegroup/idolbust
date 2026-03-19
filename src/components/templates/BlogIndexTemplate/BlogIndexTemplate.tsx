@@ -20,7 +20,7 @@ export const BlogIndexTemplate = ({
     ) : (
       <>
         <h2 className="sr-only">Latest posts</h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid max-w-5xl gap-8 md:grid-cols-2 lg:grid-cols-3">
           {posts.map((post: BlogIndexPost) => (
             <Card
               key={post.href}
