@@ -15,6 +15,9 @@ const desktopLinkClassName =
 const mobileLinkClassName =
   "block rounded-lg px-3 py-2 text-base transition-colors hover:bg-secondary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2";
 
+const desktopDropdownLinkClassName =
+  "block rounded-xl px-3 py-2 transition-colors hover:bg-secondary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2";
+
 const MobileLinkList = ({ links }: MobileLinkListProps) => (
   <ul className="flex flex-col gap-2 text-sm font-medium text-secondary-900">
     {links.map((item) => {
@@ -152,7 +155,7 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
                         <li key={subItem.key}>
                           <a
                             href={withBase(subItem.href)}
-                            className="block rounded-xl px-3 py-2 transition-colors hover:bg-secondary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                            className={desktopDropdownLinkClassName}
                           >
                             {subItem.label}
                           </a>
