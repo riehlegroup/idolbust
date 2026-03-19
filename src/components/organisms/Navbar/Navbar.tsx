@@ -1,4 +1,5 @@
 import { withBase } from "@/components/utils/with-base";
+import { normalizeNavbarLinks } from "./Navbar.utils";
 import type { NavbarLinkItem, NavbarProps } from "./Navbar.types";
 
 interface MobileLinkListProps {
@@ -81,6 +82,8 @@ const MobileLinkList = ({ links, onNavigate }: MobileLinkListProps) => (
 );
 
 export const Navbar = ({ siteName, links }: NavbarProps) => {
+  const normalizedLinks = normalizeNavbarLinks(links);
+
   return (
     <div className="relative">
       <input
@@ -119,30 +122,27 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
           </label>
 
           <ul className="hidden items-center gap-3 text-sm font-medium sm:flex">
-            {links.map((link) => {
-              if (!link.items?.length) {
+            {normalizedLinks.map((item) => {
+              if (item.type === "single") {
                 return (
-                  <li key={`${link.label}-${link.href}`}>
+                  <li key={item.key}>
                     <a
-                      href={withBase(link.href)}
+                      href={withBase(item.link.href)}
                       className={desktopLinkClassName}
                     >
-                      {link.label}
+                      {item.link.label}
                     </a>
                   </li>
                 );
               }
 
               return (
-                <li
-                  key={`${link.label}-${link.href}`}
-                  className="group relative"
-                >
+                <li key={item.key} className="group relative">
                   <a
-                    href={withBase(link.href)}
+                    href={withBase(item.trigger.href)}
                     className={desktopLinkClassName}
                   >
-                    <span>{link.label}</span>
+                    <span>{item.trigger.label}</span>
                     <svg
                       aria-hidden="true"
                       viewBox="0 0 10 6"
@@ -160,21 +160,13 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
                   </a>
                   <div className="pointer-events-none invisible absolute right-0 top-full pt-3 opacity-0 transition duration-150 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
                     <ul className="min-w-48 rounded-2xl border border-secondary-200 bg-white p-2 text-secondary-900 shadow-lg shadow-secondary-900/10">
-                      <li>
-                        <a
-                          href={withBase(link.href)}
-                          className="block rounded-xl px-3 py-2 transition-colors hover:bg-secondary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
-                        >
-                          Overview
-                        </a>
-                      </li>
-                      {link.items.map((item) => (
-                        <li key={`${item.label}-${item.href}`}>
+                      {item.links.map((subItem) => (
+                        <li key={subItem.key}>
                           <a
-                            href={withBase(item.href)}
+                            href={withBase(subItem.href)}
                             className="block rounded-xl px-3 py-2 transition-colors hover:bg-secondary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                           >
-                            {item.label}
+                            {subItem.label}
                           </a>
                         </li>
                       ))}
