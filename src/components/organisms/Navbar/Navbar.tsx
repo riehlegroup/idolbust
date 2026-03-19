@@ -1,10 +1,12 @@
 import { withBase } from "@/components/utils/with-base";
-import { normalizeNavbarLinks } from "./Navbar.utils";
-import type { NavbarLinkItem, NavbarProps } from "./Navbar.types";
+import {
+  normalizeNavbarLinks,
+  type NormalizedNavbarItem,
+} from "./Navbar.utils";
+import type { NavbarProps } from "./Navbar.types";
 
 interface MobileLinkListProps {
-  links: readonly NavbarLinkItem[];
-  onNavigate: () => void;
+  links: readonly NormalizedNavbarItem[];
 }
 
 const desktopLinkClassName =
@@ -13,30 +15,26 @@ const desktopLinkClassName =
 const mobileLinkClassName =
   "block rounded-lg px-3 py-2 text-base transition-colors hover:bg-secondary-50 hover:text-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2";
 
-const MobileLinkList = ({ links, onNavigate }: MobileLinkListProps) => (
+const MobileLinkList = ({ links }: MobileLinkListProps) => (
   <ul className="flex flex-col gap-2 text-sm font-medium text-secondary-900">
-    {links.map((link) => {
-      if (!link.items?.length) {
+    {links.map((item) => {
+      if (item.type === "single") {
         return (
-          <li key={`${link.label}-${link.href}`}>
-            <a
-              href={withBase(link.href)}
-              className={mobileLinkClassName}
-              onClick={onNavigate}
-            >
-              {link.label}
+          <li key={item.key}>
+            <a href={withBase(item.link.href)} className={mobileLinkClassName}>
+              {item.link.label}
             </a>
           </li>
         );
       }
 
       return (
-        <li key={`${link.label}-${link.href}`}>
+        <li key={item.key}>
           <details className="group">
             <summary
               className={`${mobileLinkClassName} flex cursor-pointer list-none items-center justify-between gap-3 [&::-webkit-details-marker]:hidden`}
             >
-              <span>{link.label}</span>
+              <span>{item.trigger.label}</span>
               <svg
                 aria-hidden="true"
                 viewBox="0 0 10 6"
@@ -53,23 +51,13 @@ const MobileLinkList = ({ links, onNavigate }: MobileLinkListProps) => (
               </svg>
             </summary>
             <ul className="mt-1 flex flex-col gap-1 border-l border-secondary-200 pl-4">
-              <li>
-                <a
-                  href={withBase(link.href)}
-                  className={mobileLinkClassName}
-                  onClick={onNavigate}
-                >
-                  Overview
-                </a>
-              </li>
-              {link.items.map((item) => (
-                <li key={`${item.label}-${item.href}`}>
+              {item.links.map((subItem) => (
+                <li key={subItem.key}>
                   <a
-                    href={withBase(item.href)}
+                    href={withBase(subItem.href)}
                     className={mobileLinkClassName}
-                    onClick={onNavigate}
                   >
-                    {item.label}
+                    {subItem.label}
                   </a>
                 </li>
               ))}
@@ -215,7 +203,7 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
         </div>
 
         <div className="mt-6 overflow-y-auto">
-          <MobileLinkList links={links} onNavigate={() => undefined} />
+          <MobileLinkList links={normalizedLinks} />
         </div>
       </aside>
     </div>
