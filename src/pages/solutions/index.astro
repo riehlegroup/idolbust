@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { PageIntro } from '@/components/organisms';
+import { withBase } from '@/components/utils/with-base';
 
 const pageTitle = "Solutions";
 const pageDescription = "Explore the research support services offered by Idol or Bust.";
@@ -8,12 +9,12 @@ const offerings = [
   {
     title: "Discovery",
     body: "We frame the problem space with interviews, lightweight surveys, and stakeholder alignment workshops.",
-    href: "/solutions/discovery",
+    href: withBase('/solutions/discovery/'),
   },
   {
     title: "Synthesis",
     body: "We turn raw observations into decision-ready themes, opportunity maps, and next-step recommendations.",
-    href: "/solutions/synthesis",
+    href: withBase('/solutions/synthesis/'),
   },
 ];
 ---
