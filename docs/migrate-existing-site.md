@@ -20,7 +20,7 @@ Use this checklist before you call the migration complete:
 - `src/pages/_brandConfig.ts` is fully updated for the target identity
 - changed URLs are covered by redirects in `astro.config.mjs`
 - metadata parity is verified (title, description, canonical, OG image)
-- quality checks pass: `bun run lint`, `bun run typecheck`, `bun build`
+- quality checks pass: `bun run lint`, `bun run typecheck`, `bun run build`
 - launch QA is complete on desktop and mobile
 
 ## 1) Create the project from IdolBust
@@ -158,7 +158,7 @@ Run:
 ```bash
 bun run lint
 bun run typecheck
-bun build
+bun run build
 ```
 
 Manual checks:
@@ -222,7 +222,7 @@ Use these templates directly in your migration notes.
 | -------------------- | --------- | ----- |
 | `bun run lint`       | pass/fail |       |
 | `bun run typecheck`  | pass/fail |       |
-| `bun build`          | pass/fail |       |
+| `bun run build`      | pass/fail |       |
 | Route smoke test     | pass/fail |       |
 | Mobile layout check  | pass/fail |       |
 | Redirect spot checks | pass/fail |       |

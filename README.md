@@ -48,7 +48,7 @@ src/
 | Command                                | Description                   |
 | -------------------------------------- | ----------------------------- |
 | `bun dev`                              | Start development server      |
-| `bun build`                            | Build for production          |
+| `bun run build`                        | Build for production          |
 | `bun preview`                          | Preview production build      |
 | `bun run lint`                         | Run ESLint                    |
 | `bun run typecheck`                    | Run TypeScript check          |

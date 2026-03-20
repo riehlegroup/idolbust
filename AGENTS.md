@@ -12,7 +12,7 @@ Idol or Bust is simple website software for research projects that want to under
 
 ```bash
 bun dev              # Start dev server at localhost:4321
-bun build            # Build for production to ./dist
+bun run build        # Build for production to ./dist
 bun preview          # Preview production build locally
 bun storybook         # Start Storybook
 ```
