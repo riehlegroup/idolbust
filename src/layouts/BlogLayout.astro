@@ -1,5 +1,6 @@
 ---
-import BaseLayout from './BaseLayout.astro';
+import SiteHead from '@/layouts/SiteHead.astro';
+import SiteShell from '@/layouts/SiteShell.astro';
 
 export interface Props {
   title: string;
@@ -9,10 +10,14 @@ export interface Props {
 const { title, description } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<!doctype html>
+<SiteShell>
+  <head>
+    <SiteHead title={title} description={description} />
+  </head>
   <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
     <div class="prose prose-secondary max-w-3xl">
       <slot />
     </div>
   </article>
-</BaseLayout>
+</SiteShell>

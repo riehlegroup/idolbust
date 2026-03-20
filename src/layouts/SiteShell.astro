@@ -1,0 +1,62 @@
+---
+import '@/styles/global.css';
+import { BRAND_CONFIG } from '@/pages/_brandConfig';
+import { Footer } from '@/components/organisms/Footer';
+import { Navbar } from '@/components/organisms/Navbar';
+
+const { identity, theme } = BRAND_CONFIG;
+
+const quoteFontFamily = (fontFamily: string): string => {
+  const trimmedFontFamily = fontFamily.trim();
+  const unquotedFontFamily = trimmedFontFamily.replace(/^['"]+|['"]+$/g, '');
+
+  if (!/\s/.test(unquotedFontFamily)) {
+    return unquotedFontFamily;
+  }
+
+  return `"${unquotedFontFamily}"`;
+};
+
+const formatFontStack = (fonts: readonly string[] | undefined, fallback: readonly string[]): string => {
+  return (fonts ?? fallback).map(quoteFontFamily).join(', ');
+};
+
+const sansFontStack = formatFontStack(theme.fonts?.sans, ['Inter', 'system-ui', 'sans-serif']);
+const monoFontStack = formatFontStack(theme.fonts?.mono, ['JetBrains Mono', 'monospace']);
+const brandVars = [
+  ...Object.entries(theme.primary).map(([shade, value]) => `--color-primary-${shade}: ${value};`),
+  ...Object.entries(theme.secondary).map(([shade, value]) => `--color-secondary-${shade}: ${value};`),
+  `--font-sans: ${sansFontStack};`,
+  `--font-mono: ${monoFontStack};`,
+  `--color-theme: ${theme.themeColor};`,
+].join(' ');
+---
+
+<html lang={identity.language} class="h-full" style={brandVars}>
+  <body class="flex h-full flex-col overflow-hidden bg-white text-secondary-900 antialiased">
+    <Navbar
+      siteName={identity.siteName}
+      links={[
+        { label: 'About', href: '/about' },
+        { label: 'Blog', href: '/blog' },
+        {
+          label: 'Solutions',
+          href: '/solutions',
+          items: [
+            { label: 'Discovery', href: '/solutions/discovery' },
+            { label: 'Synthesis', href: '/solutions/synthesis' },
+          ],
+        },
+        { label: 'Resources', href: '/resources' },
+      ]}
+    />
+
+    <div class="scroll-area flex flex-1 flex-col overflow-y-auto">
+      <main class="flex-1">
+        <slot />
+      </main>
+
+      <Footer siteName={identity.siteName} licenseText="Licensed under AGPL-3.0." />
+    </div>
+  </body>
+</html>
