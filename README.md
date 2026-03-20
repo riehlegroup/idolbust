@@ -15,6 +15,8 @@ bun dev
 
 Open [localhost:4321](http://localhost:4321) in your browser.
 
+Want to migrate an existing site to using IdolBust? See [docs/migrate-existing-site.md](docs/migrate-existing-site.md) for a detailed guide and helpful worksheet templates.
+
 ## Features
 
 - **Astro.js** - Fast static site generation with partial hydration
@@ -46,7 +48,7 @@ src/
 | Command                                | Description                   |
 | -------------------------------------- | ----------------------------- |
 | `bun dev`                              | Start development server      |
-| `bun build`                            | Build for production          |
+| `bun run build`                        | Build for production          |
 | `bun preview`                          | Preview production build      |
 | `bun run lint`                         | Run ESLint                    |
 | `bun run typecheck`                    | Run TypeScript check          |
@@ -77,7 +79,7 @@ Story conventions (early stage):
 
 The site branding now comes from one source of truth: `src/pages/_brandConfig.ts`.
 
-1. Open [src/pages/\_brandConfig.ts](src/pages/_brandConfig.ts).
+1. Open `src/pages/_brandConfig.ts`.
 2. Update identity, organization, theme, links, SEO, and blog values.
 3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
 
