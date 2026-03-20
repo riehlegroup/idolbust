@@ -15,7 +15,7 @@ bun dev
 
 Open [localhost:4321](http://localhost:4321) in your browser.
 
-Want to migrate an existing site to IdolBust? See `docs/migrate-existing-site.md` for a manual-first playbook, worksheets, and a reference walkthrough.
+Want to migrate an existing site to using IdolBust? See [docs/migrate-existing-site.md](docs/migrate-existing-site.md) for a detailed guide and helpful worksheet templates.
 
 ## Features
 
