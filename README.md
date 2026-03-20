@@ -56,6 +56,39 @@ src/
 | `bun storybook:build`                  | Build Storybook static site   |
 | `npx vitest --project=storybook --run` | Run Storybook tests (CI/a11y) |
 
+## Local Analytics with Umami
+
+```bash
+# create local Umami secrets
+./ops/analytics/setup-local.sh
+
+# start local Umami on http://localhost:3187
+docker compose \
+  -f ops/analytics/docker-compose.yml \
+  --env-file ops/analytics/.env.local \
+  up -d
+
+# sign in at http://localhost:3187 with admin / umami
+```
+
+## Connect Idolbust to Umami
+
+```bash
+# create app env
+cp .env.example .env
+
+# set your Umami website ID from the UI
+PUBLIC_UMAMI_WEBSITE_ID=your-website-id
+
+# keep these local defaults
+PUBLIC_UMAMI_SCRIPT_URL=http://localhost:3187/script.js
+PUBLIC_UMAMI_HOST_URL=http://localhost:3187
+PUBLIC_UMAMI_DOMAINS=localhost
+
+# restart Astro after env changes
+bun dev
+```
+
 ## Storybook
 
 Storybook is configured for TSX components under `src/components/`.
