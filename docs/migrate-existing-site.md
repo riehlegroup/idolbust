@@ -226,3 +226,37 @@ Use these templates directly in your migration notes.
 | Route smoke test     | pass/fail |       |
 | Mobile layout check  | pass/fail |       |
 | Redirect spot checks | pass/fail |       |
+
+## Example Migration Walkthrough
+
+Use this as a neutral reference workflow when rebuilding a typical marketing and resources website.
+
+### Example route map
+
+| Source Pattern               | IdolBust Destination          | Implementation Target                               |
+| ---------------------------- | ----------------------------- | --------------------------------------------------- |
+| `/`                          | `/`                           | `src/pages/index.astro`                             |
+| `/product`                   | `/product/`                   | `src/pages/product.astro`                           |
+| `/solutions`                 | `/solutions/`                 | `src/pages/solutions/index.astro`                   |
+| `/solutions/{topic}`         | `/solutions/{topic}/`         | `src/pages/solutions/{topic}.astro`                 |
+| `/resources`                 | `/resources/`                 | `src/pages/resources/index.astro`                   |
+| `/resources/{series}/{slug}` | `/resources/{series}/{slug}/` | `src/pages/resources/_articles/{series}/{slug}.mdx` |
+| `/news/{slug}`               | `/blog/{slug}/`               | `src/pages/blog/_articles/{slug}.mdx`               |
+| `/about`                     | `/about/`                     | `src/pages/about.astro`                             |
+| `/legal-notices`             | `/legal-notices/`             | `src/pages/legal-notices.astro`                     |
+
+### Example migration sequence
+
+1. Copy brand identity and global links into `src/pages/_brandConfig.ts`.
+2. Rebuild top-level routes (`/`, `/about/`, `/solutions/`, `/resources/`) in `src/pages/`.
+3. Migrate long-form resources into `src/pages/resources/_articles/**` with complete frontmatter.
+4. Migrate news/blog content into `src/pages/blog/_articles/**`.
+5. Add redirects in `astro.config.mjs` for every changed path.
+6. Run lint, typecheck, and build before deploy.
+
+### Example content decisions
+
+- Keep overview pages as `.astro` routes when they are mostly curated content.
+- Use collections for repeatable entries that need sorting, tags, dates, and detail pages.
+- Keep slug naming stable unless there is a clear SEO or information architecture reason to change.
+- Prefer one canonical destination per source URL to avoid duplicate indexable paths.
