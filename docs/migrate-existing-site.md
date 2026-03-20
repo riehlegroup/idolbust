@@ -1,6 +1,6 @@
 # Migrate an Existing Website to IdolBust
 
-This manual-first guide explains how to rebuild an existing website with IdolBust.
+This guide explains how to rebuild an existing website with IdolBust.
 
 ## Outcome
 
@@ -15,13 +15,13 @@ By the end, you will have:
 
 Use this checklist before you call the migration complete:
 
-- URL inventory is complete and every source URL has a destination plan
-- all required content is migrated to `src/pages/**` or `src/pages/**/_articles/**`
-- `src/pages/_brandConfig.ts` is fully updated for the target identity
-- changed URLs are covered by redirects in `astro.config.mjs`
-- metadata parity is verified (title, description, canonical, OG image)
-- quality checks pass: `bun run lint`, `bun run typecheck`, `bun run build`
-- launch QA is complete on desktop and mobile
+- [ ] URL inventory is complete and every source URL has a destination plan
+- [ ] all required content is migrated to `src/pages/**` or `src/pages/**/_articles/**`
+- [ ] `src/pages/_brandConfig.ts` is fully updated for the target identity
+- [ ] changed URLs are covered by redirects in `astro.config.mjs`
+- [ ] metadata parity is verified (title, description, canonical, OG image)
+- [ ] quality checks pass: `bun run lint`, `bun run typecheck`, `bun run build`
+- [ ] launch QA is complete on desktop and mobile
 
 ## 1) Create the project from IdolBust
 
@@ -179,7 +179,7 @@ After DNS/domain cutover, re-check pages, metadata, and redirects in production.
 
 ## Migration Worksheets
 
-Use these templates directly in your migration notes.
+You can use the following templates to aid you in the migration process.
 
 ### URL Inventory
 
