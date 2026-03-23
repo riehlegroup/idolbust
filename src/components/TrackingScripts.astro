@@ -4,35 +4,6 @@ const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL?.trim();
 const umamiHostUrl = import.meta.env.PUBLIC_UMAMI_HOST_URL?.trim();
 const umamiDomains = import.meta.env.PUBLIC_UMAMI_DOMAINS?.trim();
 const umamiEnabled = Boolean(umamiWebsiteId && umamiScriptUrl);
-const trackingScript = `
-(() => {
-  if (typeof window === 'undefined' || window.__idolbustUmamiInitialized) {
-    return;
-  }
-
-  window.__idolbustUmamiInitialized = true;
-  let lastTrackedUrl = '';
-
-  const trackPageview = () => {
-    if (typeof window.umami?.track === 'function') {
-      const currentUrl = window.location.pathname + window.location.search;
-
-      if (currentUrl === lastTrackedUrl) {
-        return;
-      }
-
-      lastTrackedUrl = currentUrl;
-      window.umami.track();
-      return;
-    }
-
-    window.setTimeout(trackPageview, 50);
-  };
-
-  trackPageview();
-  document.addEventListener('astro:page-load', trackPageview);
-})();
-`;
 ---
 
 {umamiEnabled && (
@@ -45,8 +16,7 @@ const trackingScript = `
       data-host-url={umamiHostUrl || undefined}
       data-domains={umamiDomains || undefined}
       data-do-not-track="true"
-      data-auto-track="false"
+      data-auto-track="true"
     ></script>
-    <script is:inline set:html={trackingScript}></script>
   </>
 )}

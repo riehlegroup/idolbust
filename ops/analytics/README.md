@@ -31,3 +31,4 @@ cp .env.example .env
 ./deploy.sh
 ```
 
+The `docker-compose.yml` file uses the **profile** tunnel (e.g., `docker compose --profile tunnel up -d`) to also deploy a cloudflare tunnel container to route traffic from `https://um.idolbust.com` to the umami instance.

@@ -2,7 +2,7 @@ services:
   umami:
     image: ghcr.io/umami-software/umami:3.0.3
     ports:
-      - "127.0.0.1:${UMAMI_PORT:-3187}:3000"
+      - "${UMAMI_PORT:-3187}:3000"
     environment:
       DATABASE_URL: ${UMAMI_DATABASE_URL}
       APP_SECRET: ${UMAMI_APP_SECRET}
@@ -32,6 +32,17 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate --protocol http2 run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    depends_on:
+      umami:
+        condition: service_healthy
+    restart: unless-stopped
+    profiles: ["tunnel"]
 
 volumes:
   umami-db-data:
