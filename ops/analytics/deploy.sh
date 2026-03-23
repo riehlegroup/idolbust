@@ -61,6 +61,6 @@ ssh "$SSH_TARGET" "set -euo pipefail; \
     exit 1; \
   fi; \
   cd '$REMOTE_DIR'; \
-  docker compose -f ops/analytics/docker-compose.yml --env-file ops/analytics/.env up -d"
+  docker compose -f ops/analytics/docker-compose.yml --env-file ops/analytics/.env --profile tunnel up -d"
 
 printf 'Done. Umami is deployed with env from %s\n' "$TARGET_ANALYTICS_ENV_FILE"
