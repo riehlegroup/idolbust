@@ -22,27 +22,19 @@ export function useUmamiInteractiveSubmit<TInput>({
   return useCallback(
     async (input: TInput) => {
       const eventData = mapEventData?.(input);
-      trackUmamiEvent(eventName, {
+      const payload = {
         ...(component ? { component } : {}),
-        action: "submit_attempted",
         ...eventData,
-      });
+      };
+      trackUmamiEvent(`${eventName}_attempted`, payload);
 
       try {
         if (onSubmit) {
           await onSubmit(input);
         }
-        trackUmamiEvent(eventName, {
-          ...(component ? { component } : {}),
-          action: "submit_succeeded",
-          ...eventData,
-        });
+        trackUmamiEvent(`${eventName}_submitted`, payload);
       } catch (error) {
-        trackUmamiEvent(eventName, {
-          ...(component ? { component } : {}),
-          action: "submit_failed",
-          ...eventData,
-        });
+        trackUmamiEvent(`${eventName}_failed`, payload);
         throw error;
       }
     },
