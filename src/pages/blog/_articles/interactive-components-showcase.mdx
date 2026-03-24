@@ -11,15 +11,15 @@ draft: false
 ---
 
 import {
-  FreeTextQuestion,
-  Poll,
   SubscriptionForm,
-  TwoWaySelection,
+  TrackedFreeTextQuestion,
+  TrackedPoll,
+  TrackedTwoWaySelection,
 } from "@/components";
 
-This post demonstrates all new interactive components in one place. Each block is hydrated with `client:load`.
+This post demonstrates all new interactive components in one place. The interactive section runs entirely on the client.
 
-In Astro MDX, function props cannot cross the server/client boundary, so these examples use each component's default async logger behavior.
+In Astro MDX, function props cannot cross the server/client boundary, so these examples use tracked client components with configurable event metadata.
 
 ## Subscription form
 
@@ -31,16 +31,20 @@ In Astro MDX, function props cannot cross the server/client boundary, so these e
 
 ## Poll
 
-<Poll
-  client:load
+<TrackedPoll
+  client:only="react"
+  eventName="blog_interaction"
+  optionEventKey="selectedOption"
   question="Which user research activity do you run most often?"
   options={["Interviews", "Surveys", "Usability tests"]}
 />
 
 ## Two-way selection
 
-<TwoWaySelection
-  client:load
+<TrackedTwoWaySelection
+  client:only="react"
+  eventName="blog_interaction"
+  optionEventKey="selectedOption"
   question="Where should we focus next?"
   leftOption={{ label: "Faster recruiting", value: "recruiting" }}
   rightOption={{ label: "Better synthesis", value: "synthesis" }}
@@ -48,8 +52,10 @@ In Astro MDX, function props cannot cross the server/client boundary, so these e
 
 ## Free text
 
-<FreeTextQuestion
-  client:load
+<TrackedFreeTextQuestion
+  client:only="react"
+  eventName="blog_interaction"
+  answerLengthEventKey="responseLength"
   question="What is one improvement that would make your research process easier?"
   minLength={10}
 />
