@@ -89,6 +89,45 @@ PUBLIC_UMAMI_DOMAINS=localhost
 bun dev
 ```
 
+## Local Newsletter with listmonk
+
+```bash
+# create local listmonk secrets
+./ops/newsletter/setup-local.sh
+
+# start local listmonk on http://localhost:9000
+docker compose \
+  -f ops/newsletter/docker-compose.yml \
+  --env-file ops/newsletter/.env.local \
+  up -d
+```
+
+Open `http://localhost:9000`, log in using `LISTMONK_ADMIN_USER` and `LISTMONK_ADMIN_PASSWORD` from `ops/newsletter/.env.local`, and create a public list.
+
+Learned gotchas:
+
+- `POST /api/public/subscription` only accepts UUIDs of `public` lists.
+- If you see `400 Bad Request`, verify the referenced list is not `private`.
+- If site and listmonk run on different origins,configure CORS allowlist in listmonk UI: `Settings > Security > CORS > Allowed origins`.
+
+## Connect TrackedSubscriptionForm to listmonk
+
+```bash
+# create app env
+cp .env.example .env
+
+# listmonk base URL (or full /api/public/subscription endpoint)
+PUBLIC_LISTMONK_API_URL=http://localhost:9000
+
+# comma-separated list UUIDs from listmonk
+PUBLIC_LISTMONK_LIST_UUIDS=replace-with-list-uuid
+
+# restart Astro after env changes
+bun dev
+```
+
+`PUBLIC_LISTMONK_API_URL` must be browser-reachable. If your site and listmonk are on different origins, allow your site origin for `POST /api/public/subscription` at your reverse proxy.
+
 ## Storybook
 
 Storybook is configured for TSX components under `src/components/`.
@@ -165,11 +204,14 @@ Interactive components are available from `src/components/molecules` and can be 
 - `TwoWaySelection`
 - `FreeTextQuestion`
 
+`SubscriptionForm` is untracked and falls back to console logging when no custom `onSubmit` handler is provided.
+
 Use tracked variants in MDX when you need client-side Umami custom events without writing inline callback functions:
 
 - `TrackedPoll`
 - `TrackedTwoWaySelection`
 - `TrackedFreeTextQuestion`
+- `TrackedSubscriptionForm`
 
 Each component accepts an async `onSubmit` prop in React contexts and falls back to console logging if no handler is provided.
 
@@ -187,7 +229,7 @@ import { TrackedPoll } from "@/components";
 />
 ```
 
-`TrackedPoll` and `TrackedTwoWaySelection` support `optionEventKey` for the selected answer field. All tracked variants support `eventName` and emit three Umami events: `${eventName}_attempted`, `${eventName}_submitted`, and `${eventName}_failed`.
+`TrackedPoll` and `TrackedTwoWaySelection` support `optionEventKey` for the selected answer field. `TrackedSubscriptionForm` reads `PUBLIC_LISTMONK_API_URL` and `PUBLIC_LISTMONK_LIST_UUIDS` and submits to listmonk's `POST /api/public/subscription`. All tracked variants support `eventName` and emit three Umami events: `${eventName}_attempted`, `${eventName}_submitted`, and `${eventName}_failed`.
 
 To see response distributions in Umami:
 

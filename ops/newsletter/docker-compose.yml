@@ -1,0 +1,60 @@
+services:
+  listmonk:
+    image: listmonk/listmonk:latest
+    ports:
+      - "${LISTMONK_PORT:-9000}:9000"
+    environment:
+      LISTMONK_app__address: 0.0.0.0:9000
+      LISTMONK_db__host: db
+      LISTMONK_db__port: 5432
+      LISTMONK_db__user: ${LISTMONK_POSTGRES_USER}
+      LISTMONK_db__password: ${LISTMONK_POSTGRES_PASSWORD}
+      LISTMONK_db__database: ${LISTMONK_POSTGRES_DB}
+      LISTMONK_db__ssl_mode: disable
+      LISTMONK_db__max_open: 25
+      LISTMONK_db__max_idle: 25
+      LISTMONK_db__max_lifetime: 300s
+      LISTMONK_ADMIN_USER: ${LISTMONK_ADMIN_USER}
+      LISTMONK_ADMIN_PASSWORD: ${LISTMONK_ADMIN_PASSWORD}
+      TZ: UTC
+    command:
+      [
+        "sh",
+        "-c",
+        "./listmonk --install --idempotent --yes --config '' && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''",
+      ]
+    depends_on:
+      db:
+        condition: service_healthy
+    init: true
+    restart: unless-stopped
+
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${LISTMONK_POSTGRES_DB}
+      POSTGRES_USER: ${LISTMONK_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${LISTMONK_POSTGRES_PASSWORD}
+      TZ: UTC
+    volumes:
+      - listmonk-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate --protocol http2 run
+    environment:
+      TUNNEL_TOKEN: ${LISTMONK_TUNNEL_TOKEN}
+    depends_on:
+      listmonk:
+        condition: service_started
+    restart: unless-stopped
+    profiles: ["tunnel"]
+
+volumes:
+  listmonk-db-data:
