@@ -187,7 +187,7 @@ import { TrackedPoll } from "@/components";
 />
 ```
 
-`TrackedPoll` and `TrackedTwoWaySelection` support `optionEventKey` for the selected answer field. All tracked variants support `eventName`.
+`TrackedPoll` and `TrackedTwoWaySelection` support `optionEventKey` for the selected answer field. All tracked variants support `eventName` and emit three Umami events: `${eventName}_attempted`, `${eventName}_submitted`, and `${eventName}_failed`.
 
 ## Blog Articles Collection
 
