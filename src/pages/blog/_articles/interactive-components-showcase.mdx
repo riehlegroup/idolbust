@@ -11,7 +11,7 @@ draft: false
 ---
 
 import {
-  SubscriptionForm,
+  TrackedSubscriptionForm,
   TrackedFreeTextQuestion,
   TrackedPoll,
   TrackedTwoWaySelection,
@@ -23,8 +23,9 @@ In Astro MDX, function props cannot cross the server/client boundary, so these e
 
 ## Subscription form
 
-<SubscriptionForm
-  client:load
+<TrackedSubscriptionForm
+  client:only="react"
+  eventName="blog_subscription"
   title="Subscribe to research updates"
   description="We send one short monthly summary."
 />

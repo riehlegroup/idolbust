@@ -8,6 +8,7 @@ export { Poll } from "./Poll";
 export { TrackedPoll } from "./Poll";
 export { ResourceCanonicalLink } from "./ResourceCanonicalLink";
 export { SubscriptionForm } from "./SubscriptionForm";
+export { TrackedSubscriptionForm } from "./SubscriptionForm";
 export { TagList } from "./TagList";
 export { TwoWaySelection } from "./TwoWaySelection";
 export { TrackedTwoWaySelection } from "./TwoWaySelection";

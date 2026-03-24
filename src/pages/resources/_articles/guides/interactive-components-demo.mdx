@@ -12,18 +12,21 @@ order: 3
 ---
 
 import {
-  SubscriptionForm,
+  TrackedSubscriptionForm,
   TrackedFreeTextQuestion,
   TrackedPoll,
   TrackedTwoWaySelection,
 } from "@/components";
 
 This page demonstrates how interactive inputs can be embedded in resource content.
-For now, submissions are logged in the browser console.
+When listmonk env variables are set, the subscription form forwards submissions to listmonk.
 
 ## Subscription form
 
-<SubscriptionForm client:load />
+<TrackedSubscriptionForm
+  client:only="react"
+  eventName="research_subscription"
+/>
 
 ## Poll
 
