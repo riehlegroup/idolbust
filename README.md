@@ -189,6 +189,15 @@ import { TrackedPoll } from "@/components";
 
 `TrackedPoll` and `TrackedTwoWaySelection` support `optionEventKey` for the selected answer field. All tracked variants support `eventName` and emit three Umami events: `${eventName}_attempted`, `${eventName}_submitted`, and `${eventName}_failed`.
 
+To see response distributions in Umami:
+
+1. Open **Events**.
+2. Switch to the **Properties** tab.
+3. Select `${eventName}_submitted` in **Event** (for example `research_interaction_submitted`).
+4. Select the property to analyze in **Property** (for example `selectedOption` or `responseLength`).
+
+![Umami event properties view for submitted poll results](docs/screenshot-umami-poll.png)
+
 ## Blog Articles Collection
 
 Same as resources, but markdown files are located under `src/pages/blog/_articles`.
