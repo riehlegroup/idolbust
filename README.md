@@ -165,19 +165,29 @@ Interactive components are available from `src/components/molecules` and can be 
 - `TwoWaySelection`
 - `FreeTextQuestion`
 
+Use tracked variants in MDX when you need client-side Umami custom events without writing inline callback functions:
+
+- `TrackedPoll`
+- `TrackedTwoWaySelection`
+- `TrackedFreeTextQuestion`
+
 Each component accepts an async `onSubmit` prop in React contexts and falls back to console logging if no handler is provided.
 
 For MDX usage with Astro hydration:
 
 ```mdx
-import { Poll } from "@/components";
+import { TrackedPoll } from "@/components";
 
-<Poll
-  client:load
+<TrackedPoll
+  client:only="react"
+  eventName="research_interaction"
+  optionEventKey="selectedOption"
   question="How often do you run user interviews?"
   options={["Weekly", "Monthly", "Only before major releases"]}
 />
 ```
+
+`TrackedPoll` and `TrackedTwoWaySelection` support `optionEventKey` for the selected answer field. All tracked variants support `eventName`.
 
 ## Blog Articles Collection
 

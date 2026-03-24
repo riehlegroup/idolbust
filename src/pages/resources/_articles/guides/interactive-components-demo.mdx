@@ -12,10 +12,10 @@ order: 3
 ---
 
 import {
-  FreeTextQuestion,
-  Poll,
   SubscriptionForm,
-  TwoWaySelection,
+  TrackedFreeTextQuestion,
+  TrackedPoll,
+  TrackedTwoWaySelection,
 } from "@/components";
 
 This page demonstrates how interactive inputs can be embedded in resource content.
@@ -27,16 +27,20 @@ For now, submissions are logged in the browser console.
 
 ## Poll
 
-<Poll
-  client:load
+<TrackedPoll
+  client:only="react"
+  eventName="research_interaction"
+  optionEventKey="selectedOption"
   question="How often do you run user interviews?"
   options={["Weekly", "Monthly", "Only before major releases"]}
 />
 
 ## Two-way selection
 
-<TwoWaySelection
-  client:load
+<TrackedTwoWaySelection
+  client:only="react"
+  eventName="research_interaction"
+  optionEventKey="selectedOption"
   question="What should we optimize first?"
   leftOption={{ label: "Participant recruiting speed", value: "recruiting" }}
   rightOption={{ label: "Interview data quality", value: "quality" }}
@@ -44,8 +48,10 @@ For now, submissions are logged in the browser console.
 
 ## Free text question
 
-<FreeTextQuestion
-  client:load
+<TrackedFreeTextQuestion
+  client:only="react"
+  eventName="research_interaction"
+  answerLengthEventKey="responseLength"
   question="What is one thing you would improve in your research workflow today?"
   minLength={12}
 />

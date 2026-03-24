@@ -1,10 +1,13 @@
 export { Card } from "./Card";
 export { FeatureGrid } from "./FeatureGrid";
 export { FreeTextQuestion } from "./FreeTextQuestion";
+export { TrackedFreeTextQuestion } from "./FreeTextQuestion";
 export { HeroActions } from "./HeroActions";
 export { MetaGroup } from "./MetaGroup";
 export { Poll } from "./Poll";
+export { TrackedPoll } from "./Poll";
 export { ResourceCanonicalLink } from "./ResourceCanonicalLink";
 export { SubscriptionForm } from "./SubscriptionForm";
 export { TagList } from "./TagList";
 export { TwoWaySelection } from "./TwoWaySelection";
+export { TrackedTwoWaySelection } from "./TwoWaySelection";
