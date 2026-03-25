@@ -77,22 +77,16 @@ export function BrandTokens({ brand }: BrandTokensProps): ReactElement {
       "monospace",
     ]),
   };
-  const roleMap = new Map(
-    brand.designTokens.colors.roles.map((role) => [
-      role.name,
-      role.description,
-    ]),
-  );
 
   const colorSections = [
     {
       name: "Primary",
-      role: roleMap.get("primary"),
+      role: "CTAs, links, and active states.",
       scale: brand.theme.primary,
     },
     {
       name: "Secondary",
-      role: roleMap.get("secondary"),
+      role: "Body text, borders, and neutral surfaces.",
       scale: brand.theme.secondary,
     },
   ];
@@ -108,7 +102,8 @@ export function BrandTokens({ brand }: BrandTokensProps): ReactElement {
             Color roles
           </h2>
           <p className="text-base text-secondary-600">
-            {brand.designTokens.colors.story}
+            Use primary for emphasis and secondary for structure and
+            readability.
           </p>
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
@@ -150,7 +145,7 @@ export function BrandTokens({ brand }: BrandTokensProps): ReactElement {
             Type scale
           </h2>
           <p className="text-base text-secondary-600">
-            {brand.designTokens.typeScale.story}
+            The template uses Tailwind's default typography scale.
           </p>
         </div>
         <div className="rounded-2xl border border-secondary-200 bg-white p-6 shadow-sm">
@@ -176,7 +171,7 @@ export function BrandTokens({ brand }: BrandTokensProps): ReactElement {
         <div className="space-y-2">
           <h2 className="text-3xl font-semibold text-secondary-900">Spacing</h2>
           <p className="text-base text-secondary-600">
-            {brand.designTokens.spacing.story}
+            Layout spacing follows the default Tailwind spacing system.
           </p>
         </div>
         <div className="rounded-2xl border border-secondary-200 bg-white p-6 shadow-sm">

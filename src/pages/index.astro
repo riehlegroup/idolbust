@@ -6,10 +6,18 @@ import { BRAND_CONFIG } from '@/pages/_brandConfig';
 const { identity, seo } = BRAND_CONFIG;
 
 const hero = {
-    title: "Understanding Your",
-    highlight: "User Needs",
-    descriptionSuffix: "through modern methodologies and tools.",
-  };
+  title: "Understanding Your",
+  highlight: "User Needs",
+  descriptionSuffix: "through modern methodologies and tools.",
+  primaryAction: {
+    label: "Learn More",
+    href: "/about",
+  },
+  secondaryAction: {
+    label: "Read Blog",
+    href: "/blog",
+  },
+};
 const featuresTitle = "What We Offer";
 const features = [
   {
@@ -40,7 +48,7 @@ const callToAction = {
 
 <BaseLayout title={identity.siteName} description={seo.defaultDescription}>
   <HomeTemplate
-    brand={BRAND_CONFIG}
+    siteDescription={seo.defaultDescription}
     content={{
       hero,
       sections: {

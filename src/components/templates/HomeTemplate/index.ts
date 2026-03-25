@@ -1,6 +1,6 @@
 export { HomeTemplate } from "./HomeTemplate";
 export type {
-  HomeTemplateBrand,
+  HomeHeroAction,
   HomeTemplateContent,
   HomeTemplateProps,
 } from "./HomeTemplate.types";
