@@ -15,11 +15,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Write public env file from secret
-        if: ${{ secrets.PUBLIC_ENV_FILE != '' }}
+        env:
+          PUBLIC_ENV_FILE: ${{ secrets.PUBLIC_ENV_FILE }}
         run: |
-          cat > .env <<'EOF'
-          ${{ secrets.PUBLIC_ENV_FILE }}
-          EOF
+          if [ -n "$PUBLIC_ENV_FILE" ]; then
+            printf '%s\n' "$PUBLIC_ENV_FILE" > .env
+          fi
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
