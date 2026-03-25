@@ -28,6 +28,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Write public env file from secret
+        if: ${{ secrets.PUBLIC_ENV_FILE != '' }}
+        run: |
+          cat > .env <<'EOF'
+          ${{ secrets.PUBLIC_ENV_FILE }}
+          EOF
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
         with:

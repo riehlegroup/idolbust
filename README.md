@@ -255,6 +255,19 @@ base: '/idolbust',
 
 Pushes to `main` automatically build and deploy via the `Deploy` GitHub Actions workflow.
 
+For CI/Deploy builds to embed production analytics/newsletter endpoints, set one GitHub Actions secret (`Settings > Secrets and variables > Actions > Secrets`) named `PUBLIC_ENV_FILE` containing these lines:
+
+```env
+PUBLIC_UMAMI_WEBSITE_ID=...
+PUBLIC_UMAMI_SCRIPT_URL=https://um.idolbust.com/script.js
+PUBLIC_UMAMI_HOST_URL=https://um.idolbust.com
+PUBLIC_UMAMI_DOMAINS=riehlegroup.github.io
+PUBLIC_LISTMONK_API_URL=https://lm.idolbust.com
+PUBLIC_LISTMONK_LIST_UUIDS=comma-separated-public-list-uuids
+```
+
+The CI and Deploy workflows write this secret to a temporary `.env` file before install/build.
+
 ## License
 
 [AGPL-3.0-or-later](LICENSE.txt)
