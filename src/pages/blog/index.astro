@@ -4,7 +4,6 @@ import { BlogIndexTemplate } from '@/components/templates';
 import { getCollection } from 'astro:content';
 import { withBase } from "@/components/utils/with-base";
 import { formatDate, getBlogSlug, getPublishedPosts, type BlogEntry } from '@/utils/blog';
-import { BRAND_CONFIG } from '@/pages/_brandConfig';
 
 const posts = getPublishedPosts(await getCollection('blog')).map(
   (post: BlogEntry) => ({
@@ -21,11 +20,12 @@ const posts = getPublishedPosts(await getCollection('blog')).map(
 );
 
 const pageTitle = "Blog";
+const pageDescription = "Latest updates and insights from the Idol or Bust research project.";
 const emptyStateText = "No posts yet. Check back soon!";
 
 ---
 
-<BaseLayout title={pageTitle} description={BRAND_CONFIG.blog.description}>
+<BaseLayout title={pageTitle} description={pageDescription}>
   <BlogIndexTemplate
     title={pageTitle}
     emptyState={emptyStateText}

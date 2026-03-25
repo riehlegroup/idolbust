@@ -1,4 +1,7 @@
-import type { BrandConfig } from "@/components/foundations/BrandTokens/BrandToken.types";
+import {
+  resolveBrandTheme,
+  type BrandConfig,
+} from "@/components/foundations/BrandTokens";
 
 export const BRAND_CONFIG: BrandConfig = {
   identity: {
@@ -18,82 +21,22 @@ export const BRAND_CONFIG: BrandConfig = {
     legalName: "Idol or Bust Research Project",
     socialProfiles: ["https://github.com/riehlegroup/idolbust"],
   },
-  theme: {
-    primary: {
-      "50": "239 246 255",
-      "100": "219 234 254",
-      "200": "191 219 254",
-      "300": "147 197 253",
-      "400": "96 165 250",
-      "500": "59 130 246",
-      "600": "37 99 235",
-      "700": "29 78 216",
-      "800": "30 64 175",
-      "900": "30 58 138",
-      "950": "23 37 84",
-    },
-    secondary: {
-      "50": "248 250 252",
-      "100": "241 245 249",
-      "200": "226 232 240",
-      "300": "203 213 225",
-      "400": "148 163 184",
-      "500": "100 116 139",
-      "600": "71 85 105",
-      "700": "51 65 85",
-      "800": "30 41 59",
-      "900": "15 23 42",
-      "950": "2 6 23",
+  theme: resolveBrandTheme({
+    palette: {
+      primary: "#3b82f6",
+      secondary: "#64748b",
     },
     themeColor: "#2563eb",
     fonts: {
       sans: ["Inter", "system-ui", "sans-serif"],
       mono: ["JetBrains Mono", "monospace"],
     },
-  },
-  designTokens: {
-    colors: {
-      story:
-        "Use primary for calls to action and links, secondary for typography and surface contrast. Keep primary usage focused to preserve emphasis.",
-      roles: [
-        { name: "primary", description: "CTAs, links, active states." },
-        {
-          name: "secondary",
-          description: "Text, borders, neutral backgrounds.",
-        },
-      ],
-    },
-    typeScale: {
-      story:
-        "Rely on Tailwind's default type scale for now; adjust later if brand voice changes.",
-      source: "tailwind-default",
-    },
-    spacing: {
-      story:
-        "Use Tailwind's default spacing scale to keep layout consistent and predictable.",
-      source: "tailwind-default",
-    },
-  },
-  links: {
-    primaryCtas: [
-      { label: "Learn More", href: "/about" },
-      { label: "Read Blog", href: "/blog" },
-    ],
-    appLinks: [],
-    social: [
-      { platform: "github", url: "https://github.com/riehlegroup/idolbust" },
-    ],
-  },
+  }),
   seo: {
     titleTemplate: "%s | {siteName}",
     defaultDescription:
       "Simple website software for research projects that want to understand their user needs",
     robots: "index,follow",
     twitterCard: "summary_large_image",
-  },
-  blog: {
-    title: "Idol or Bust Blog",
-    description:
-      "Latest updates and insights from the Idol or Bust research project.",
   },
 };

@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { AboutTemplate } from '@/components/templates';
-import { BRAND_CONFIG } from '@/pages/_brandConfig';
+import type { SocialLink } from '@/components/organisms/SocialLinks';
 
-const socialLinks = BRAND_CONFIG.links.social;
+const socialLinks: readonly SocialLink[] = [
+  { platform: 'github', url: 'https://github.com/riehlegroup/idolbust' },
+];
 
 const pageTitle = "About";
 const pageDescription = "Learn about the Idol or Bust research project and our mission.";
@@ -12,19 +14,17 @@ const heroSection = {
   body: "Idol or Bust is a research project focused on developing simple website software that helps other research projects understand their user needs.",
 };
 const textSections = [
-    {
-      title: "Our Mission",
-      body: "We believe that understanding users is the foundation of successful research projects. Our goal is to provide lightweight, maintainable tools that help researchers gather insights and make data-driven decisions.",
-    },
-    {
-      title: "Our Approach",
-      body: "We follow a user-centered design process, constantly iterating based on feedback from the research community. Our tools are built with maintainability in mind, ensuring they can evolve with changing needs.",
-    },
+  {
+    title: "Our Mission",
+    body: "We believe that understanding users is the foundation of successful research projects. Our goal is to provide lightweight, maintainable tools that help researchers gather insights and make data-driven decisions.",
+  },
+  {
+    title: "Our Approach",
+    body: "We follow a user-centered design process, constantly iterating based on feedback from the research community. Our tools are built with maintainability in mind, ensuring they can evolve with changing needs.",
+  },
 ];
 const teamTitle = "Research Team";
 const socialLabel = "Follow us:";
-
-
 export const teamMembers = [
   {
     name: "Jane Doe",
@@ -42,8 +42,6 @@ export const teamMembers = [
     bio: "Building tools that help researchers understand their users.",
   },
 ];
-
-
 ---
 
 <BaseLayout

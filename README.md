@@ -152,8 +152,12 @@ Story conventions (early stage):
 The site branding now comes from one source of truth: `src/pages/_brandConfig.ts`.
 
 1. Open `src/pages/_brandConfig.ts`.
-2. Update identity, organization, theme, links, SEO, and blog values.
+2. Update identity, organization, theme palette, and SEO defaults.
 3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
+
+Theme configuration is palette-first. Define `theme.palette.primary` and `theme.palette.secondary` as hex values and the full `50-950` scales are generated automatically.
+
+Page copy and page-specific metadata should stay in each page file under `src/pages/**`.
 
 For the complete typed example and current defaults, use `src/pages/_brandConfig.ts` directly.
 
@@ -177,7 +181,7 @@ Remove the old page file, because file-based routes take precedence over configu
 
 - Color tokens are exposed as CSS variables in `src/styles/global.css`.
 - Tailwind color utilities (`primary-*`, `secondary-*`) map to those variables in `tailwind.config.mjs`.
-- The active brand values are injected globally by `src/layouts/BaseLayout.astro`.
+- The active brand values are injected globally by `src/layouts/SiteShell.astro`.
 
 ## Resources Collection
 

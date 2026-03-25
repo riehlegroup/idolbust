@@ -6,19 +6,19 @@ import { withBase } from "@/components/utils/with-base";
 import type { HomeTemplateProps } from "./HomeTemplate.types";
 
 export const HomeTemplate = ({
-  brand,
+  siteDescription,
   content,
   features,
 }: HomeTemplateProps) => {
-  const primaryCta = brand.links.primaryCtas.at(0);
-  const secondaryCta = brand.links.primaryCtas.at(1);
+  const primaryCta = content.hero.primaryAction;
+  const secondaryCta = content.hero.secondaryAction;
 
   return (
     <>
       <HomeHero
         title={content.hero.title}
         highlight={content.hero.highlight}
-        description={`${brand.seo.defaultDescription} ${content.hero.descriptionSuffix}`}
+        description={`${siteDescription} ${content.hero.descriptionSuffix}`}
         primaryAction={
           primaryCta ? (
             <Button

@@ -1,17 +1,49 @@
-export type SocialPlatform = "github" | "twitter" | "linkedin";
+export const BRAND_COLOR_SHADES = [
+  "50",
+  "100",
+  "200",
+  "300",
+  "400",
+  "500",
+  "600",
+  "700",
+  "800",
+  "900",
+  "950",
+] as const;
 
-export interface BrandColorScale {
-  "50": string;
-  "100": string;
-  "200": string;
-  "300": string;
-  "400": string;
-  "500": string;
-  "600": string;
-  "700": string;
-  "800": string;
-  "900": string;
-  "950": string;
+export type BrandColorShade = (typeof BRAND_COLOR_SHADES)[number];
+
+export type BrandColorScale = Record<BrandColorShade, string>;
+
+export interface BrandThemePalette {
+  primary: string;
+  secondary: string;
+}
+
+export type BrandColorScaleOverrides = Partial<Record<BrandColorShade, string>>;
+
+export interface BrandThemeInput {
+  palette: BrandThemePalette;
+  themeColor?: string;
+  overrides?: {
+    primary?: BrandColorScaleOverrides;
+    secondary?: BrandColorScaleOverrides;
+  };
+  fonts?: {
+    sans: readonly string[];
+    mono: readonly string[];
+  };
+}
+
+export interface BrandTheme {
+  primary: BrandColorScale;
+  secondary: BrandColorScale;
+  themeColor: string;
+  fonts?: {
+    sans: readonly string[];
+    mono: readonly string[];
+  };
 }
 
 export interface BrandAddress {
@@ -20,42 +52,6 @@ export interface BrandAddress {
   addressRegion?: string;
   postalCode?: string;
   addressCountry?: string;
-}
-
-export interface BrandSocialLink {
-  platform: SocialPlatform;
-  url: string;
-}
-
-export interface BrandLink {
-  label: string;
-  href: string;
-}
-
-export interface BrandTokenItem {
-  name: string;
-  value: string;
-  description?: string;
-}
-
-export interface BrandTokenScale {
-  story: string;
-  source: "tailwind-default" | "custom";
-  tokens?: readonly BrandTokenItem[];
-}
-
-export interface BrandColorStory {
-  story: string;
-  roles: readonly {
-    name: string;
-    description: string;
-  }[];
-}
-
-export interface BrandDesignTokens {
-  colors: BrandColorStory;
-  typeScale: BrandTokenScale;
-  spacing: BrandTokenScale;
 }
 
 export interface BrandConfig {
@@ -77,30 +73,12 @@ export interface BrandConfig {
     socialProfiles: readonly string[];
     address?: BrandAddress;
   };
-  theme: {
-    primary: BrandColorScale;
-    secondary: BrandColorScale;
-    themeColor: string;
-    fonts?: {
-      sans: readonly string[];
-      mono: readonly string[];
-    };
-  };
-  designTokens: BrandDesignTokens;
-  links: {
-    primaryCtas: readonly BrandLink[];
-    appLinks: readonly BrandLink[];
-    social: readonly BrandSocialLink[];
-  };
+  theme: BrandTheme;
   seo: {
     titleTemplate: string;
     defaultDescription: string;
     robots: string;
     twitterCard: "summary" | "summary_large_image";
     twitterSite?: string;
-  };
-  blog: {
-    title: string;
-    description: string;
   };
 }
