@@ -1,6 +1,7 @@
 export interface FeatureItem {
   title: string;
   description: string;
+  href?: string;
 }
 
 export interface FeatureGridProps {
