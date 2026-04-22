@@ -84,6 +84,25 @@ export const BRAND_CONFIG: BrandConfig = {
       { platform: "github", url: "https://github.com/riehlegroup/idolbust" },
     ],
   },
+  navigation: {
+    primary: [
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
+      {
+        label: "Solutions",
+        href: "/solutions",
+        items: [
+          { label: "Discovery", href: "/solutions/discovery" },
+          { label: "Synthesis", href: "/solutions/synthesis" },
+        ],
+      },
+      { label: "Resources", href: "/resources" },
+    ],
+  },
+  footer: {
+    licenseText: "Licensed under AGPL-3.0.",
+    legalLinks: [{ label: "Legal Notices", href: "/legal-notices" }],
+  },
   seo: {
     titleTemplate: "%s | {siteName}",
     defaultDescription:

@@ -1,4 +1,4 @@
-import { withBase } from "@/components/utils/with-base";
+import { withBase, withBaseIfRelative } from "@/components/utils/with-base";
 import {
   normalizeNavbarLinks,
   type NormalizedNavbarItem,
@@ -24,7 +24,10 @@ const MobileLinkList = ({ links }: MobileLinkListProps) => (
       if (item.type === "single") {
         return (
           <li key={item.key}>
-            <a href={withBase(item.link.href)} className={mobileLinkClassName}>
+            <a
+              href={withBaseIfRelative(item.link.href)}
+              className={mobileLinkClassName}
+            >
               {item.link.label}
             </a>
           </li>
@@ -57,7 +60,7 @@ const MobileLinkList = ({ links }: MobileLinkListProps) => (
               {item.links.map((subItem) => (
                 <li key={subItem.key}>
                   <a
-                    href={withBase(subItem.href)}
+                    href={withBaseIfRelative(subItem.href)}
                     className={mobileLinkClassName}
                   >
                     {subItem.label}
@@ -72,7 +75,19 @@ const MobileLinkList = ({ links }: MobileLinkListProps) => (
   </ul>
 );
 
-export const Navbar = ({ siteName, links }: NavbarProps) => {
+const desktopActionClassNames = [
+  "inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2",
+  "border border-secondary-300 text-secondary-900 hover:border-primary-300 hover:text-primary-600",
+  "bg-primary-600 text-white hover:bg-primary-700",
+] as const;
+
+const mobileActionClassNames = [
+  "inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2",
+  "border border-secondary-300 text-secondary-900 hover:border-primary-300 hover:text-primary-600",
+  "bg-primary-600 text-white hover:bg-primary-700",
+] as const;
+
+export const Navbar = ({ siteName, links, actions = [] }: NavbarProps) => {
   const normalizedLinks = normalizeNavbarLinks(links);
 
   return (
@@ -118,7 +133,7 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
                 return (
                   <li key={item.key}>
                     <a
-                      href={withBase(item.link.href)}
+                      href={withBaseIfRelative(item.link.href)}
                       className={desktopLinkClassName}
                     >
                       {item.link.label}
@@ -130,7 +145,7 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
               return (
                 <li key={item.key} className="group relative">
                   <a
-                    href={withBase(item.trigger.href)}
+                    href={withBaseIfRelative(item.trigger.href)}
                     className={desktopLinkClassName}
                   >
                     <span>{item.trigger.label}</span>
@@ -154,7 +169,7 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
                       {item.links.map((subItem) => (
                         <li key={subItem.key}>
                           <a
-                            href={withBase(subItem.href)}
+                            href={withBaseIfRelative(subItem.href)}
                             className={desktopDropdownLinkClassName}
                           >
                             {subItem.label}
@@ -167,6 +182,24 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
               );
             })}
           </ul>
+
+          {!!actions.length && (
+            <div className="hidden items-center gap-2 sm:flex">
+              {actions.map((action, index) => (
+                <a
+                  key={`${action.label}-${action.href}`}
+                  href={withBaseIfRelative(action.href)}
+                  className={
+                    index === actions.length - 1
+                      ? `${desktopActionClassNames[0]} ${desktopActionClassNames[2]}`
+                      : `${desktopActionClassNames[0]} ${desktopActionClassNames[1]}`
+                  }
+                >
+                  {action.label}
+                </a>
+              ))}
+            </div>
+          )}
         </nav>
       </header>
 
@@ -207,6 +240,24 @@ export const Navbar = ({ siteName, links }: NavbarProps) => {
 
         <div className="mt-6 overflow-y-auto">
           <MobileLinkList links={normalizedLinks} />
+
+          {!!actions.length && (
+            <div className="mt-6 flex flex-col gap-2 border-t border-secondary-200 pt-4">
+              {actions.map((action, index) => (
+                <a
+                  key={`${action.label}-${action.href}`}
+                  href={withBaseIfRelative(action.href)}
+                  className={
+                    index === actions.length - 1
+                      ? `${mobileActionClassNames[0]} ${mobileActionClassNames[2]}`
+                      : `${mobileActionClassNames[0]} ${mobileActionClassNames[1]}`
+                  }
+                >
+                  {action.label}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </aside>
     </div>

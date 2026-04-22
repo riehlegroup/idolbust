@@ -9,6 +9,7 @@ const meta = {
   args: {
     siteName: "Idol or Bust",
     licenseText: "Licensed under AGPL-3.0.",
+    links: [{ label: "Legal Notices", href: "/legal-notices" }],
   },
   parameters: {
     docs: {
