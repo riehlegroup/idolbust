@@ -14,6 +14,24 @@ export interface Props {
 const { title, description, image, twitterSite } = Astro.props;
 const { identity, organization, seo, theme } = BRAND_CONFIG;
 
+const inferFaviconType = (faviconPath: string): string | undefined => {
+  const normalizedPath = faviconPath.toLowerCase();
+
+  if (normalizedPath.endsWith(".svg")) {
+    return "image/svg+xml";
+  }
+
+  if (normalizedPath.endsWith(".png")) {
+    return "image/png";
+  }
+
+  if (normalizedPath.endsWith(".ico")) {
+    return "image/x-icon";
+  }
+
+  return undefined;
+};
+
 const formatPageTitle = (pageTitle: string): string => {
   const siteName = identity.siteName;
 
@@ -38,6 +56,7 @@ const siteUrl = new URL(withBase('/'), canonicalBase).href;
 const ogImagePath = withBaseIfRelative(image ?? identity.defaultOgImagePath);
 const ogImageUrl = new URL(ogImagePath, canonicalBase).href;
 const logoUrl = new URL(withBase(identity.logoPath), canonicalBase).href;
+const faviconType = identity.faviconType ?? inferFaviconType(identity.faviconPath);
 const organizationJsonLd: Record<string, unknown> = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -94,7 +113,7 @@ const jsonLdString = JSON.stringify(jsonLd).replace(/<\/script/gi, '<\\/script')
 <meta name="robots" content={seo.robots} />
 <meta name="generator" content={Astro.generator} />
 
-<link rel="icon" type="image/svg+xml" href={withBase(identity.faviconPath)} />
+<link rel="icon" type={faviconType} href={withBase(identity.faviconPath)} />
 <link rel="apple-touch-icon" sizes="180x180" href={withBase(identity.appleTouchIconPath)} />
 <link rel="manifest" href={withBase(identity.manifestPath)} />
 <meta name="theme-color" content={theme.themeColor} />
