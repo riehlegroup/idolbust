@@ -1,4 +1,6 @@
-export type SocialPlatform = "github" | "twitter" | "linkedin";
+export type KnownSocialPlatform = "github" | "twitter" | "linkedin" | "bluesky";
+
+export type SocialPlatform = KnownSocialPlatform | (string & {});
 
 export interface SocialLink {
   platform: SocialPlatform;

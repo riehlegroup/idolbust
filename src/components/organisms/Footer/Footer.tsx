@@ -1,6 +1,7 @@
+import { withBaseIfRelative } from "@/components/utils/with-base";
 import type { FooterProps } from "./Footer.types";
 
-export const Footer = ({ siteName, licenseText }: FooterProps) => {
+export const Footer = ({ siteName, licenseText, links }: FooterProps) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -9,6 +10,20 @@ export const Footer = ({ siteName, licenseText }: FooterProps) => {
         <p>
           &copy; {currentYear} {siteName} {licenseText}
         </p>
+        {!!links?.length && (
+          <ul className="mt-4 flex flex-wrap items-center justify-center gap-3 text-sm">
+            {links.map((link) => (
+              <li key={`${link.label}-${link.href}`}>
+                <a
+                  href={withBaseIfRelative(link.href)}
+                  className="transition-colors hover:text-primary-600"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </footer>
   );

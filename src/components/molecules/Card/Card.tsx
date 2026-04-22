@@ -14,6 +14,7 @@ export const Card = ({
   const fallbackWidth = 1200;
   const fallbackHeight = 675;
   const imageSrc = image ? withBaseIfRelative(image) : undefined;
+  const cardHref = href ? withBaseIfRelative(href) : undefined;
 
   return (
     <article
@@ -25,8 +26,12 @@ export const Card = ({
         .filter(Boolean)
         .join(" ")}
     >
-      {href && (
-        <a href={href} className="absolute inset-0 z-30" aria-label={title} />
+      {cardHref && (
+        <a
+          href={cardHref}
+          className="absolute inset-0 z-30"
+          aria-label={title}
+        />
       )}
       {imageSrc && (
         <div className="aspect-video w-full overflow-hidden">

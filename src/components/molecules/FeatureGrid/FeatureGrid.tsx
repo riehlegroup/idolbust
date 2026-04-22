@@ -12,6 +12,7 @@ export const FeatureGrid = ({ features, className }: FeatureGridProps) => (
         key={feature.title}
         title={feature.title}
         description={feature.description}
+        href={feature.href}
       />
     ))}
   </div>

@@ -1,4 +1,9 @@
-export type SocialPlatform = "github" | "twitter" | "linkedin";
+export type SocialPlatform =
+  | "github"
+  | "twitter"
+  | "linkedin"
+  | "bluesky"
+  | (string & {});
 
 export interface BrandColorScale {
   "50": string;
@@ -30,6 +35,10 @@ export interface BrandSocialLink {
 export interface BrandLink {
   label: string;
   href: string;
+}
+
+export interface BrandNavigationLink extends BrandLink {
+  items?: readonly BrandLink[];
 }
 
 export interface BrandTokenItem {
@@ -67,6 +76,7 @@ export interface BrandConfig {
     locale: string;
     logoPath: string;
     faviconPath: string;
+    faviconType?: string;
     appleTouchIconPath: string;
     manifestPath: string;
     defaultOgImagePath: string;
@@ -91,6 +101,13 @@ export interface BrandConfig {
     primaryCtas: readonly BrandLink[];
     appLinks: readonly BrandLink[];
     social: readonly BrandSocialLink[];
+  };
+  navigation: {
+    primary: readonly BrandNavigationLink[];
+  };
+  footer: {
+    licenseText: string;
+    legalLinks?: readonly BrandLink[];
   };
   seo: {
     titleTemplate: string;

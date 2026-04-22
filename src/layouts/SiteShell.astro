@@ -4,7 +4,7 @@ import { BRAND_CONFIG } from '@/pages/_brandConfig';
 import { Footer } from '@/components/organisms/Footer';
 import { Navbar } from '@/components/organisms/Navbar';
 
-const { identity, theme } = BRAND_CONFIG;
+const { identity, navigation, footer, theme } = BRAND_CONFIG;
 
 const quoteFontFamily = (fontFamily: string): string => {
   const trimmedFontFamily = fontFamily.trim();
@@ -36,19 +36,8 @@ const brandVars = [
   <body class="flex h-full flex-col overflow-hidden bg-white text-secondary-900 antialiased">
     <Navbar
       siteName={identity.siteName}
-      links={[
-        { label: 'About', href: '/about' },
-        { label: 'Blog', href: '/blog' },
-        {
-          label: 'Solutions',
-          href: '/solutions',
-          items: [
-            { label: 'Discovery', href: '/solutions/discovery' },
-            { label: 'Synthesis', href: '/solutions/synthesis' },
-          ],
-        },
-        { label: 'Resources', href: '/resources' },
-      ]}
+      links={navigation.primary}
+      actions={BRAND_CONFIG.links.appLinks}
     />
 
     <div class="scroll-area flex flex-1 flex-col overflow-y-auto">
@@ -56,7 +45,11 @@ const brandVars = [
         <slot />
       </main>
 
-      <Footer siteName={identity.siteName} licenseText="Licensed under AGPL-3.0." />
+      <Footer
+        siteName={identity.siteName}
+        licenseText={footer.licenseText}
+        links={footer.legalLinks}
+      />
     </div>
   </body>
 </html>

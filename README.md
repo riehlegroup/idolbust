@@ -152,10 +152,18 @@ Story conventions (early stage):
 The site branding now comes from one source of truth: `src/pages/_brandConfig.ts`.
 
 1. Open `src/pages/_brandConfig.ts`.
-2. Update identity, organization, theme, links, SEO, and blog values.
+2. Update identity, organization, theme, links, navigation, footer, SEO, and blog values.
 3. Keep paths aligned with your configured `base` path in `astro.config.mjs`.
 
 For the complete typed example and current defaults, use `src/pages/_brandConfig.ts` directly.
+
+Branding and shell notes:
+
+- `identity.faviconType` can be set explicitly when your favicon is not SVG.
+- `navigation.primary` controls top-level nav links and optional dropdown items.
+- `links.appLinks` can be rendered as right-side navbar actions (for example, `Log in` / `Try for free`).
+- `footer.licenseText` and `footer.legalLinks` drive footer copy and legal links.
+- Social links accept known platforms (`github`, `twitter`, `linkedin`, `bluesky`) and custom identifiers.
 
 ## Site Content Pattern
 
@@ -178,6 +186,11 @@ Remove the old page file, because file-based routes take precedence over configu
 - Color tokens are exposed as CSS variables in `src/styles/global.css`.
 - Tailwind color utilities (`primary-*`, `secondary-*`) map to those variables in `tailwind.config.mjs`.
 - The active brand values are injected globally by `src/layouts/BaseLayout.astro`.
+
+### Feature Cards
+
+- `FeatureGrid` items support an optional `href`.
+- When provided, `Card` renders an overlay link and applies `base`-aware URL handling for relative paths.
 
 ## Resources Collection
 

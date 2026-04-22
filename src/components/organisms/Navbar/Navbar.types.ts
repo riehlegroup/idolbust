@@ -11,4 +11,5 @@ export interface NavbarLinkItem extends NavbarLinkShape {}
 export interface NavbarProps {
   siteName: string;
   links: readonly NavbarLinkItem[];
+  actions?: readonly NavbarSubLinkItem[];
 }
