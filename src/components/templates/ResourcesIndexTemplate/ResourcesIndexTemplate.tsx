@@ -17,7 +17,7 @@ export const ResourcesIndexTemplate = ({
     <PageIntro
       title={title}
       description={description}
-      descriptionClassName="!mx-0"
+      descriptionClassName="!mx-0 !max-w-5xl"
     />
 
     {resources.length === 0 ? (
