@@ -8,12 +8,19 @@ Easy startup websites for market research
 
 ## Quick Start
 
+Install the Node and Bun versions pinned in [`mise.toml`](mise.toml), then install the project dependencies:
+
 ```bash
-bun install
+mise install
+bun install --frozen-lockfile
 bun dev
 ```
 
 Open [localhost:4321](http://localhost:4321) in your browser.
+
+The Tailwind CSS 3 integration and the existing styling in [`astro.config.mjs`](astro.config.mjs), [`postcss.config.cjs`](postcss.config.cjs), and [`tailwind.config.mjs`](tailwind.config.mjs) are retained.
+
+The scoped overrides in [`package.json`](package.json) replace typography's pinned selector parser with a patched 6.x release and the existing boundaries lint plugin's pinned Handlebars dependency with a patched 4.x release. Remove them when the parent packages include the [selector parser](https://github.com/advisories/GHSA-rj75-hqrm-r3gf) and [Handlebars](https://github.com/advisories/GHSA-p8wg-vrv2-v86f) security fixes. Dependency installs retain the three-day release-age policy in [`bunfig.toml`](bunfig.toml).
 
 Want to migrate an existing site to using IdolBust? See [docs/migrate-existing-site.md](docs/migrate-existing-site.md) for a detailed guide and helpful worksheet templates.
 
